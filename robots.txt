@@ -1,0 +1,11 @@
+# LET Academy — https://www.letjunior.com/
+# Everything is public. The workbench and theme snapshots are never deployed
+# (see .gitignore), but they are disallowed here too in case a build ever
+# uploads the whole folder by mistake.
+
+User-agent: *
+Allow: /
+Disallow: /dev/
+Disallow: /backup/
+
+Sitemap: https://www.letjunior.com/sitemap.xml

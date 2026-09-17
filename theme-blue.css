@@ -1,0 +1,82 @@
+/* =========================================================
+   LET Academy — blue/teal theme
+   NOT the shipping theme. Mango stayed primary — warm reads as "your kid
+   will have fun", blue reads as "we are a serious institution", and the
+   second one is the wrong promise for a gamified kids' platform. The logo's
+   blue and teal now live in styles.css as the SECONDARY family instead.
+
+   This file is kept only as a ready-to-run A/B arm: it still works, so the
+   choice can be settled with data later instead of taste. Compare the two in
+   /dev → Themes.
+
+   This file overrides tokens only. Load it AFTER styles.css and nothing
+   else changes — no duplicated rules, no second stylesheet to keep in
+   sync. If the theme is adopted, these values move into the :root block
+   in styles.css and this file is deleted.
+
+   Colours sampled from assets/source/brand/logo-globo.png:
+     #104090 navy · #4080D0 blue · #50B0E0 sky · #80D0E0 teal · #C0F0E0 mint
+
+   Every text/background pair below was measured, not eyeballed.
+   ========================================================= */
+:root{
+  /* --- brand ------------------------------------------------------
+     The globe's own blues. --mango keeps its name so no rule has to
+     change; it is simply no longer orange. */
+  --mango:#3FA9E0;        /* the logo's sky blue, as a fill      */
+  --mango-deep:#1E6FB5;   /* its deeper edge                     */
+  --bubble:#00B4CC;       /* the cyan pop, in place of the pink  */
+  --splash:#00949F;       /* teal                                */
+  --sky:#4080D0;          /* the logo's mid blue                 */
+  --sun:#FFC93D;          /* KEPT WARM ON PURPOSE — this token is
+                             only ever star ratings, and gold stars
+                             are what a parent expects to see.   */
+
+  /* --- CTA --------------------------------------------------------
+     Its own pair, deep enough that white button text clears AA with
+     room to spare: 6.3:1 and 7.7:1. */
+  --cta:#1A62A6;
+  --cta-deep:#12539A;
+
+  /* --- ink twins, for brand colour used as TEXT on a light ground --- */
+  --mango-ink:#12539A;    /* 7.5:1 on --ground */
+  --splash-ink:#00707A;   /* 5.7:1 */
+  --bubble-ink:#0F6E8C;   /* 5.6:1 */
+  --sky-ink:#1B62B8;      /* 6.0:1 against white text */
+
+  /* --- neutrals ---------------------------------------------------
+     The mango system leaned every neutral warm. A blue brand wants the
+     opposite bias, or the whites read dirty next to the logo. */
+  --ink:#101B2B;          /* 16.8:1 */
+  --ink-2:#3B4A5E;        /* 8.8:1  */
+  --muted:#5E6E82;        /* 5.1:1 — passes on both grounds */
+  --line:#DDE6F0;
+  --ground:#FAFCFF;
+  --ground-2:#F1F6FB;
+  --surface:#FFFFFF;
+  --on-color:#FFFFFF;
+
+  --glass:rgba(255,255,255,.62);
+  --glass-line:rgba(255,255,255,.75);
+  --glass-solid:#FFFFFFEE;
+
+  /* Shadows carry the same cool cast, so depth does not look muddy. */
+  --shadow-s:0 1px 2px rgba(16,27,43,.06), 0 4px 12px rgba(16,27,43,.05);
+  --shadow-m:0 2px 4px rgba(16,27,43,.06), 0 12px 32px rgba(16,27,43,.10);
+  --shadow-cta:0 6px 20px rgba(18,83,154,.32);
+  --shadow-cta-hi:0 10px 28px rgba(18,83,154,.42);
+}
+
+/* The final panel's gradient is a warm sunset in the mango system. Here it
+   runs blue into teal; both ends clear 4.5:1 for white text under the
+   existing 22% scrim (6.9:1 and 5.2:1). */
+.panel{ background:linear-gradient(140deg,var(--mango-deep),var(--splash)); }
+
+/* The hero frame is the one place the mango theme stacked three warm hues.
+   Blue/teal/mint keeps the same energy without going muddy. */
+.hero-visual{
+  background:linear-gradient(150deg,var(--sky),var(--bubble) 55%,#C0F0E0);
+}
+
+/* Theme marker, so the workbench can label which side it is looking at. */
+:root{ --theme-name:"blue"; }

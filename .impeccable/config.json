@@ -1,0 +1,38 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "var(--e-spring)",
+        "createdAt": "2026-09-09T16:46:02.731Z",
+        "reason": "Design spec v1: spring/overshoot is the approved playful accent for a kids' brand, scoped to CTA press, FAQ plus rotation and the icon bob. Never on text or entrances."
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.34, 1.56, .64, 1)",
+        "createdAt": "2026-09-09T16:46:02.795Z",
+        "reason": "Same token, at its --e-spring definition site in the token block."
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "dev/dev.css"
+        ],
+        "createdAt": "2026-09-09T17:30:47.161Z",
+        "reason": "Only layout transition in the file: the preview iframe resizing between device widths. transform:scaleX would squash the rendered page instead of re-laying it out, so it would misreport responsive behaviour - width is the correct property here. Local-only dev tool, never deployed; the rule stays fully active in the shipped styles.css."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-15T09:49:26.825Z",
+        "reason": "body's pre-existing overflow-x:hidden never clips #intake (native <dialog>.showModal() renders in the top layer, exempt from ancestor overflow) or .sticky-cta (position:fixed with no transformed ancestor, also exempt); verified both render unclipped in the browser."
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "let-academy-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static marketing site. No build step for the site itself; the tooling here only converts source assets.",
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/optimize-images.mjs && node scripts/sync-srcsets.mjs && node scripts/build-schema.mjs && node scripts/check-schema.mjs",
+    "serve": "npx -y serve -l 5173 .",
+    "check": "node scripts/sync-srcsets.mjs && node scripts/build-schema.mjs && node scripts/check-schema.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.2"
+  }
+}

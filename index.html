@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LET Academy — Inglés en vivo para niños de 7 a 14 años</title>
+<meta name="description" content="Clases de inglés en vivo con profes certificados para niños de 7 a 14 años. Grupos reducidos, 100% online. Primera clase gratis, sin tarjeta.">
+<meta name="theme-color" content="#FFFCFA">
+<meta name="color-scheme" content="light">
+
+<meta property="og:title" content="Inglés que sí les divierte — LET Academy">
+<meta property="og:description" content="Clases en vivo con profes certificados para niños de 7 a 14 años. Primera clase gratis.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.letjunior.com/">
+<meta property="og:site_name" content="LET Academy">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Guards against Meta's ?utm_source= parameters being indexed as separate pages. -->
+<link rel="canonical" href="https://www.letjunior.com/">
+
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Both faces are self-hosted variable woff2, latin subset: one file per
+     family, same origin, no third-party DNS + TLS + stylesheet round trip
+     before the first glyph. Cold Meta traffic on a phone used to reach Google
+     twice before the display face existed. -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/fredoka-latin-var.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/figtree-latin-var.woff2" crossorigin>
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- The hero frame is the LCP element on a phone. Preloaded, it is requested
+     with the CSS instead of after the layout that reveals it. AVIF only, and
+     gated by type: a browser without AVIF skips this line entirely and the
+     <picture> below hands it the WebP. -->
+<link rel="preload" as="image" type="image/avif" fetchpriority="high"
+      href="assets/optimized/teachers/jordi-meeting-800.avif"
+      imagesrcset="assets/optimized/teachers/jordi-meeting-400.avif 400w, assets/optimized/teachers/jordi-meeting-800.avif 800w"
+      imagesizes="(min-width:900px) 452px, 84vw">
+<script>document.documentElement.classList.add('js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://www.letjunior.com/#org",
+      "name": "LET Academy",
+      "alternateName": "LET Junior",
+      "url": "https://www.letjunior.com/",
+      "logo": "https://www.letjunior.com/apple-touch-icon.png",
+      "image": "https://www.letjunior.com/og-image.jpg",
+      "description": "Clases de inglés en vivo con profes certificados para niños de 7 a 14 años. Grupos reducidos, 100 % online.",
+      "slogan": "Inglés genuino",
+      "sameAs": [
+        "https://www.youtube.com/@let_academy",
+        "https://www.facebook.com/profile.php?id=100076017257031"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.letjunior.com/#faq",
+      "mainEntity": [
+        {"@type":"Question","name":"¿Necesita saber inglés antes de empezar?","acceptedAnswer":{"@type":"Answer","text":"No. Empezamos desde cero si hace falta. En la clase gratuita valoramos su nivel y le asignamos el grupo que le corresponde, así que nunca está ni perdido ni aburrido."}},
+        {"@type":"Question","name":"¿Las clases son grabadas?","acceptedAnswer":{"@type":"Answer","text":"Son 100&nbsp;% en vivo, con profe y compañeros. Nada de vídeos pregrabados: hablan desde el primer día."}},
+        {"@type":"Question","name":"¿Cuánto dura cada clase y cuántas hay a la semana?","acceptedAnswer":{"@type":"Answer","text":"Una hora por clase. El Plan Inicial son dos clases por semana, martes y jueves; el Plan Completo son tres, lunes, miércoles y viernes. Los días se mantienen fijos, así que entra en la rutina de la semana sin recolocar nada."}},
+        {"@type":"Question","name":"¿Cuánto cuesta?","acceptedAnswer":{"@type":"Answer","text":"Se empieza con el Plan Inicial: $15 por dos semanas, cuatro clases, con garantía de devolución. Si le encaja, el Plan Completo son $50 al mes, doce clases, sin permanencia y cancelable cuando queráis."}},
+        {"@type":"Question","name":"¿Qué necesito en casa para conectarme?","acceptedAnswer":{"@type":"Answer","text":"Un ordenador o tablet con cámara y conexión a internet. Nada que instalar: se entra desde el navegador con un enlace."}},
+        {"@type":"Question","name":"¿Puedo cancelar si no le gusta?","acceptedAnswer":{"@type":"Answer","text":"Sí, cuando queráis y sin penalización. No hay permanencia ni letra pequeña. Y en las dos primeras semanas, si no dice sus primeras palabras, os devolvemos los $15."}}
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#main" aria-label="LET Academy, inicio">
+      <picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-36.avif 36w, assets/optimized/brand/logo-globo-72.avif 72w, assets/optimized/brand/logo-globo-144.avif 144w" sizes="34px"><source type="image/webp" srcset="assets/optimized/brand/logo-globo-36.webp 36w, assets/optimized/brand/logo-globo-72.webp 72w, assets/optimized/brand/logo-globo-144.webp 144w" sizes="34px"><img class="logo-mark" src="assets/optimized/brand/logo-globo-144.webp" width="34" height="33" alt="" decoding="async"></picture>
+      <span class="logo-word">LET Academy</span>
+    </a>
+
+    <nav class="hdr-nav" aria-label="Principal">
+      <a href="#metodo">Método</a>
+      <a href="#pruebalo">Pruébalo</a>
+      <a href="#profes">Profes</a>
+      <a href="#planes">Precios</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+
+    <div class="hdr-actions">
+      <a class="btn btn-primary btn-sm hdr-cta" id="hdrCta" data-wa href="#reservar">Empieza por $15</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero">
+  <div class="blobs" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+  </div>
+
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="chip reveal" data-d="0">
+        <span class="star" aria-hidden="true">★</span>
+        Grupos reducidos · La misma profe siempre
+      </p>
+
+      <h1>Inglés que <em>sí</em> les divierte</h1>
+
+      <p class="lede reveal" data-d="80">
+        Clases en vivo para niños de 7 a 14 años, en grupos reducidos y con
+        la misma profe todo el curso. 100&nbsp;% online.
+      </p>
+
+      <div class="hero-cta reveal" data-d="160">
+        <a class="btn btn-primary btn-lg breathe" id="heroCta" data-wa href="#reservar">
+          Empieza por $15 — 2 semanas <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <p class="fineprint">2 semanas de prueba · Con garantía de devolución</p>
+        <a class="link-under" href="#metodo">Ver cómo funciona <span aria-hidden="true">›</span></a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" data-d="120" role="img"
+         aria-label="Una clase de LET Academy en directo: Jordi y siete alumnos conectados">
+      <div class="screen-mock">
+        <div class="mock-top">
+          <span class="bar"><i></i></span>
+          <span class="hearts">♥♥♥<b>♥</b></span>
+        </div>
+        <div class="screen-grid">
+          <div class="tile tile-teacher">
+            <span class="live"><i></i>EN VIVO</span>
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 452px, 84vw"
+                      srcset="assets/optimized/teachers/jordi-meeting-400.avif 400w, assets/optimized/teachers/jordi-meeting-800.avif 800w">
+              <source type="image/webp" sizes="(min-width:900px) 452px, 84vw"
+                      srcset="assets/optimized/teachers/jordi-meeting-400.webp 400w, assets/optimized/teachers/jordi-meeting-800.webp 800w">
+              <img src="assets/optimized/teachers/jordi-meeting-800.webp" width="800" height="450" alt=""
+                   fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/daniel-96.avif 96w, assets/optimized/students/daniel-192.avif 192w, assets/optimized/students/daniel-288.avif 288w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/daniel-96.webp 96w, assets/optimized/students/daniel-192.webp 192w, assets/optimized/students/daniel-288.webp 288w">
+              <img src="assets/optimized/students/daniel-288.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/mila-96.avif 96w, assets/optimized/students/mila-192.avif 192w, assets/optimized/students/mila-288.avif 288w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/mila-96.webp 96w, assets/optimized/students/mila-192.webp 192w, assets/optimized/students/mila-288.webp 288w">
+              <img src="assets/optimized/students/mila-288.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/josue-96.avif 96w, assets/optimized/students/josue-192.avif 192w, assets/optimized/students/josue-288.avif 288w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/josue-96.webp 96w, assets/optimized/students/josue-192.webp 192w, assets/optimized/students/josue-288.webp 288w">
+              <img src="assets/optimized/students/josue-288.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/neila-96.avif 96w, assets/optimized/students/neila-192.avif 192w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/neila-96.webp 96w, assets/optimized/students/neila-192.webp 192w">
+              <img src="assets/optimized/students/neila-192.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/samir-96.avif 96w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/samir-96.webp 96w">
+              <img src="assets/optimized/students/samir-96.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/samantha-96.avif 96w, assets/optimized/students/samantha-192.avif 192w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/samantha-96.webp 96w, assets/optimized/students/samantha-192.webp 192w">
+              <img src="assets/optimized/students/samantha-192.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+          <div class="tile">
+            <picture>
+              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/jeanpaul-92.avif 92w">
+              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
+                      srcset="assets/optimized/students/jeanpaul-92.webp 92w">
+              <img src="assets/optimized/students/jeanpaul-92.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
+            </picture>
+          </div>
+        </div>
+        <p class="mock-say" lang="en">“It’s a <b>green dragon</b>!”</p>
+      </div>
+      <div class="hero-chips">
+        <span class="hero-chip chip-xp">⭐ 1.240 XP</span>
+        <span class="hero-chip chip-streak">🔥 7 días</span>
+      </div>
+    </div>
+
+  <ul class="trust reveal" data-d="240">
+    <li>Profes certificados</li>
+    <!-- Deliberadamente sin número: el Plan Inicial es hasta 8 y el Completo
+         máximo 4. Poner "máximo 4" aquí sería cierto para el producto de pago
+         y falso para la puerta de entrada, que es justo la contradicción que
+         señalaban las auditorías. Los números exactos van en la tabla. -->
+    <li>Grupos reducidos</li>
+    <li>Clases en vivo</li>
+  </ul>
+</section>
+
+<!-- ============ 2. SOCIAL PROOF ============ -->
+<section class="proof" id="familias">
+  <div class="wrap">
+    <h2 class="reveal">Lo que dicen las familias</h2>
+  </div>
+
+  <div class="rail-wrap">
+    <ul class="rail" id="railProof" tabindex="0" role="group" aria-label="Testimonios en vídeo de familias, deslizable">
+      <li class="card vid">
+        <a class="vid-shot" href="https://www.youtube.com/watch?v=LYReBJ-q6kg"
+           data-yt="LYReBJ-q6kg" data-who="Madre de Samir"
+           aria-label="Reproducir el testimonio de Madre de Samir, Inglés A2">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-madre-de-samir-400.avif 400w, assets/optimized/testimonials/testimonio-madre-de-samir-800.avif 800w">
+            <source type="image/webp" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-madre-de-samir-400.webp 400w, assets/optimized/testimonials/testimonio-madre-de-samir-800.webp 800w">
+            <img src="assets/optimized/testimonials/testimonio-madre-de-samir-800.webp" width="1280" height="720" alt=""
+                 loading="lazy" decoding="async">
+          </picture>
+          <span class="vid-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </span>
+        </a>
+        <div class="vid-body">
+          <blockquote>Me encanta la manera como les enseñan</blockquote>
+          <p class="who">Madre de Samir <span class="vid-course">Inglés A2</span></p>
+          <p class="vid-note">Cuenta cómo su hijo ha mejorado notablemente su inglés, y la satisfacción de verle progresar.</p>
+        </div>
+      </li>
+      <li class="card vid">
+        <a class="vid-shot" href="https://www.youtube.com/watch?v=pcCeO0YR4_s"
+           data-yt="pcCeO0YR4_s" data-who="Padre de Neila"
+           aria-label="Reproducir el testimonio de Padre de Neila, Inglés A2">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-padre-de-neila-400.avif 400w, assets/optimized/testimonials/testimonio-padre-de-neila-800.avif 800w">
+            <source type="image/webp" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-padre-de-neila-400.webp 400w, assets/optimized/testimonials/testimonio-padre-de-neila-800.webp 800w">
+            <img src="assets/optimized/testimonials/testimonio-padre-de-neila-800.webp" width="1280" height="720" alt=""
+                 loading="lazy" decoding="async">
+          </picture>
+          <span class="vid-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </span>
+        </a>
+        <div class="vid-body">
+          <blockquote>Mi hija se siente más segura de sí misma</blockquote>
+          <p class="who">Padre de Neila <span class="vid-course">Inglés A2</span></p>
+          <p class="vid-note">Relata su experiencia con la academia y los avances que ha visto en la confianza de su hija.</p>
+        </div>
+      </li>
+      <li class="card vid">
+        <a class="vid-shot" href="https://www.youtube.com/watch?v=kf9JVE_5CPA"
+           data-yt="kf9JVE_5CPA" data-who="Cristina, tía de Jhonatan"
+           aria-label="Reproducir el testimonio de Cristina, tía de Jhonatan, Inglés B1">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-cristina-atto-400.avif 400w, assets/optimized/testimonials/testimonio-cristina-atto-800.avif 800w">
+            <source type="image/webp" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-cristina-atto-400.webp 400w, assets/optimized/testimonials/testimonio-cristina-atto-800.webp 800w">
+            <img src="assets/optimized/testimonials/testimonio-cristina-atto-800.webp" width="1280" height="720" alt=""
+                 loading="lazy" decoding="async">
+          </picture>
+          <span class="vid-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </span>
+        </a>
+        <div class="vid-body">
+          <blockquote>Ahora tiene las mejores calificaciones en inglés</blockquote>
+          <p class="who">Cristina, tía de Jhonatan <span class="vid-course">Inglés B1</span></p>
+          <p class="vid-note">Explica por qué eligieron LET y los resultados que Jhonatan ha logrado en poco tiempo.</p>
+        </div>
+      </li>
+      <li class="card vid">
+        <a class="vid-shot" href="https://www.youtube.com/watch?v=veYDnCDTEbU"
+           data-yt="veYDnCDTEbU" data-who="Yessica, madre de Josué"
+           aria-label="Reproducir el testimonio de Yessica, madre de Josué, Inglés B1">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-yessica-archila-400.avif 400w, assets/optimized/testimonials/testimonio-yessica-archila-800.avif 800w">
+            <source type="image/webp" sizes="(min-width:900px) 380px, 86vw"
+                    srcset="assets/optimized/testimonials/testimonio-yessica-archila-400.webp 400w, assets/optimized/testimonials/testimonio-yessica-archila-800.webp 800w">
+            <img src="assets/optimized/testimonials/testimonio-yessica-archila-800.webp" width="1280" height="720" alt=""
+                 loading="lazy" decoding="async">
+          </picture>
+          <span class="vid-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </span>
+        </a>
+        <div class="vid-body">
+          <blockquote>Realmente creemos que ha sido de gran ayuda</blockquote>
+          <p class="who">Yessica, madre de Josué <span class="vid-course">Inglés B1</span></p>
+          <p class="vid-note">Describe cómo las clases marcaron la diferencia y motivaron a Josué a seguir mejorando.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="dots" data-rail="railProof" aria-hidden="true"></div>
+</section>
+
+<!-- ============ 3. METHODOLOGY ============ -->
+<section class="method" id="metodo">
+  <div class="wrap">
+    <h2 class="reveal">Aprender inglés sin darse cuenta</h2>
+    <p class="lede reveal">Tres cosas que hacemos distinto, y que son la razón por la que vuelven cada semana.</p>
+
+    <ul class="cards">
+      <li class="glass reveal">
+        <span class="ic ic-game" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <rect x="2.6" y="7.2" width="18.8" height="9.6" rx="4.8"/>
+            <path d="M7.4 10.6v3.2M5.8 12.2h3.2"/>
+            <circle cx="15.6" cy="11.6" r=".95" fill="currentColor" stroke="none"/>
+            <circle cx="17.8" cy="13.6" r=".95" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <h3>Plataforma interactiva</h3>
+        <p>Juegos, retos y recompensas que convierten la práctica en algo que piden repetir.</p>
+      </li>
+      <li class="glass reveal">
+        <span class="ic ic-reel" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <rect x="2.6" y="5.4" width="18.8" height="13.2" rx="3.2"/>
+            <path d="M2.6 9.8h18.8"/>
+            <path d="M7.4 5.6 5.9 9.6M12.2 5.6l-1.5 4M17 5.6l-1.5 4"/>
+          </svg>
+        </span>
+        <h3>Método audiovisual</h3>
+        <p>Vídeo, música y conversación desde el minuto uno. Escuchan y hablan antes de escribir.</p>
+      </li>
+      <li class="glass reveal">
+        <span class="ic ic-live" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <rect x="2.6" y="4.4" width="18.8" height="15.2" rx="3.4"/>
+            <circle cx="12" cy="10.3" r="2.5"/>
+            <path d="M7.7 16.9a4.7 4.7 0 0 1 8.6 0"/>
+          </svg>
+        </span>
+        <h3>Clases en vivo personalizadas</h3>
+        <p>Profes certificados en grupos de máximo 4, adaptando el ritmo a cada niño.</p>
+      </li>
+    </ul>
+
+    <p class="proofline reveal"><span class="ck" aria-hidden="true"></span> El 90&nbsp;% de los alumnos dice sus primeras palabras en inglés en la primera semana.</p>
+
+    <p class="reveal center"><a class="btn btn-outline" href="#pruebalo">Probar una pregunta ahora</a></p>
+  </div>
+</section>
+
+<!-- ============ 3b. INTERACTIVE DEMO LESSON ============ -->
+<section class="demo" id="pruebalo">
+  <div class="wrap narrow">
+    <h2 class="reveal">Así es una pregunta de clase</h2>
+    <p class="lede reveal">Tres preguntas reales, con vidas, XP y racha — igual que las ve tu peque. Escribe tu respuesta y te corregimos al momento.</p>
+
+    <div class="lesson reveal" id="lesson">
+      <div class="lesson-hud">
+        <span class="hud-bar"><i id="lsnBar" style="transform:scaleX(0)"></i></span>
+        <span class="hud-hearts" id="lsnHearts" aria-label="Vidas restantes: 3">♥♥♥</span>
+        <button class="hud-mute" id="lsnMute" type="button" aria-pressed="false" aria-label="Silenciar sonido">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M11.2 5.4 6.9 9H4.3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2.6l4.3 3.6z"/>
+            <g class="wave"><path d="M14.7 9.5a3.5 3.5 0 0 1 0 5"/><path d="M17.3 7.3a7 7 0 0 1 0 9.4"/></g>
+            <g class="slash"><path d="M15.1 9.7l4.8 4.6M19.9 9.7l-4.8 4.6"/></g>
+          </svg>
+        </button>
+      </div>
+
+      <div class="lesson-body" id="lsnBody">
+        <p class="lesson-step" id="lsnStep">Pregunta 1 de 3</p>
+        <h3 class="lesson-q" id="lsnQ">…</h3>
+
+        <!-- choice -->
+        <ul class="opts" id="lsnOpts" lang="en" hidden></ul>
+
+        <!-- typed answer -->
+        <div class="typed" id="lsnTyped" hidden>
+          <label class="sr-only" for="lsnInput">Tu respuesta en inglés</label>
+          <input id="lsnInput" type="text" lang="en" inputmode="text" autocomplete="off" autocorrect="off"
+                 autocapitalize="off" spellcheck="false" enterkeyhint="done"
+                 placeholder="Escribe aquí en inglés…">
+          <p class="live-words" id="lsnWords" aria-live="polite"></p>
+        </div>
+
+        <!-- word bank -->
+        <div class="bank" id="lsnBank" hidden>
+          <div class="bank-line" id="lsnLine" lang="en" aria-label="Tu frase"></div>
+          <div class="bank-tiles" id="lsnTiles" lang="en"></div>
+        </div>
+      </div>
+
+      <div class="lesson-foot">
+        <div class="feedback" id="lsnFeed" role="status" aria-live="polite" hidden>
+          <p class="fb-title" id="lsnFbTitle"></p>
+          <p class="fb-why" id="lsnFbWhy"></p>
+        </div>
+        <div class="lesson-actions">
+          <ul class="hud-chips">
+            <li class="hud-chip">🔥 <b>7</b> días</li>
+            <li class="hud-chip">⭐ <b id="lsnXp">0</b> XP</li>
+          </ul>
+          <button class="btn btn-primary" id="lsnCheck" type="button" disabled>Comprobar</button>
+        </div>
+      </div>
+
+      <!-- end states -->
+      <div class="lesson-end" id="lsnEnd" hidden>
+        <p class="end-emoji" aria-hidden="true">🎉</p>
+        <h3 id="lsnEndTitle">¡Lección completada!</h3>
+        <p id="lsnEndText">Has ganado <b>30 XP</b>. Tu peque haría esto dos veces por semana, con profe en directo.</p>
+        <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza sus 2 semanas por $15 <span class="arrow" aria-hidden="true">→</span></a>
+        <button class="btn btn-outline btn-sm" id="lsnRetry" type="button">Volver a intentarlo</button>
+      </div>
+    </div>
+
+    <p class="closing reveal">Esto es una demo. En clase, quien corrige y anima es la profe.</p>
+  </div>
+</section>
+
+<!-- ============ 4. TEACHERS ============ -->
+<section class="teachers" id="profes">
+  <div class="wrap">
+    <h2 class="reveal">Conoce a tus profes</h2>
+    <p class="lede reveal">Todos certificados, todos con experiencia enseñando a niños. Y todos algo payasos.</p>
+
+    <figure class="team reveal">
+      <picture>
+        <source type="image/avif" sizes="(min-width:900px) 1136px, 92vw"
+                srcset="assets/optimized/teachers/teachers-grupo-noedit-600.avif 600w">
+        <source type="image/webp" sizes="(min-width:900px) 1136px, 92vw"
+                srcset="assets/optimized/teachers/teachers-grupo-noedit-600.webp 600w">
+        <img src="assets/optimized/teachers/teachers-grupo-noedit-600.webp" width="974" height="548"
+             alt="El equipo de profesores de LET Academy" loading="lazy" decoding="async">
+      </picture>
+    </figure>
+  </div>
+
+  <div class="rail-wrap">
+    <ul class="rail" id="railTeach" tabindex="0" role="group" aria-label="Nuestro equipo de profesores, deslizable">
+      <li class="card teacher">
+        <div class="portrait">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 372px, 72vw"
+                    srcset="assets/optimized/teachers/jordi-280.avif 280w">
+            <source type="image/webp" sizes="(min-width:900px) 372px, 72vw"
+                    srcset="assets/optimized/teachers/jordi-280.webp 280w">
+            <img src="assets/optimized/teachers/jordi-280.webp" width="560" height="700" alt="Jordi, profesor de LET Academy" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <h3>Jordi</h3>
+        <p class="cred">Certificado internacionalmente</p>
+      </li>
+      <li class="card teacher">
+        <div class="portrait">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 372px, 72vw"
+                    srcset="assets/optimized/teachers/sofia-280.avif 280w, assets/optimized/teachers/sofia-560.avif 560w, assets/optimized/teachers/sofia-840.avif 840w">
+            <source type="image/webp" sizes="(min-width:900px) 372px, 72vw"
+                    srcset="assets/optimized/teachers/sofia-280.webp 280w, assets/optimized/teachers/sofia-560.webp 560w, assets/optimized/teachers/sofia-840.webp 840w">
+            <img src="assets/optimized/teachers/sofia-840.webp" width="560" height="700" alt="Sofia, profesora de LET Academy" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <h3>Sofia</h3>
+        <p class="cred">Certificada internacionalmente</p>
+      </li>
+      <li class="card teacher">
+        <div class="portrait">
+          <picture>
+            <source type="image/avif" sizes="(min-width:900px) 372px, 72vw"
+                    srcset="assets/optimized/teachers/ersa-280.avif 280w, assets/optimized/teachers/ersa-560.avif 560w">
+            <source type="image/webp" sizes="(min-width:900px) 372px, 72vw"
+                    srcset="assets/optimized/teachers/ersa-280.webp 280w, assets/optimized/teachers/ersa-560.webp 560w">
+            <img src="assets/optimized/teachers/ersa-560.webp" width="560" height="700" alt="Ersa, profesora de LET Academy" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <h3>Ersa</h3>
+        <p class="cred">Certificada internacionalmente</p>
+      </li>
+    </ul>
+  </div>
+  <div class="dots" data-rail="railTeach" aria-hidden="true"></div>
+
+  <p class="wrap closing reveal">Cada peque tiene profe asignado, no van rotando. <a class="link-under" href="#reservar">Reserva su clase gratis ›</a></p>
+</section>
+
+<!-- ============ 4b. WRITTEN REVIEWS ============ -->
+<section class="reviews" id="opiniones">
+  <div class="wrap">
+    <h2 class="reveal">Lo que nos escriben los padres</h2>
+    <ul class="rv-grid">
+      <li class="rv rv-wide reveal">
+        <div class="rv-head">
+        <picture>
+            <source type="image/avif" srcset="assets/optimized/reviews/maria-jose-acevedo-112.avif 112w, assets/optimized/reviews/maria-jose-acevedo-224.avif 224w" sizes="56px">
+            <source type="image/webp" srcset="assets/optimized/reviews/maria-jose-acevedo-112.webp 112w, assets/optimized/reviews/maria-jose-acevedo-224.webp 224w" sizes="56px">
+            <img class="rv-face" src="assets/optimized/reviews/maria-jose-acevedo-224.webp" width="56" height="56" alt="María José Acevedo, madre de dos alumnos de LET Academy"
+                 loading="lazy" decoding="async">
+          </picture>
+          <div class="rv-who">
+            <p class="rv-name">María José Acevedo</p>
+            <p class="rv-role">Comerciante</p>
+          </div>
+          <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+        </div>
+        <blockquote>
+          <p>Mis pequeños antes se aburrían con el inglés del colegio. En LET lo viven como un juego: participan sin miedo y ya empiezan a entender sus series y películas en inglés sin subtítulos.</p>
+        </blockquote>
+      </li>
+      <li class="rv rv-feature reveal">
+        <div class="rv-head">
+        <picture>
+            <source type="image/avif" srcset="assets/optimized/reviews/antonio-mendez-112.avif 112w, assets/optimized/reviews/antonio-mendez-224.avif 224w" sizes="56px">
+            <source type="image/webp" srcset="assets/optimized/reviews/antonio-mendez-112.webp 112w, assets/optimized/reviews/antonio-mendez-224.webp 224w" sizes="56px">
+            <img class="rv-face" src="assets/optimized/reviews/antonio-mendez-224.webp" width="56" height="56" alt="Antonio Méndez, padre de Lucía, alumna de LET Academy"
+                 loading="lazy" decoding="async">
+          </picture>
+          <div class="rv-who">
+            <p class="rv-name">Antonio Méndez</p>
+            <p class="rv-role">Agente inmobiliario</p>
+          </div>
+          <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+        </div>
+        <blockquote>
+          <p>Mi hija Lucía está aprendiendo inglés jugando, cantando y riendo. Cada día que le toca clase me insiste para entrar.</p>
+          <p>Ella aprende sobre todo de forma visual, y los profesores explican los temas de un modo fácil de asimilar para toda la clase, incluso para quienes les cuesta más el idioma.</p>
+          <p>Quiero agradecer especialmente al profesor Jordi, que ha estado siempre disponible para mi hija con cualquier tema que no entendía o tarea del colegio.</p>
+        </blockquote>
+      </li>
+      <li class="rv reveal">
+        <div class="rv-head">
+        <picture>
+            <source type="image/avif" srcset="assets/optimized/reviews/gustavo-bravo-112.avif 112w, assets/optimized/reviews/gustavo-bravo-224.avif 224w" sizes="56px">
+            <source type="image/webp" srcset="assets/optimized/reviews/gustavo-bravo-112.webp 112w, assets/optimized/reviews/gustavo-bravo-224.webp 224w" sizes="56px">
+            <img class="rv-face" src="assets/optimized/reviews/gustavo-bravo-224.webp" width="56" height="56" alt="Gustavo Bravo, padre de Santiago, alumno de LET Academy"
+                 loading="lazy" decoding="async">
+          </picture>
+          <div class="rv-who">
+            <p class="rv-name">Gustavo Bravo</p>
+            <p class="rv-role">Médico veterinario</p>
+          </div>
+          <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+        </div>
+        <blockquote>
+          <p>100 % recomendado. Los profesores son profesionales, disponibles y amables. En poco tiempo mi pequeño Santiago ya estaba nombrando cosas en inglés por toda la casa.</p>
+        </blockquote>
+      </li>
+      <li class="rv reveal">
+        <div class="rv-head">
+        <picture>
+            <source type="image/avif" srcset="assets/optimized/reviews/jose-ramirez-112.avif 112w, assets/optimized/reviews/jose-ramirez-224.avif 224w" sizes="56px">
+            <source type="image/webp" srcset="assets/optimized/reviews/jose-ramirez-112.webp 112w, assets/optimized/reviews/jose-ramirez-224.webp 224w" sizes="56px">
+            <img class="rv-face" src="assets/optimized/reviews/jose-ramirez-224.webp" width="56" height="56" alt="José Ramírez, padre de una alumna de LET Academy"
+                 loading="lazy" decoding="async">
+          </picture>
+          <div class="rv-who">
+            <p class="rv-name">José Ramírez</p>
+            <p class="rv-role">Independiente</p>
+          </div>
+          <p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
+        </div>
+        <blockquote>
+          <p>Mi hija aprendió más en unos meses que en años anteriores. Después de tanto buscar, finalmente encontramos la academia ideal.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4c. PLANS + GUARANTEE ============
+     Cifras tomadas de la auditoría de conversión (Plan Inicial $15/2 semanas,
+     Plan Completo $50/mes). CONFIRMAR antes de publicar: son un compromiso
+     comercial, y hoy el sitio, el bot y los anuncios no dicen lo mismo. -->
+<section class="plans" id="planes">
+  <div class="wrap">
+    <h2 class="reveal">Empieza pequeño, sigue si funciona</h2>
+    <p class="lede reveal">Nadie firma un curso entero para un niño que todavía no sabe si le va a gustar. Por eso hay una entrada de dos semanas antes de cualquier compromiso.</p>
+
+    <ul class="plan-grid">
+      <li class="plan plan-entry reveal">
+        <p class="plan-tag">Para empezar</p>
+        <h3>Plan Inicial</h3>
+        <p class="plan-price"><b>$15</b> <span>2 semanas</span></p>
+        <ul class="plan-specs">
+          <li><b>4 clases</b> de 1 hora</li>
+          <li>2 días por semana <span class="plan-days">martes y jueves</span></li>
+          <li>Hasta <b>8 niños</b> por grupo</li>
+          <li>Profe fija, la misma las cuatro clases</li>
+        </ul>
+        <p class="plan-note">Con garantía de devolución.</p>
+        <a class="btn btn-primary" data-wa="inicial" href="#reservar">Empezar por $15 <span class="arrow" aria-hidden="true">→</span></a>
+      </li>
+
+      <li class="plan plan-full reveal">
+        <p class="plan-tag">Si le engancha</p>
+        <h3>Plan Completo</h3>
+        <p class="plan-price"><b>$50</b> <span>al mes</span></p>
+        <ul class="plan-specs">
+          <li><b>12 clases</b> de 1 hora al mes</li>
+          <li>3 días por semana <span class="plan-days">lunes, miércoles y viernes</span></li>
+          <li><b>Máximo 4 niños</b> por grupo</li>
+          <li>Seguimiento del progreso e informes</li>
+        </ul>
+        <p class="plan-note">Sin permanencia. Cancela cuando quieras.</p>
+        <a class="btn btn-outline" data-wa="completo" href="#reservar">Preguntar por el Plan Completo</a>
+      </li>
+    </ul>
+
+    <!-- The strongest risk-remover in the whole funnel, and until now it was
+         not on the page at all. It gets its own block, not a footnote. -->
+    <aside class="guarantee reveal">
+      <span class="guarantee-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z" fill="currentColor"/></svg>
+      </span>
+      <div>
+        <h3>Si no dice sus primeras palabras, te devolvemos el dinero</h3>
+        <p>Sin formularios ni preguntas incómodas. Escríbenos al acabar las dos semanas y lo resolvemos por WhatsApp.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 5. FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap narrow">
+    <h2 class="reveal">Preguntas de otros padres</h2>
+
+    <div class="acc reveal">
+      <details open>
+        <summary>¿Necesita saber inglés antes de empezar?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="acc-body"><div><p>No. Empezamos desde cero si hace falta. En la clase gratuita valoramos su nivel y le asignamos el grupo que le corresponde, así que nunca está ni perdido ni aburrido.</p></div></div>
+      </details>
+      <details>
+        <summary>¿Las clases son grabadas?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="acc-body"><div><p>Son 100&nbsp;% en vivo, con profe y compañeros. Nada de vídeos pregrabados: hablan desde el primer día.</p></div></div>
+      </details>
+      <details>
+        <summary>¿Cuánto dura cada clase y cuántas hay a la semana?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="acc-body"><div><p>Una hora por clase. El Plan Inicial son dos clases por semana, martes y jueves; el Plan Completo son tres, lunes, miércoles y viernes. Los días se mantienen fijos, así que entra en la rutina de la semana sin recolocar nada.</p></div></div>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="acc-body"><div><p>Se empieza con el Plan Inicial: $15 por dos semanas, cuatro clases, con garantía de devolución. Si le encaja, el Plan Completo son $50 al mes, doce clases, sin permanencia y cancelable cuando queráis.</p></div></div>
+      </details>
+      <details>
+        <summary>¿Qué necesito en casa para conectarme?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="acc-body"><div><p>Un ordenador o tablet con cámara y conexión a internet. Nada que instalar: se entra desde el navegador con un enlace.</p></div></div>
+      </details>
+      <details>
+        <summary>¿Puedo cancelar si no le gusta?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="acc-body"><div><p>Sí, cuando queráis y sin penalización. No hay permanencia ni letra pequeña. Y en las dos primeras semanas, si no dice sus primeras palabras, os devolvemos los $15.</p></div></div>
+      </details>
+    </div>
+
+    <p class="closing reveal">¿Otra duda? <a class="link-under" data-wa href="#faq">Escríbenos por WhatsApp ›</a></p>
+  </div>
+</section>
+
+<!-- ============ 6. FINAL CTA ============ -->
+<section class="final" id="reservar">
+  <div class="wrap">
+    <div class="panel reveal">
+      <span class="peek peek-l" aria-hidden="true">🐙</span>
+      <span class="peek peek-r" aria-hidden="true">🦕</span>
+      <h2>Dos semanas por $15. Y si no habla, te devolvemos el dinero.</h2>
+      <p>Cuatro clases en vivo para que veas si le encaja, antes de comprometerte con nada más.</p>
+      <a class="btn btn-invert btn-lg" data-wa href="#reservar">Empieza por $15 <span class="arrow" aria-hidden="true">→</span></a>
+      <ul class="risk">
+        <li>Garantía de devolución</li>
+        <li>Cancela cuando quieras</li>
+        <li>Sin permanencia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ftr" id="ftr">
+  <div class="wrap ftr-in">
+    <div class="ftr-brand">
+      <span class="logo"><picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-36.avif 36w, assets/optimized/brand/logo-globo-72.avif 72w, assets/optimized/brand/logo-globo-144.avif 144w" sizes="34px"><source type="image/webp" srcset="assets/optimized/brand/logo-globo-36.webp 36w, assets/optimized/brand/logo-globo-72.webp 72w, assets/optimized/brand/logo-globo-144.webp 144w" sizes="34px"><img class="logo-mark" src="assets/optimized/brand/logo-globo-144.webp" width="34" height="33" alt="" decoding="async"></picture><span class="logo-word">LET Academy</span></span>
+      <p>Inglés en vivo para niños de 7 a 14 años. 100&nbsp;% online, con profes de verdad.</p>
+      <!-- Solo las cuentas que existen. Instagram y TikTok vuelven cuando
+           tengan URL real: un icono que no lleva a ningún sitio lee peor que
+           no tenerlo. -->
+      <ul class="social">
+        <li><a href="https://www.youtube.com/@let_academy" target="_blank" rel="noopener" aria-label="LET Academy en YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77C22 15.2 22 12 22 12s0-3.2-.4-4.8ZM10 15.2V8.8l5.2 3.2-5.2 3.2Z"/></svg>
+        </a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=100076017257031" target="_blank" rel="noopener" aria-label="LET Academy en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg>
+        </a></li>
+      </ul>
+    </div>
+    <nav class="ftr-col" aria-label="Academia">
+      <h3>Academia</h3>
+      <ul><li><a href="#metodo">Método</a></li><li><a href="#profes">Profes</a></li><li><a href="#planes">Precios</a></li><li><a href="#opiniones">Opiniones</a></li></ul>
+    </nav>
+    <nav class="ftr-col" aria-label="Ayuda">
+      <h3>Ayuda</h3>
+      <ul><li><a href="#faq">Preguntas frecuentes</a></li></ul>
+    </nav>
+    <nav class="ftr-col" aria-label="Legal">
+      <h3>Legal</h3>
+      <!-- TODO: estas tres páginas no existen todavía. No se quitan como los
+           iconos sociales porque en la UE son obligatorias, no opcionales:
+           hay que escribirlas, no borrar el enlace. -->
+      <ul><li><a href="#">Aviso legal</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul>
+    </nav>
+  </div>
+  <!-- TODO: razón social, CIF y domicilio -->
+  <p class="wrap legal">© 2026 LET Academy · Todos los derechos reservados.</p>
+</footer>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza por $15 <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+
+<!-- Quick-contact flow: every WhatsApp CTA opens this first. Three taps,
+     no typing, then WhatsApp opens with the plan context plus what the
+     parent just answered already written in. -->
+<dialog class="intake" id="intake">
+  <button class="intake-close" id="intakeClose" type="button" aria-label="Cerrar">✕</button>
+  <div class="lesson-hud">
+    <span class="hud-bar"><i id="intakeBar" style="transform:scaleX(0)"></i></span>
+  </div>
+  <div class="lesson-body" id="intakeBody">
+    <p class="lesson-step" id="intakeStep">Pregunta 1 de 3</p>
+    <h3 class="lesson-q" id="intakeQ">…</h3>
+    <ul class="opts" id="intakeOpts"></ul>
+  </div>
+  <div class="lesson-end" id="intakeEnd" hidden>
+    <p class="end-emoji" aria-hidden="true">🎉</p>
+    <h3>¡Listo!</h3>
+    <p>Te escribimos por WhatsApp enseguida.</p>
+    <a class="btn btn-primary btn-lg" id="intakeSend" target="_blank" rel="noopener">Enviar por WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</dialog>
+
+<script src="main.js" defer></script>
+</body>
+</html>

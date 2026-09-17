@@ -1,0 +1,18 @@
+# Local development workbench — never deploy, never publish.
+dev/
+
+# Build tooling
+node_modules/
+
+# Source masters are large and are NOT served — the site only uses
+# assets/optimized/, which must stay tracked and deployable.
+# Uncomment if the originals get too heavy for the repo and move them to Drive:
+# assets/source/
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Theme snapshots — local safety net, never deployed.
+backup/

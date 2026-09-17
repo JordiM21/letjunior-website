@@ -1,0 +1,886 @@
+[
+  {
+    "file": "assets\\source\\students\\daniel.png",
+    "kind": "students",
+    "w": 596,
+    "h": 351,
+    "crop": {
+      "width": 298,
+      "height": 298,
+      "left": 226,
+      "top": 52
+    },
+    "made": [
+      {
+        "w": 96,
+        "fmt": "avif",
+        "bytes": 2228,
+        "path": "assets\\optimized\\students\\daniel-96.avif"
+      },
+      {
+        "w": 96,
+        "fmt": "webp",
+        "bytes": 2412,
+        "path": "assets\\optimized\\students\\daniel-96.webp"
+      },
+      {
+        "w": 192,
+        "fmt": "avif",
+        "bytes": 3753,
+        "path": "assets\\optimized\\students\\daniel-192.avif"
+      },
+      {
+        "w": 192,
+        "fmt": "webp",
+        "bytes": 4734,
+        "path": "assets\\optimized\\students\\daniel-192.webp"
+      },
+      {
+        "w": 288,
+        "fmt": "avif",
+        "bytes": 5032,
+        "path": "assets\\optimized\\students\\daniel-288.avif"
+      },
+      {
+        "w": 288,
+        "fmt": "webp",
+        "bytes": 6794,
+        "path": "assets\\optimized\\students\\daniel-288.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\students\\jeanpaul.png",
+    "kind": "students",
+    "w": 210,
+    "h": 115,
+    "crop": {
+      "width": 92,
+      "height": 92,
+      "left": 38,
+      "top": 9
+    },
+    "made": [
+      {
+        "w": 92,
+        "fmt": "avif",
+        "bytes": 1359,
+        "path": "assets\\optimized\\students\\jeanpaul-92.avif"
+      },
+      {
+        "w": 92,
+        "fmt": "webp",
+        "bytes": 1346,
+        "path": "assets\\optimized\\students\\jeanpaul-92.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\students\\josue.png",
+    "kind": "students",
+    "w": 832,
+    "h": 469,
+    "crop": {
+      "width": 366,
+      "height": 366,
+      "left": 233,
+      "top": 5
+    },
+    "made": [
+      {
+        "w": 96,
+        "fmt": "avif",
+        "bytes": 1398,
+        "path": "assets\\optimized\\students\\josue-96.avif"
+      },
+      {
+        "w": 96,
+        "fmt": "webp",
+        "bytes": 1342,
+        "path": "assets\\optimized\\students\\josue-96.webp"
+      },
+      {
+        "w": 192,
+        "fmt": "avif",
+        "bytes": 2415,
+        "path": "assets\\optimized\\students\\josue-192.avif"
+      },
+      {
+        "w": 192,
+        "fmt": "webp",
+        "bytes": 3008,
+        "path": "assets\\optimized\\students\\josue-192.webp"
+      },
+      {
+        "w": 288,
+        "fmt": "avif",
+        "bytes": 3350,
+        "path": "assets\\optimized\\students\\josue-288.avif"
+      },
+      {
+        "w": 288,
+        "fmt": "webp",
+        "bytes": 4722,
+        "path": "assets\\optimized\\students\\josue-288.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\students\\mila.png",
+    "kind": "students",
+    "w": 836,
+    "h": 467,
+    "crop": {
+      "width": 350,
+      "height": 350,
+      "left": 104,
+      "top": 0
+    },
+    "made": [
+      {
+        "w": 96,
+        "fmt": "avif",
+        "bytes": 1469,
+        "path": "assets\\optimized\\students\\mila-96.avif"
+      },
+      {
+        "w": 96,
+        "fmt": "webp",
+        "bytes": 1416,
+        "path": "assets\\optimized\\students\\mila-96.webp"
+      },
+      {
+        "w": 192,
+        "fmt": "avif",
+        "bytes": 2357,
+        "path": "assets\\optimized\\students\\mila-192.avif"
+      },
+      {
+        "w": 192,
+        "fmt": "webp",
+        "bytes": 2880,
+        "path": "assets\\optimized\\students\\mila-192.webp"
+      },
+      {
+        "w": 288,
+        "fmt": "avif",
+        "bytes": 3209,
+        "path": "assets\\optimized\\students\\mila-288.avif"
+      },
+      {
+        "w": 288,
+        "fmt": "webp",
+        "bytes": 4500,
+        "path": "assets\\optimized\\students\\mila-288.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\students\\neila.png",
+    "kind": "students",
+    "w": 629,
+    "h": 351,
+    "crop": {
+      "width": 259,
+      "height": 259,
+      "left": 160,
+      "top": 81
+    },
+    "made": [
+      {
+        "w": 96,
+        "fmt": "avif",
+        "bytes": 1472,
+        "path": "assets\\optimized\\students\\neila-96.avif"
+      },
+      {
+        "w": 96,
+        "fmt": "webp",
+        "bytes": 1480,
+        "path": "assets\\optimized\\students\\neila-96.webp"
+      },
+      {
+        "w": 192,
+        "fmt": "avif",
+        "bytes": 2357,
+        "path": "assets\\optimized\\students\\neila-192.avif"
+      },
+      {
+        "w": 192,
+        "fmt": "webp",
+        "bytes": 2928,
+        "path": "assets\\optimized\\students\\neila-192.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\students\\samantha.png",
+    "kind": "students",
+    "w": 464,
+    "h": 262,
+    "crop": {
+      "width": 236,
+      "height": 236,
+      "left": 77,
+      "top": 8
+    },
+    "made": [
+      {
+        "w": 96,
+        "fmt": "avif",
+        "bytes": 1987,
+        "path": "assets\\optimized\\students\\samantha-96.avif"
+      },
+      {
+        "w": 96,
+        "fmt": "webp",
+        "bytes": 2072,
+        "path": "assets\\optimized\\students\\samantha-96.webp"
+      },
+      {
+        "w": 192,
+        "fmt": "avif",
+        "bytes": 3350,
+        "path": "assets\\optimized\\students\\samantha-192.avif"
+      },
+      {
+        "w": 192,
+        "fmt": "webp",
+        "bytes": 4198,
+        "path": "assets\\optimized\\students\\samantha-192.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\students\\samir.png",
+    "kind": "students",
+    "w": 456,
+    "h": 262,
+    "crop": {
+      "width": 177,
+      "height": 177,
+      "left": 151,
+      "top": 16
+    },
+    "made": [
+      {
+        "w": 96,
+        "fmt": "avif",
+        "bytes": 1422,
+        "path": "assets\\optimized\\students\\samir-96.avif"
+      },
+      {
+        "w": 96,
+        "fmt": "webp",
+        "bytes": 1430,
+        "path": "assets\\optimized\\students\\samir-96.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\teachers\\ersa.jpg",
+    "kind": "teachers",
+    "w": 1200,
+    "h": 1600,
+    "crop": {
+      "width": 720,
+      "height": 900,
+      "left": 192,
+      "top": 126
+    },
+    "made": [
+      {
+        "w": 280,
+        "fmt": "avif",
+        "bytes": 6761,
+        "path": "assets\\optimized\\teachers\\ersa-280.avif"
+      },
+      {
+        "w": 280,
+        "fmt": "webp",
+        "bytes": 10126,
+        "path": "assets\\optimized\\teachers\\ersa-280.webp"
+      },
+      {
+        "w": 560,
+        "fmt": "avif",
+        "bytes": 16402,
+        "path": "assets\\optimized\\teachers\\ersa-560.avif"
+      },
+      {
+        "w": 560,
+        "fmt": "webp",
+        "bytes": 27162,
+        "path": "assets\\optimized\\teachers\\ersa-560.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\teachers\\jordi-meeting.png",
+    "kind": "teachers",
+    "w": 1009,
+    "h": 920,
+    "crop": {
+      "width": 989,
+      "height": 556,
+      "left": 0,
+      "top": 90
+    },
+    "made": [
+      {
+        "w": 400,
+        "fmt": "avif",
+        "bytes": 5653,
+        "path": "assets\\optimized\\teachers\\jordi-meeting-400.avif"
+      },
+      {
+        "w": 400,
+        "fmt": "webp",
+        "bytes": 8422,
+        "path": "assets\\optimized\\teachers\\jordi-meeting-400.webp"
+      },
+      {
+        "w": 800,
+        "fmt": "avif",
+        "bytes": 11907,
+        "path": "assets\\optimized\\teachers\\jordi-meeting-800.avif"
+      },
+      {
+        "w": 800,
+        "fmt": "webp",
+        "bytes": 19636,
+        "path": "assets\\optimized\\teachers\\jordi-meeting-800.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\teachers\\jordi.jpg",
+    "kind": "teachers",
+    "w": 852,
+    "h": 1024,
+    "crop": {
+      "width": 451,
+      "height": 563,
+      "left": 201,
+      "top": 56
+    },
+    "made": [
+      {
+        "w": 280,
+        "fmt": "avif",
+        "bytes": 5918,
+        "path": "assets\\optimized\\teachers\\jordi-280.avif"
+      },
+      {
+        "w": 280,
+        "fmt": "webp",
+        "bytes": 9080,
+        "path": "assets\\optimized\\teachers\\jordi-280.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\teachers\\sofia.jpg",
+    "kind": "teachers",
+    "w": 1200,
+    "h": 1499,
+    "crop": {
+      "width": 959,
+      "height": 1199,
+      "left": 121,
+      "top": 0
+    },
+    "made": [
+      {
+        "w": 280,
+        "fmt": "avif",
+        "bytes": 6749,
+        "path": "assets\\optimized\\teachers\\sofia-280.avif"
+      },
+      {
+        "w": 280,
+        "fmt": "webp",
+        "bytes": 10406,
+        "path": "assets\\optimized\\teachers\\sofia-280.webp"
+      },
+      {
+        "w": 560,
+        "fmt": "avif",
+        "bytes": 14857,
+        "path": "assets\\optimized\\teachers\\sofia-560.avif"
+      },
+      {
+        "w": 560,
+        "fmt": "webp",
+        "bytes": 25486,
+        "path": "assets\\optimized\\teachers\\sofia-560.webp"
+      },
+      {
+        "w": 840,
+        "fmt": "avif",
+        "bytes": 23418,
+        "path": "assets\\optimized\\teachers\\sofia-840.avif"
+      },
+      {
+        "w": 840,
+        "fmt": "webp",
+        "bytes": 42598,
+        "path": "assets\\optimized\\teachers\\sofia-840.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\teachers\\teachers-grupo-noedit.png",
+    "kind": "teachers",
+    "w": 974,
+    "h": 730,
+    "crop": {
+      "width": 974,
+      "height": 548,
+      "left": 0,
+      "top": 47
+    },
+    "made": [
+      {
+        "w": 600,
+        "fmt": "avif",
+        "bytes": 19613,
+        "path": "assets\\optimized\\teachers\\teachers-grupo-noedit-600.avif"
+      },
+      {
+        "w": 600,
+        "fmt": "webp",
+        "bytes": 29478,
+        "path": "assets\\optimized\\teachers\\teachers-grupo-noedit-600.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\reviews\\antonio-mendez.webp",
+    "kind": "reviews",
+    "w": 524,
+    "h": 572,
+    "crop": {
+      "width": 482,
+      "height": 482,
+      "left": 0,
+      "top": 0
+    },
+    "made": [
+      {
+        "w": 112,
+        "fmt": "avif",
+        "bytes": 2376,
+        "path": "assets\\optimized\\reviews\\antonio-mendez-112.avif"
+      },
+      {
+        "w": 112,
+        "fmt": "webp",
+        "bytes": 2984,
+        "path": "assets\\optimized\\reviews\\antonio-mendez-112.webp"
+      },
+      {
+        "w": 224,
+        "fmt": "avif",
+        "bytes": 5435,
+        "path": "assets\\optimized\\reviews\\antonio-mendez-224.avif"
+      },
+      {
+        "w": 224,
+        "fmt": "webp",
+        "bytes": 7486,
+        "path": "assets\\optimized\\reviews\\antonio-mendez-224.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\reviews\\gustavo-bravo.webp",
+    "kind": "reviews",
+    "w": 496,
+    "h": 465,
+    "crop": {
+      "width": 353,
+      "height": 353,
+      "left": 86,
+      "top": 0
+    },
+    "made": [
+      {
+        "w": 112,
+        "fmt": "avif",
+        "bytes": 2253,
+        "path": "assets\\optimized\\reviews\\gustavo-bravo-112.avif"
+      },
+      {
+        "w": 112,
+        "fmt": "webp",
+        "bytes": 2992,
+        "path": "assets\\optimized\\reviews\\gustavo-bravo-112.webp"
+      },
+      {
+        "w": 224,
+        "fmt": "avif",
+        "bytes": 5303,
+        "path": "assets\\optimized\\reviews\\gustavo-bravo-224.avif"
+      },
+      {
+        "w": 224,
+        "fmt": "webp",
+        "bytes": 7852,
+        "path": "assets\\optimized\\reviews\\gustavo-bravo-224.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\reviews\\jose-ramirez.webp",
+    "kind": "reviews",
+    "w": 568,
+    "h": 522,
+    "crop": {
+      "width": 365,
+      "height": 365,
+      "left": 203,
+      "top": 47
+    },
+    "made": [
+      {
+        "w": 112,
+        "fmt": "avif",
+        "bytes": 1817,
+        "path": "assets\\optimized\\reviews\\jose-ramirez-112.avif"
+      },
+      {
+        "w": 112,
+        "fmt": "webp",
+        "bytes": 2246,
+        "path": "assets\\optimized\\reviews\\jose-ramirez-112.webp"
+      },
+      {
+        "w": 224,
+        "fmt": "avif",
+        "bytes": 3327,
+        "path": "assets\\optimized\\reviews\\jose-ramirez-224.avif"
+      },
+      {
+        "w": 224,
+        "fmt": "webp",
+        "bytes": 4674,
+        "path": "assets\\optimized\\reviews\\jose-ramirez-224.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\reviews\\maria-jose-acevedo.webp",
+    "kind": "reviews",
+    "w": 291,
+    "h": 371,
+    "crop": {
+      "width": 134,
+      "height": 134,
+      "left": 154,
+      "top": 3
+    },
+    "made": [
+      {
+        "w": 112,
+        "fmt": "avif",
+        "bytes": 3293,
+        "path": "assets\\optimized\\reviews\\maria-jose-acevedo-112.avif"
+      },
+      {
+        "w": 112,
+        "fmt": "webp",
+        "bytes": 4092,
+        "path": "assets\\optimized\\reviews\\maria-jose-acevedo-112.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\testimonials\\testimonio-cristina-atto.jpg",
+    "kind": "testimonials",
+    "w": 1280,
+    "h": 720,
+    "crop": null,
+    "made": [
+      {
+        "w": 400,
+        "fmt": "avif",
+        "bytes": 8203,
+        "path": "assets\\optimized\\testimonials\\testimonio-cristina-atto-400.avif"
+      },
+      {
+        "w": 400,
+        "fmt": "webp",
+        "bytes": 9928,
+        "path": "assets\\optimized\\testimonials\\testimonio-cristina-atto-400.webp"
+      },
+      {
+        "w": 800,
+        "fmt": "avif",
+        "bytes": 18440,
+        "path": "assets\\optimized\\testimonials\\testimonio-cristina-atto-800.avif"
+      },
+      {
+        "w": 800,
+        "fmt": "webp",
+        "bytes": 24676,
+        "path": "assets\\optimized\\testimonials\\testimonio-cristina-atto-800.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\testimonials\\testimonio-madre-de-samir.jpg",
+    "kind": "testimonials",
+    "w": 1280,
+    "h": 720,
+    "crop": null,
+    "made": [
+      {
+        "w": 400,
+        "fmt": "avif",
+        "bytes": 4909,
+        "path": "assets\\optimized\\testimonials\\testimonio-madre-de-samir-400.avif"
+      },
+      {
+        "w": 400,
+        "fmt": "webp",
+        "bytes": 6630,
+        "path": "assets\\optimized\\testimonials\\testimonio-madre-de-samir-400.webp"
+      },
+      {
+        "w": 800,
+        "fmt": "avif",
+        "bytes": 10148,
+        "path": "assets\\optimized\\testimonials\\testimonio-madre-de-samir-800.avif"
+      },
+      {
+        "w": 800,
+        "fmt": "webp",
+        "bytes": 14446,
+        "path": "assets\\optimized\\testimonials\\testimonio-madre-de-samir-800.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\testimonials\\testimonio-padre-de-neila.jpg",
+    "kind": "testimonials",
+    "w": 1280,
+    "h": 720,
+    "crop": null,
+    "made": [
+      {
+        "w": 400,
+        "fmt": "avif",
+        "bytes": 5088,
+        "path": "assets\\optimized\\testimonials\\testimonio-padre-de-neila-400.avif"
+      },
+      {
+        "w": 400,
+        "fmt": "webp",
+        "bytes": 6890,
+        "path": "assets\\optimized\\testimonials\\testimonio-padre-de-neila-400.webp"
+      },
+      {
+        "w": 800,
+        "fmt": "avif",
+        "bytes": 10560,
+        "path": "assets\\optimized\\testimonials\\testimonio-padre-de-neila-800.avif"
+      },
+      {
+        "w": 800,
+        "fmt": "webp",
+        "bytes": 15244,
+        "path": "assets\\optimized\\testimonials\\testimonio-padre-de-neila-800.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\testimonials\\testimonio-yessica-archila.jpg",
+    "kind": "testimonials",
+    "w": 1280,
+    "h": 720,
+    "crop": null,
+    "made": [
+      {
+        "w": 400,
+        "fmt": "avif",
+        "bytes": 5034,
+        "path": "assets\\optimized\\testimonials\\testimonio-yessica-archila-400.avif"
+      },
+      {
+        "w": 400,
+        "fmt": "webp",
+        "bytes": 6570,
+        "path": "assets\\optimized\\testimonials\\testimonio-yessica-archila-400.webp"
+      },
+      {
+        "w": 800,
+        "fmt": "avif",
+        "bytes": 10016,
+        "path": "assets\\optimized\\testimonials\\testimonio-yessica-archila-800.avif"
+      },
+      {
+        "w": 800,
+        "fmt": "webp",
+        "bytes": 14438,
+        "path": "assets\\optimized\\testimonials\\testimonio-yessica-archila-800.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\brand\\30.png",
+    "kind": "brand",
+    "w": 1080,
+    "h": 1080,
+    "crop": null,
+    "made": [
+      {
+        "w": 36,
+        "fmt": "avif",
+        "bytes": 621,
+        "path": "assets\\optimized\\brand\\30-36.avif"
+      },
+      {
+        "w": 36,
+        "fmt": "webp",
+        "bytes": 472,
+        "path": "assets\\optimized\\brand\\30-36.webp"
+      },
+      {
+        "w": 72,
+        "fmt": "avif",
+        "bytes": 1126,
+        "path": "assets\\optimized\\brand\\30-72.avif"
+      },
+      {
+        "w": 72,
+        "fmt": "webp",
+        "bytes": 1126,
+        "path": "assets\\optimized\\brand\\30-72.webp"
+      },
+      {
+        "w": 144,
+        "fmt": "avif",
+        "bytes": 2171,
+        "path": "assets\\optimized\\brand\\30-144.avif"
+      },
+      {
+        "w": 144,
+        "fmt": "webp",
+        "bytes": 2644,
+        "path": "assets\\optimized\\brand\\30-144.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\brand\\31.png",
+    "kind": "brand",
+    "w": 1080,
+    "h": 1080,
+    "crop": null,
+    "made": [
+      {
+        "w": 36,
+        "fmt": "avif",
+        "bytes": 633,
+        "path": "assets\\optimized\\brand\\31-36.avif"
+      },
+      {
+        "w": 36,
+        "fmt": "webp",
+        "bytes": 482,
+        "path": "assets\\optimized\\brand\\31-36.webp"
+      },
+      {
+        "w": 72,
+        "fmt": "avif",
+        "bytes": 1127,
+        "path": "assets\\optimized\\brand\\31-72.avif"
+      },
+      {
+        "w": 72,
+        "fmt": "webp",
+        "bytes": 1142,
+        "path": "assets\\optimized\\brand\\31-72.webp"
+      },
+      {
+        "w": 144,
+        "fmt": "avif",
+        "bytes": 2158,
+        "path": "assets\\optimized\\brand\\31-144.avif"
+      },
+      {
+        "w": 144,
+        "fmt": "webp",
+        "bytes": 2664,
+        "path": "assets\\optimized\\brand\\31-144.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\brand\\logo-globo.png",
+    "kind": "brand",
+    "w": 779,
+    "h": 747,
+    "crop": null,
+    "made": [
+      {
+        "w": 36,
+        "fmt": "avif",
+        "bytes": 1520,
+        "path": "assets\\optimized\\brand\\logo-globo-36.avif"
+      },
+      {
+        "w": 36,
+        "fmt": "webp",
+        "bytes": 1392,
+        "path": "assets\\optimized\\brand\\logo-globo-36.webp"
+      },
+      {
+        "w": 72,
+        "fmt": "avif",
+        "bytes": 2863,
+        "path": "assets\\optimized\\brand\\logo-globo-72.avif"
+      },
+      {
+        "w": 72,
+        "fmt": "webp",
+        "bytes": 3320,
+        "path": "assets\\optimized\\brand\\logo-globo-72.webp"
+      },
+      {
+        "w": 144,
+        "fmt": "avif",
+        "bytes": 5926,
+        "path": "assets\\optimized\\brand\\logo-globo-144.avif"
+      },
+      {
+        "w": 144,
+        "fmt": "webp",
+        "bytes": 7894,
+        "path": "assets\\optimized\\brand\\logo-globo-144.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\brand\\logo-nobg.png",
+    "kind": "brand",
+    "w": 52,
+    "h": 52,
+    "crop": null,
+    "made": [
+      {
+        "w": 36,
+        "fmt": "avif",
+        "bytes": 840,
+        "path": "assets\\optimized\\brand\\logo-nobg-36.avif"
+      },
+      {
+        "w": 36,
+        "fmt": "webp",
+        "bytes": 716,
+        "path": "assets\\optimized\\brand\\logo-nobg-36.webp"
+      }
+    ]
+  }
+]
