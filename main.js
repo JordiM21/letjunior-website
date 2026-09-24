@@ -378,7 +378,7 @@
 
   /* =========================================================
      Interactive demo lesson
-     Three questions: choice, typed answer, word bank. All checking
+     Three questions: two choices, then a word bank. All checking
      happens here in the browser — no backend, no network.
      ========================================================= */
   var LESSON = [
@@ -390,12 +390,11 @@
       why: 'En inglés la edad se dice con <b>am / is / are</b>, nunca con “have”. Es el fallo número uno de los hispanohablantes.'
     },
     {
-      type: 'type',
-      q: 'Escribe en inglés: <b>«Tengo dos perros»</b>',
-      accept: ['i have two dogs', 'i have got two dogs', 'ive got two dogs', 'i have 2 dogs'],
-      show: 'I have two dogs',   // accept[] is normalised; this is what we display
-      keywords: ['have', 'two', 'dogs'],
-      why: 'Aquí “tengo” sí es <b>I have</b>. Y “perros” va en plural: <b>dogs</b>.'
+      type: 'choice',
+      q: '¿Qué es esto? <span class="q-emoji" role="img" aria-label="un perro">🐶</span>',
+      options: ['Dog', 'Cat', 'Mouse'],
+      correct: 0,
+      why: '🐶 es un <b>dog</b>. El gato 🐱 es <b>cat</b> y el ratón 🐭 es <b>mouse</b>.'
     },
     {
       type: 'bank',
@@ -471,9 +470,6 @@
       step: document.getElementById('lsnStep'),
       q: document.getElementById('lsnQ'),
       opts: document.getElementById('lsnOpts'),
-      typed: document.getElementById('lsnTyped'),
-      input: document.getElementById('lsnInput'),
-      words: document.getElementById('lsnWords'),
       bank: document.getElementById('lsnBank'),
       line: document.getElementById('lsnLine'),
       tiles: document.getElementById('lsnTiles'),
@@ -497,20 +493,6 @@
         .normalize('NFD').replace(/[̀-ͯ]/g, '')  // strip accents
         .replace(/[^a-z0-9\s]/g, ' ')                      // strip punctuation
         .replace(/\s+/g, ' ').trim();
-    }
-
-    // Levenshtein — lets a near-miss count as a typo instead of a failure.
-    function dist(a, b) {
-      var prev = [], cur = [], j, k;
-      for (j = 0; j <= b.length; j++) prev[j] = j;
-      for (j = 1; j <= a.length; j++) {
-        cur[0] = j;
-        for (k = 1; k <= b.length; k++) {
-          cur[k] = Math.min(prev[k] + 1, cur[k - 1] + 1, prev[k - 1] + (a[j - 1] === b[k - 1] ? 0 : 1));
-        }
-        prev = cur.slice();
-      }
-      return prev[b.length];
     }
 
     function drawHearts() {
@@ -540,8 +522,8 @@
       el.check.textContent = 'Comprobar';
       el.check.disabled = true;
 
-      el.opts.hidden = true; el.typed.hidden = true; el.bank.hidden = true;
-      el.typed.className = 'typed'; el.bank.className = 'bank';
+      el.opts.hidden = true; el.bank.hidden = true;
+      el.bank.className = 'bank';
 
       if (q.type === 'choice') {
         el.opts.hidden = false;
@@ -563,13 +545,6 @@
           li.appendChild(b);
           el.opts.appendChild(li);
         });
-      }
-
-      if (q.type === 'type') {
-        el.typed.hidden = false;
-        el.input.value = '';
-        el.input.disabled = false;
-        el.words.innerHTML = '<span class="hint">Te vamos marcando las palabras según escribes.</span>';
       }
 
       if (q.type === 'bank') {
@@ -607,34 +582,6 @@
       el.check.disabled = false;
     }
 
-    /* Live word marking while typing — real-time, but it never hands over
-       the answer: it only confirms words that do belong in it. */
-    el.input.addEventListener('input', function () {
-      var q = LESSON[i];
-      if (q.type !== 'type') return;
-      var raw = el.input.value;
-      el.check.disabled = norm(raw).length === 0;
-
-      var pool = norm(q.accept[0]).split(' ');
-      var typed = norm(raw).split(' ').filter(Boolean);
-      var endsOpen = !/\s$/.test(raw); // last word may still be half-written
-      if (!typed.length) {
-        el.words.innerHTML = '<span class="hint">Te vamos marcando las palabras según escribes.</span>';
-        return;
-      }
-      el.words.innerHTML = typed.map(function (w, n) {
-        var partial = endsOpen && n === typed.length - 1;
-        var ok = partial
-          ? pool.some(function (p) { return p.indexOf(w) === 0; })
-          : pool.indexOf(w) > -1;
-        return '<span class="w' + (ok ? ' ok' : '') + '">' + w + '</span>';
-      }).join('');
-    });
-
-    el.input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' && !el.check.disabled) { e.preventDefault(); el.check.click(); }
-    });
-
     function judge() {
       var q = LESSON[i];
 
@@ -645,27 +592,6 @@
           else if (n === picked) b.classList.add('wrong');
         });
         return picked === q.correct ? { ok: true } : { ok: false };
-      }
-
-      if (q.type === 'type') {
-        var a = norm(el.input.value);
-        el.input.disabled = true;
-        if (q.accept.some(function (x) { return norm(x) === a; })) {
-          el.typed.classList.add('right');
-          return { ok: true };
-        }
-        var best = Math.min.apply(null, q.accept.map(function (x) { return dist(a, norm(x)); }));
-        if (best <= 2) {
-          el.typed.classList.add('right');
-          return { ok: true, note: 'Casi perfecto — solo una errata. Se escribe <b>' + (q.show || q.accept[0]) + '</b>.' };
-        }
-        el.typed.classList.add('wrong');
-        var words = a.split(' ');
-        var missing = q.keywords.filter(function (k) { return words.indexOf(k) === -1; });
-        var note = (missing.length && missing.length < q.keywords.length)
-          ? 'Te falta <b>' + missing.join('</b>, <b>') + '</b>. '
-          : '';
-        return { ok: false, note: note + 'La respuesta era <b>' + (q.show || q.accept[0]) + '</b>.' };
       }
 
       var made = built.map(function (x) { return x.word; }).join(' ');
@@ -685,7 +611,7 @@
       // The answer area itself reacts: pop when right, shake when wrong.
       var target = q.type === 'choice'
         ? (el.opts.querySelectorAll('.opt')[picked] || el.opts)
-        : (q.type === 'type' ? el.typed : el.line);
+        : el.line;
 
       if (res.ok) {
         xp += 10;
@@ -730,8 +656,8 @@
       if (won) burstAt(el.end.querySelector('.end-emoji'), { n: 40, spread: 240 });
       el.endTitle.textContent = won ? '¡Lección completada!' : 'Te quedaste sin vidas';
       el.endText.innerHTML = won
-        ? 'Has ganado <b>' + xp + ' XP</b>. Tu peque hace esto dos veces por semana — pero con una profe al otro lado animándole.'
-        : 'Justo por esto las clases son en vivo: cuando algo falla, la profe lo explica al momento. Llevabas <b>' + xp + ' XP</b>.';
+        ? 'Has ganado <b>' + xp + ' XP</b>. Tu peque hace esto dos veces por semana — pero con un profe al otro lado animándole.'
+        : 'Justo por esto las clases son en vivo: cuando algo falla, el profe lo explica al momento. Llevabas <b>' + xp + ' XP</b>.';
     }
 
     function start() {
@@ -757,101 +683,6 @@
 
     el.retry.addEventListener('click', start);
     start();
-  }
-
-  /* ---------- WhatsApp: the single place the number lives ----------
-     The whole business runs through WhatsApp, so every buy-intent control on
-     the page lands in the same inbox with the message already written.
-
-     data-wa="" uses the general text; data-wa="completo" says which
-     plan the parent was looking at when they tapped. That context arrives in
-     Kommo as the first line of the conversation, so the reply can pick up
-     where the page left off instead of starting from "¿en qué te ayudo?". */
-  var WA_PHONE = '393792913474';
-  var WA_TEXT = {
-    '':         '¡Hola! Acabo de ver la página y me gustaría obtener más información por favor',
-    completo:   '¡Hola! Acabo de ver la página y quiero información sobre el Plan Completo'
-  };
-
-  document.querySelectorAll('[data-wa]').forEach(function (a) {
-    var text = WA_TEXT[a.dataset.wa] || WA_TEXT[''];
-    a.href = 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text);
-    a.target = '_blank';
-    a.rel = 'noopener';
-  });
-
-  /* ---------- Quick-contact flow ----------
-     Every WhatsApp CTA opens this first instead of leaving the page right
-     away: three taps, no typing, then WhatsApp opens with the plan context
-     (WA_TEXT above) plus what the parent just answered already written in.
-     Falls back to the plain WhatsApp link (already set above) wherever
-     <dialog> isn't supported. */
-  var intake = document.getElementById('intake');
-  if (intake && typeof intake.showModal === 'function') {
-    var STEPS = [
-      { q: '¿Cómo prefieres que te contactemos?', opts: ['💬 WhatsApp', '📞 Llamada', '✍️ Mensaje de texto'] },
-      { q: '¿Cuándo te viene mejor?', opts: ['🌅 Mañana', '☀️ Tarde', '🌙 Noche', '🤷 Cuando sea'] },
-      { q: '¿Qué edad tiene tu peque?', opts: ['7–8 años', '9–10 años', '11–12 años', '13–14 años'] }
-    ];
-    var bar = document.getElementById('intakeBar');
-    var stepEl = document.getElementById('intakeStep');
-    var qEl = document.getElementById('intakeQ');
-    var optsEl = document.getElementById('intakeOpts');
-    var bodyEl = document.getElementById('intakeBody');
-    var endEl = document.getElementById('intakeEnd');
-    var sendBtn = document.getElementById('intakeSend');
-    var step, answers, waKey;
-
-    function renderStep() {
-      var s = STEPS[step];
-      stepEl.textContent = 'Pregunta ' + (step + 1) + ' de ' + STEPS.length;
-      qEl.textContent = s.q;
-      optsEl.innerHTML = '';
-      s.opts.forEach(function (label) {
-        var li = document.createElement('li');
-        var b = document.createElement('button');
-        b.className = 'opt';
-        b.type = 'button';
-        b.textContent = label;
-        b.addEventListener('click', function () { pick(label); });
-        li.appendChild(b);
-        optsEl.appendChild(li);
-      });
-      bar.style.transform = 'scaleX(' + (step / STEPS.length) + ')';
-    }
-
-    function pick(label) {
-      answers.push(label);
-      step++;
-      if (step < STEPS.length) { renderStep(); return; }
-      bar.style.transform = 'scaleX(1)';
-      bodyEl.hidden = true;
-      endEl.hidden = false;
-      var text = (WA_TEXT[waKey] || WA_TEXT['']) +
-        '\n\nContacto: ' + answers[0] + ' · ' + answers[1] +
-        '\nEdad: ' + answers[2];
-      sendBtn.href = 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text);
-      // The dialog sits in the top layer, so the confetti has to live inside it.
-      var r = endEl.querySelector('.end-emoji').getBoundingClientRect();
-      burst(r.left + r.width / 2, r.top + r.height / 2, { n: 28, spread: 180, host: intake });
-    }
-
-    document.getElementById('intakeClose').addEventListener('click', function () { intake.close(); });
-    intake.addEventListener('click', function (e) { if (e.target === intake) intake.close(); });
-    sendBtn.addEventListener('click', function () { setTimeout(function () { intake.close(); }, 150); });
-
-    document.querySelectorAll('[data-wa]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        waKey = a.dataset.wa;
-        step = 0;
-        answers = [];
-        bodyEl.hidden = false;
-        endEl.hidden = true;
-        renderStep();
-        intake.showModal();
-      });
-    });
   }
 
   /* ---------- Funnel instrumentation ----------

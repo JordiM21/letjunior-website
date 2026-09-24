@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Hay cupo para tu peque? — LET Academy</title>
+<meta name="description" content="Responde 3 preguntas y descubre qué grupos de inglés en vivo tienen cupo para tu peque, en tu hora local.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#8FD1FF">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://www.letjunior.com/cupo">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/fredoka-latin-var.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/figtree-latin-var.woff2" crossorigin>
+<style>html{background:#BDE6FF}</style>
+<link rel="stylesheet" href="styles.css">
+<script src="cupo.js" defer></script>
+</head>
+<body class="cupo-page">
+
+<!-- Same cartoon world as the home page, standing still. Decorative only. -->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <symbol id="cloud" viewBox="0 0 200 100">
+    <path d="M30 88Q2 88 6 64Q10 44 34 46Q38 16 72 18Q96 2 120 20Q146 10 160 36Q192 36 194 62Q196 88 168 88Z" fill="#fff"/>
+    <path d="M30 88Q14 88 10 76Q60 86 192 72Q188 88 168 88Z" fill="#D6ECFF"/>
+  </symbol>
+  <symbol id="t-far" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 180Q150 80 300 160Q450 100 600 170Q760 70 900 160Q1050 110 1200 180V300H0Z" fill="#C4C9FF"/>
+  </symbol>
+  <symbol id="t-mtn" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 260L130 140Q160 112 190 140L330 260L440 110Q475 80 510 110L650 250L760 150Q790 122 820 150L930 250L1030 130Q1060 102 1090 130L1200 260V300H0Z" fill="#9AA6FF"/>
+    <path d="M162 126Q178 128 190 140L330 260V300H250Z M477 95Q496 98 510 110L650 250V300H560Z M792 136Q808 138 820 150L930 250V300H860Z M1062 116Q1078 118 1090 130L1200 260V300H1120Z" fill="#8391F2"/>
+    <path d="M110 158L130 140Q160 112 190 140L210 157L192 152L176 163L158 150L138 162Z M424 132L440 110Q475 80 510 110L528 128L510 123L494 134L476 121L456 133Z M742 166L760 150Q790 122 820 150L838 166L820 161L804 172L786 159L766 170Z M1014 149L1030 130Q1060 102 1090 130L1106 149L1090 144L1074 155L1056 142L1036 154Z" fill="#fff"/>
+  </symbol>
+  <symbol id="t-mid" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 230Q150 180 300 215Q450 250 600 210Q750 170 900 215Q1050 255 1200 230V300H0Z" fill="#A6E27E"/>
+    <g fill="#3FA34D">
+      <path d="M300 160L284 196H316Z M300 176L280 214H320Z"/><rect x="297" y="212" width="6" height="10" rx="2" fill="#8A5A3B"/>
+      <path d="M336 176L322 206H350Z M336 190L318 222H354Z"/><rect x="333" y="220" width="6" height="8" rx="2" fill="#8A5A3B"/>
+      <path d="M880 160L864 196H896Z M880 176L860 214H900Z"/><rect x="877" y="212" width="6" height="10" rx="2" fill="#8A5A3B"/>
+    </g>
+    <g><rect x="647" y="186" width="6" height="18" rx="2" fill="#8A5A3B"/><circle cx="650" cy="178" r="16" fill="#58B947"/><circle cx="642" cy="186" r="11" fill="#58B947"/><circle cx="659" cy="186" r="11" fill="#58B947"/></g>
+    <g><rect x="1087" y="222" width="6" height="18" rx="2" fill="#8A5A3B"/><circle cx="1090" cy="214" r="15" fill="#FF9F43"/><circle cx="1082" cy="222" r="10" fill="#FF9F43"/><circle cx="1099" cy="222" r="10" fill="#FF9F43"/></g>
+  </symbol>
+  <symbol id="t-front" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 270Q200 235 400 262Q600 290 800 258Q1000 228 1200 270V300H0Z" fill="#6CCB4F"/>
+    <g fill="#fff"><circle cx="120" cy="262" r="4"/><circle cx="480" cy="276" r="4"/><circle cx="1010" cy="252" r="4"/></g>
+    <g fill="#FF4D8D"><circle cx="170" cy="258" r="4"/><circle cx="700" cy="276" r="4"/></g>
+    <g fill="#FFC93D"><circle cx="260" cy="256" r="4"/><circle cx="860" cy="262" r="4"/><circle cx="1130" cy="266" r="4"/></g>
+  </symbol>
+</svg>
+<div class="world" aria-hidden="true">
+  <div class="sky sky-1"></div>
+  <div class="sun" id="sun">
+    <svg viewBox="0 0 120 120" focusable="false">
+      <g class="rays" fill="#FFD95A">
+        <rect id="ray" x="56" y="2" width="8" height="18" rx="4"/>
+        <use href="#ray" transform="rotate(30 60 60)"/><use href="#ray" transform="rotate(60 60 60)"/>
+        <use href="#ray" transform="rotate(90 60 60)"/><use href="#ray" transform="rotate(120 60 60)"/>
+        <use href="#ray" transform="rotate(150 60 60)"/><use href="#ray" transform="rotate(180 60 60)"/>
+        <use href="#ray" transform="rotate(210 60 60)"/><use href="#ray" transform="rotate(240 60 60)"/>
+        <use href="#ray" transform="rotate(270 60 60)"/><use href="#ray" transform="rotate(300 60 60)"/>
+        <use href="#ray" transform="rotate(330 60 60)"/>
+      </g>
+      <circle cx="60" cy="60" r="34" fill="#FFC93D"/>
+      <circle cx="52" cy="50" r="10" fill="#FFE08A"/>
+      <g class="eyes" fill="#1F1A3D"><ellipse cx="49" cy="58" rx="3.5" ry="5"/><ellipse cx="71" cy="58" rx="3.5" ry="5"/></g>
+      <circle cx="42" cy="69" r="5" fill="#FF8FA3" opacity=".8"/><circle cx="78" cy="69" r="5" fill="#FF8FA3" opacity=".8"/>
+      <path d="M50 70Q60 80 70 70" stroke="#1F1A3D" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="clouds">
+    <svg class="cloud" style="--y:14vh;--w:150px;--t:90s;--d:-10s"><use href="#cloud"/></svg>
+    <svg class="cloud" style="--y:34vh;--w:100px;--t:70s;--d:-45s"><use href="#cloud"/></svg>
+    <svg class="cloud" style="--y:24vh;--w:210px;--t:120s;--d:-80s"><use href="#cloud"/></svg>
+  </div>
+  <div class="land">
+    <div class="lyr"><svg><use href="#t-far"/></svg><svg><use href="#t-far"/></svg></div>
+    <div class="lyr" style="left:-30%"><svg><use href="#t-mtn"/></svg><svg><use href="#t-mtn"/></svg></div>
+    <div class="lyr" style="left:-12%"><svg><use href="#t-mid"/></svg><svg><use href="#t-mid"/></svg></div>
+    <div class="lyr" style="left:-50%"><svg><use href="#t-front"/></svg><svg><use href="#t-front"/></svg></div>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="/" aria-label="LET Academy, inicio">
+      <picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-36.avif 36w, assets/optimized/brand/logo-globo-72.avif 72w, assets/optimized/brand/logo-globo-144.avif 144w" sizes="34px"><source type="image/webp" srcset="assets/optimized/brand/logo-globo-36.webp 36w, assets/optimized/brand/logo-globo-72.webp 72w, assets/optimized/brand/logo-globo-144.webp 144w" sizes="34px"><img class="logo-mark" src="assets/optimized/brand/logo-globo-144.webp" width="34" height="33" alt="" decoding="async"></picture>
+      <span class="logo-word">LET Academy</span>
+    </a>
+    <div class="hdr-actions">
+      <a class="btn btn-outline btn-sm" href="https://wa.me/393792913474?text=%C2%A1Hola!%20Tengo%20una%20pregunta%20sobre%20LET%20Academy." target="_blank" rel="noopener">💬 ¿Dudas?</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <span class="stk d" style="--x:12%;--y:26%" aria-hidden="true"><i>✏️</i></span>
+  <span class="stk d" style="--x:82%;--y:44%" aria-hidden="true"><i>⭐</i></span>
+  <span class="stk d" style="--x:16%;--y:62%" aria-hidden="true"><i>🚀</i></span>
+  <span class="stk d" style="--x:78%;--y:18%" aria-hidden="true"><i>🎨</i></span>
+  <section class="lesson quiz" id="quiz">
+    <!-- Works without JS too: straight to WhatsApp. -->
+    <div class="scr scr-center">
+      <p class="big-emoji" aria-hidden="true">🎒</p>
+      <h1>¿Hay un cupo para tu peque?</h1>
+      <p>Escríbenos y te contamos qué grupos tienen sitio.</p>
+      <a class="btn btn-primary btn-lg btn-block" href="https://wa.me/393792913474">Escríbenos por WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

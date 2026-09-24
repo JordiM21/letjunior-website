@@ -456,6 +456,90 @@
     ]
   },
   {
+    "file": "assets\\source\\class-activities\\craft-halloween.jpg",
+    "kind": "class-activities",
+    "w": 374,
+    "h": 196,
+    "crop": null,
+    "made": [
+      {
+        "w": 374,
+        "fmt": "avif",
+        "bytes": 8593,
+        "path": "assets\\optimized\\class-activities\\craft-halloween-374.avif"
+      },
+      {
+        "w": 374,
+        "fmt": "webp",
+        "bytes": 12678,
+        "path": "assets\\optimized\\class-activities\\craft-halloween-374.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\class-activities\\craft-paper-bags.jpg",
+    "kind": "class-activities",
+    "w": 374,
+    "h": 196,
+    "crop": null,
+    "made": [
+      {
+        "w": 374,
+        "fmt": "avif",
+        "bytes": 10123,
+        "path": "assets\\optimized\\class-activities\\craft-paper-bags-374.avif"
+      },
+      {
+        "w": 374,
+        "fmt": "webp",
+        "bytes": 13724,
+        "path": "assets\\optimized\\class-activities\\craft-paper-bags-374.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\class-activities\\craft-playdough.jpg",
+    "kind": "class-activities",
+    "w": 374,
+    "h": 196,
+    "crop": null,
+    "made": [
+      {
+        "w": 374,
+        "fmt": "avif",
+        "bytes": 7224,
+        "path": "assets\\optimized\\class-activities\\craft-playdough-374.avif"
+      },
+      {
+        "w": 374,
+        "fmt": "webp",
+        "bytes": 9642,
+        "path": "assets\\optimized\\class-activities\\craft-playdough-374.webp"
+      }
+    ]
+  },
+  {
+    "file": "assets\\source\\class-activities\\craft-suitcase.jpg",
+    "kind": "class-activities",
+    "w": 374,
+    "h": 196,
+    "crop": null,
+    "made": [
+      {
+        "w": 374,
+        "fmt": "avif",
+        "bytes": 3393,
+        "path": "assets\\optimized\\class-activities\\craft-suitcase-374.avif"
+      },
+      {
+        "w": 374,
+        "fmt": "webp",
+        "bytes": 5544,
+        "path": "assets\\optimized\\class-activities\\craft-suitcase-374.webp"
+      }
+    ]
+  },
+  {
     "file": "assets\\source\\reviews\\antonio-mendez.webp",
     "kind": "reviews",
     "w": 524,

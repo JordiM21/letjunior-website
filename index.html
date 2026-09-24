@@ -56,7 +56,7 @@ html{background:#BDE6FF}
 .js #splash.out{opacity:0;visibility:hidden}
 .sp-in{display:flex;flex-direction:column;align-items:center;gap:16px;
   font:700 22px/1 "Fredoka","Trebuchet MS",system-ui,sans-serif;color:#1F1A3D}
-.sp-logo{width:76px;height:76px;border-radius:24px;background:#FF7A3D;box-shadow:0 6px 0 #C4490F;
+.sp-logo{width:76px;height:76px;
   display:grid;place-items:center;animation:sp-hop .8s ease-in-out infinite alternate}
 .sp-logo img{width:56px;height:auto}
 .sp-dots{display:flex;gap:8px}
@@ -210,7 +210,7 @@ html{background:#BDE6FF}
     </nav>
 
     <div class="hdr-actions">
-      <a class="btn btn-primary btn-sm hdr-cta" id="hdrCta" data-wa href="#reservar">Empieza sin riesgo</a>
+      <a class="btn btn-primary btn-sm hdr-cta" id="hdrCta" href="/cupo">Empieza sin riesgo</a>
     </div>
   </div>
 </header>
@@ -228,18 +228,18 @@ html{background:#BDE6FF}
     <div class="hero-copy">
       <p class="chip reveal" data-d="0">
         <span class="chip-dot" aria-hidden="true">👋</span>
-        Grupos reducidos · La misma profe siempre
+        Grupos reducidos · El mismo profe siempre
       </p>
 
       <h1>Inglés que <em>sí</em> les <span class="squiggle">divierte</span> <span class="wave-emoji" aria-hidden="true">🎉</span></h1>
 
       <p class="lede reveal" data-d="80">
         Clases en vivo para niños de 7 a 14 años, en grupos reducidos y con
-        la misma profe todo el curso. 100&nbsp;% online.
+        el mismo profe todo el curso. 100&nbsp;% online.
       </p>
 
       <div class="hero-cta reveal" data-d="160">
-        <a class="btn btn-primary btn-lg breathe" id="heroCta" data-wa href="#reservar">
+        <a class="btn btn-primary btn-lg breathe" id="heroCta" href="/cupo">
           Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span>
         </a>
         <p class="fineprint">$50/mes · Si no le gusta la primera semana, te devolvemos el dinero</p>
@@ -499,7 +499,7 @@ html{background:#BDE6FF}
         <p>Vídeo, música y conversación desde el minuto uno. Escuchan y hablan antes de escribir.</p>
       </li>
       <li class="mcard m-sky reveal">
-        <span class="m-art" aria-hidden="true">👩‍🏫</span>
+        <span class="m-art" aria-hidden="true">🧑‍🏫</span>
         <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
             <rect x="2.6" y="4.4" width="18.8" height="15.2" rx="3.4"/>
@@ -519,6 +519,86 @@ html{background:#BDE6FF}
   </div>
 </section>
 
+<!-- ============ 3b. CRAFTS ============
+     Real things the kids made in class. Photos are cropped from an old
+     screenshot for now. TODO: replace with the originals (≥1600px) in
+     assets/source/class-activities/ and run npm run assets. -->
+<section class="crafts" id="manualidades">
+  <span class="stk" aria-hidden="true" data-speed="-.1" style="--x:86%;--y:2%"><i>✂️</i></span>
+  <span class="stk d" aria-hidden="true" data-speed=".12" style="--x:3%;--y:14%"><i>🖍️</i></span>
+  <div class="wrap">
+    <p class="kicker k-mango reveal">✂️ Manualidades en clase</p>
+    <h2 class="reveal">Aprenden inglés <span class="hl hl-sun">con las manos</span></h2>
+    <p class="lede reveal">Actividades divertidas e interactivas: crean algo propio y, sin darse cuenta, se llevan el vocabulario en inglés.</p>
+  </div>
+
+  <div class="rail-wrap">
+    <ul class="rail crafts-rail" id="railCrafts" tabindex="0" role="group" aria-label="Manualidades hechas en clase, deslizable">
+      <li class="card craft">
+        <div class="craft-shot">
+          <picture>
+            <source type="image/avif" srcset="assets/optimized/class-activities/craft-playdough-374.avif">
+            <img src="assets/optimized/class-activities/craft-playdough-374.webp" width="374" height="196" alt="Animales marinos de plastilina: pulpo, cangrejo, estrella de mar, tortuga y peces" loading="lazy" decoding="async">
+          </picture>
+          <span class="craft-stk" aria-hidden="true">🐙</span>
+        </div>
+        <div class="craft-body">
+          <h3 lang="en">PlayDough Animals</h3>
+          <p class="craft-kids"><span aria-hidden="true">🙌</span> Sofía, Isaac, Laura y Sebastián</p>
+          <p>Aprendimos los animales en inglés mientras los modelábamos con plastilina, uno a uno.</p>
+          <ul class="craft-words" lang="en" aria-label="Palabras que aprendieron"><li>Crab</li><li>Turtle</li><li>Starfish</li></ul>
+        </div>
+      </li>
+      <li class="card craft">
+        <div class="craft-shot">
+          <picture>
+            <source type="image/avif" srcset="assets/optimized/class-activities/craft-halloween-374.avif">
+            <img src="assets/optimized/class-activities/craft-halloween-374.webp" width="374" height="196" alt="Monstruos de Halloween hechos con rollos de papel: vampiro, murciélago, bruja y calabaza" loading="lazy" decoding="async">
+          </picture>
+          <span class="craft-stk" aria-hidden="true">🎃</span>
+        </div>
+        <div class="craft-body">
+          <h3 lang="en">Halloween Paper Roll Monsters</h3>
+          <p class="craft-kids"><span aria-hidden="true">🙌</span> Carlos, Daniela, Nikol y Felipe</p>
+          <p>Para nuestro especial de Halloween jugamos a “Trick or treat” y creamos figuras de miedo con rollos de papel.</p>
+          <ul class="craft-words" lang="en" aria-label="Palabras que aprendieron"><li>Trick or treat</li><li>Spooky</li></ul>
+        </div>
+      </li>
+      <li class="card craft">
+        <div class="craft-shot">
+          <picture>
+            <source type="image/avif" srcset="assets/optimized/class-activities/craft-paper-bags-374.avif">
+            <img src="assets/optimized/class-activities/craft-paper-bags-374.webp" width="374" height="196" alt="Cuatro monstruos de colores hechos con bolsas de papel" loading="lazy" decoding="async">
+          </picture>
+          <span class="craft-stk" aria-hidden="true">👾</span>
+        </div>
+        <div class="craft-body">
+          <h3 lang="en">Paper Bag Monsters</h3>
+          <p class="craft-kids"><span aria-hidden="true">🙌</span> Carla, Mónica y Luciano</p>
+          <p>Reutilizamos bolsas de papel para crear monstruos mientras repasábamos los colores y las partes del cuerpo.</p>
+          <ul class="craft-words" lang="en" aria-label="Palabras que aprendieron"><li>Eyes</li><li>Mouth</li><li>Teeth</li></ul>
+        </div>
+      </li>
+      <li class="card craft">
+        <div class="craft-shot">
+          <picture>
+            <source type="image/avif" srcset="assets/optimized/class-activities/craft-suitcase-374.avif">
+            <img src="assets/optimized/class-activities/craft-suitcase-374.webp" width="374" height="196" alt="Maleta de viaje de cartulina con pegatinas de I love travel" loading="lazy" decoding="async">
+          </picture>
+          <span class="craft-stk" aria-hidden="true">🧳</span>
+        </div>
+        <div class="craft-body">
+          <h3 lang="en">Travel Suitcase</h3>
+          <p class="craft-kids"><span aria-hidden="true">🙌</span> Neila, Ian, Samir y Mila</p>
+          <p>Recortamos y armamos una maleta de viaje mientras aprendíamos el vocabulario de las vacaciones y el verano.</p>
+          <ul class="craft-words" lang="en" aria-label="Palabras que aprendieron"><li>Travel</li><li>Summer</li></ul>
+        </div>
+      </li>
+    </ul>
+    <div class="dots" data-rail="railCrafts" aria-hidden="true"></div>
+  </div>
+</section>
+
 <!-- ============ 3a. JOURNEY MAP ============ -->
 <section class="journey" id="camino">
   <span class="stk d" aria-hidden="true" data-speed="-.1" style="--x:88%;--y:30%"><i>🏔️</i></span>
@@ -530,9 +610,9 @@ html{background:#BDE6FF}
     <div class="map" id="map">
       <svg class="map-path" id="mapPath" aria-hidden="true" focusable="false"><path class="road"/><path class="trail"/></svg>
       <ol class="steps">
-        <li class="step"><span class="node n-bubble" aria-hidden="true">💬</span><div class="step-card"><p class="lvl">Nivel 1</p><h3>Nos escribes</h3><p>Tres toques y te contactamos por WhatsApp. Sin formularios eternos.</p></div></li>
+        <li class="step"><span class="node n-bubble" aria-hidden="true">💬</span><div class="step-card"><p class="lvl">Nivel 1</p><h3>Nos escribes</h3><p>Tres preguntas rápidas, eliges horario y seguimos por WhatsApp. Sin formularios eternos.</p></div></li>
         <li class="step"><span class="node n-sun" aria-hidden="true">🧭</span><div class="step-card"><p class="lvl">Nivel 2</p><h3>Vemos su nivel</h3><p>En la primera clase valoramos su inglés y le asignamos el grupo que le corresponde.</p></div></li>
-        <li class="step"><span class="node n-grape" aria-hidden="true">👩‍🏫</span><div class="step-card"><p class="lvl">Nivel 3</p><h3>Conoce a su profe</h3><p>La misma profe todo el curso, en un grupo de máximo 4 niños.</p></div></li>
+        <li class="step"><span class="node n-grape" aria-hidden="true">🧑‍🏫</span><div class="step-card"><p class="lvl">Nivel 3</p><h3>Conoce a su profe</h3><p>El mismo profe todo el curso, en un grupo de máximo 4 niños.</p></div></li>
         <li class="step"><span class="node n-mango" aria-hidden="true">🎮</span><div class="step-card"><p class="lvl">Nivel 4</p><h3>¡A jugar en inglés!</h3><p>Lunes, miércoles y viernes: retos, XP y rachas, hablando desde el primer día.</p></div></li>
         <li class="step"><span class="node n-grass" aria-hidden="true">🏆</span><div class="step-card"><p class="lvl">Nivel 5</p><h3>Ves su progreso</h3><p>Seguimiento e informes para que sepas exactamente cómo avanza.</p></div></li>
       </ol>
@@ -547,7 +627,7 @@ html{background:#BDE6FF}
   <div class="wrap narrow">
     <p class="kicker k-mango reveal">🕹️ Pruébalo tú</p>
     <h2 class="reveal">Así es una pregunta de clase</h2>
-    <p class="lede reveal">Tres preguntas reales, con vidas, XP y racha — igual que las ve tu peque. Escribe tu respuesta y te corregimos al momento.</p>
+    <p class="lede reveal">Tres preguntas reales, con vidas, XP y racha — igual que las ve tu peque. Elige tu respuesta y te corregimos al momento.</p>
 
     <div class="lesson reveal" id="lesson">
       <div class="lesson-hud">
@@ -568,15 +648,6 @@ html{background:#BDE6FF}
 
         <!-- choice -->
         <ul class="opts" id="lsnOpts" lang="en" hidden></ul>
-
-        <!-- typed answer -->
-        <div class="typed" id="lsnTyped" hidden>
-          <label class="sr-only" for="lsnInput">Tu respuesta en inglés</label>
-          <input id="lsnInput" type="text" lang="en" inputmode="text" autocomplete="off" autocorrect="off"
-                 autocapitalize="off" spellcheck="false" enterkeyhint="done"
-                 placeholder="Escribe aquí en inglés…">
-          <p class="live-words" id="lsnWords" aria-live="polite"></p>
-        </div>
 
         <!-- word bank -->
         <div class="bank" id="lsnBank" hidden>
@@ -604,12 +675,12 @@ html{background:#BDE6FF}
         <p class="end-emoji" aria-hidden="true">🎉</p>
         <h3 id="lsnEndTitle">¡Lección completada!</h3>
         <p id="lsnEndText">Has ganado <b>30 XP</b>. Tu peque haría esto tres veces por semana, con profe en directo.</p>
-        <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-primary btn-lg" href="/cupo">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
         <button class="btn btn-outline btn-sm" id="lsnRetry" type="button">Volver a intentarlo</button>
       </div>
     </div>
 
-    <p class="closing reveal">Esto es una demo. En clase, quien corrige y anima es la profe.</p>
+    <p class="closing reveal">Esto es una demo. En clase, quien corrige y anima es el profe.</p>
   </div>
 </section>
 
@@ -788,12 +859,12 @@ html{background:#BDE6FF}
             <li><b>12 clases</b> en vivo de 1 hora al mes</li>
             <li>3 días por semana <span class="plan-days">lunes, miércoles y viernes</span></li>
             <li><b>Máximo 4 niños</b> por grupo</li>
-            <li>Profe fija: la misma todo el curso</li>
+            <li>Profe fijo: el mismo todo el curso</li>
             <li>Plataforma interactiva con juegos, XP y rachas</li>
             <li>Seguimiento del progreso e informes</li>
           </ul>
           <p class="plan-note">Sin permanencia. Cancela cuando quieras.</p>
-          <a class="btn btn-primary" data-wa="completo" href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" href="/cupo?plan=completo">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
         </li>
       </ul>
 
@@ -845,7 +916,7 @@ html{background:#BDE6FF}
       </details>
     </div>
 
-    <p class="closing reveal">¿Otra duda? <a class="link-under" data-wa href="#faq">Escríbenos por WhatsApp ›</a></p>
+    <p class="closing reveal">¿Otra duda? <a class="link-under" href="https://wa.me/393792913474?text=%C2%A1Hola!%20Tengo%20una%20pregunta%20sobre%20LET%20Academy." target="_blank" rel="noopener">Escríbenos por WhatsApp ›</a></p>
   </div>
 </section>
 
@@ -858,7 +929,7 @@ html{background:#BDE6FF}
       <span class="peek peek-b" aria-hidden="true">🦒</span>
       <h2>Pruébalo una semana. Si no le gusta, te devolvemos el dinero.</h2>
       <p>Programa completo por $50 al mes, sin permanencia. Si en la primera semana no le gusta o no aprende, te lo devolvemos sin preguntas.</p>
-      <a class="btn btn-invert btn-lg" data-wa href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-invert btn-lg" href="/cupo">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
       <ul class="risk">
         <li>Garantía de devolución</li>
         <li>Cancela cuando quieras</li>
@@ -912,27 +983,8 @@ html{background:#BDE6FF}
 
 <!-- Sticky mobile CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
+  <a class="btn btn-primary btn-lg" href="/cupo">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
 </div>
-
-<!-- Quick-contact flow: every WhatsApp CTA opens this first. -->
-<dialog class="intake" id="intake">
-  <button class="intake-close" id="intakeClose" type="button" aria-label="Cerrar">✕</button>
-  <div class="lesson-hud">
-    <span class="hud-bar"><i id="intakeBar" style="transform:scaleX(0)"></i></span>
-  </div>
-  <div class="lesson-body" id="intakeBody">
-    <p class="lesson-step" id="intakeStep">Pregunta 1 de 3</p>
-    <h3 class="lesson-q" id="intakeQ">…</h3>
-    <ul class="opts" id="intakeOpts"></ul>
-  </div>
-  <div class="lesson-end" id="intakeEnd" hidden>
-    <p class="end-emoji" aria-hidden="true">🎉</p>
-    <h3>¡Listo!</h3>
-    <p>Te escribimos por WhatsApp enseguida.</p>
-    <a class="btn btn-primary btn-lg" id="intakeSend" target="_blank" rel="noopener">Enviar por WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
-  </div>
-</dialog>
 
 <script src="main.js" defer></script>
 </body>

@@ -24,7 +24,7 @@ Live classes with a fixed teacher (not rotating, not pre-recorded), small groups
 
 ## Operating Context
 
-Entry is a WhatsApp-based intake flow (three-tap qualifier → WhatsApp deep link) triggered from every CTA. No login/dashboard on this site; the product itself (the class) happens on a video call, not on this page.
+Every enrol CTA goes to `/cupo` (cupo.html + cupo.js): intro → 3 taps (age, country, level) → open groups converted to the family's local time → WhatsApp with answers + chosen slot prefilled → thank-you screen. Group schedule lives at the top of cupo.js. No login/dashboard on this site; the product itself (the class) happens on a video call, not on this page.
 
 ## Brand Commitments
 
