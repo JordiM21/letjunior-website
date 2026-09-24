@@ -32,6 +32,69 @@
         ],
         "createdAt": "2026-09-15T09:49:26.825Z",
         "reason": "body's pre-existing overflow-x:hidden never clips #intake (native <dialog>.showModal() renders in the top layer, exempt from ancestor overflow) or .sticky-cta (position:fixed with no transformed ancestor, also exempt); verified both render unclipped in the browser."
+      },
+      {
+        "rule": "icon-tile-stack",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-17T10:32:35.265Z",
+        "reason": "DESIGN.md's Highlight Feature Container/method-card component is an icon plate beside a heading by spec"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-17T10:32:35.355Z",
+        "reason": "user-supplied DESIGN.md pins Inter as the body face"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-17T10:32:35.409Z",
+        "reason": "false positive: .wrap/.tile/.acc are unstyled layout wrappers or image-filled tiles with no visible boundary at the flagged edges"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "spin-wobble",
+        "createdAt": "2026-09-24T08:54:53.864Z",
+        "reason": "Claude: spring/overshoot motion is intentional in the kids 'playground' redesign the user asked for (joyful, game-like)"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "createdAt": "2026-09-24T08:54:54.121Z",
+        "reason": "Claude: --e-spring token is the deliberate game-feel easing of the kids redesign the user asked for"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-24T08:55:02.155Z",
+        "reason": "Claude: only instance is the drifting decorative clouds; the user explicitly asked for animated cartoon sky backgrounds"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-24T08:55:02.393Z",
+        "reason": "Claude: only instance is .link-under, a text-link underline, not a card side-stripe"
+      },
+      {
+        "rule": "pulsing-dot",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-24T08:55:02.660Z",
+        "reason": "Claude: only instance is the EN VIVO recording light inside the illustrated live-class mock"
       }
     ]
   }

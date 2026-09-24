@@ -5,6 +5,30 @@
   'use strict';
 
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var lite = root.classList.contains('lite');
+
+  /* ---------- Loading screen ----------
+     Lifts on window load, or after 2.5s at most on a slow connection (the
+     inline CSS also fades it by itself at 6s if this script never runs).
+     The hero's entrance animations wait for it, so they're actually seen. */
+  var splash = document.getElementById('splash');
+  var readyCbs = [];
+  function onReady(fn) { if (root.classList.contains('ready')) fn(); else readyCbs.push(fn); }
+  function lift() {
+    if (root.classList.contains('ready')) return;
+    root.classList.add('ready');
+    if (splash) {
+      splash.classList.add('out');
+      setTimeout(function () { splash.remove(); }, 600);
+    }
+    readyCbs.forEach(function (fn) { fn(); });
+  }
+  if (document.readyState === 'complete') lift();
+  else {
+    addEventListener('load', lift);
+    setTimeout(lift, 2500);
+  }
 
   /* ---------- Scroll reveal (fires once) ---------- */
   var reveals = document.querySelectorAll('.reveal');
@@ -31,7 +55,7 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
 
-    reveals.forEach(function (el) { io.observe(el); });
+    onReady(function () { reveals.forEach(function (el) { io.observe(el); }); });
   }
 
   /* ---------- Header state + sticky CTA + CTA breathing ---------- */
@@ -44,27 +68,33 @@
   var calmed = false;
   var ticking = false;
 
-  // Each brand-colour wash (Method, Reviews and friends — see styles.css)
-  // drifts its radial-gradient centre from `from` to `to` as its own section
-  // crosses the viewport, so the page's colour feels tied to how far you've
-  // read rather than looping on a timer. Off entirely under reduced motion,
-  // which leaves each section at the static centre already in the CSS.
-  var washes = [
-    { sel: '.proof',    from: [85, 20], to: [70, 35] },
-    { sel: '.method',   from: [90, 8],  to: [72, 22] },
-    { sel: '.demo',     from: [12, 85], to: [30, 65] },
-    { sel: '.teachers', from: [90, 75], to: [70, 55] },
-    { sel: '.reviews',  from: [4, 4],   to: [22, 20] },
-    { sel: '.plans',    from: [8, 15],  to: [26, 32] },
-    { sel: '.faq',      from: [88, 10], to: [68, 26] },
-    { sel: '.final',    from: [50, 0],  to: [50, 24] },
-    { sel: '.ftr',      from: [20, 0],  to: [40, 18] }
-  ].map(function (w) {
-    w.el = document.querySelector(w.sel);
-    return w;
-  }).filter(function (w) { return w.el; });
-  var heroSection = document.querySelector('.hero');
-  var blobsEl = document.querySelector('.blobs');
+  /* ---------- The world: sky, sun, clouds, panning hills ----------
+     Everything below is transform/opacity on fixed layers, written once per
+     frame. Sizes are cached on resize so scrolling never measures them. */
+  var sky2 = document.getElementById('sky2');
+  var sky3 = document.getElementById('sky3');
+  var sun = document.getElementById('sun');
+  var clouds = document.getElementById('clouds');
+  var layers = [].slice.call(document.querySelectorAll('.lyr'));
+  var stickers = [].slice.call(document.querySelectorAll('.stk[data-speed]'));
+  var map = document.getElementById('map');
+  var docMax = 1, tileW = 1, live = [];
+
+  function measure() {
+    docMax = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    var t = layers[0] && layers[0].firstElementChild;
+    tileW = t ? t.getBoundingClientRect().width || 1 : 1;
+    // Only stickers that are actually displayed (phones hide half) and only
+    // when the scenery is allowed to move get a parallax write per frame.
+    live = lite ? [] : stickers.filter(function (s) { return s.offsetParent; });
+    live.forEach(function (s) {
+      s._top = s.offsetParent.getBoundingClientRect().top + scrollY;
+    });
+    if (map) buildMap();
+  }
+
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function ramp(p, a, b) { return clamp01((p - a) / (b - a)); }
 
   function onScroll() {
     // Every measurement first, every class change after. Toggling a class and
@@ -84,24 +114,8 @@
       overLesson = lb.top < vh - 80 && lb.bottom > 80;
     }
 
-    // Background wash drift: read every section's rect first, then write.
-    var writes = null;
-    if (!reduce) {
-      writes = washes.map(function (w) {
-        var r = w.el.getBoundingClientRect();
-        var p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
-        return {
-          el: w.el,
-          x: w.from[0] + (w.to[0] - w.from[0]) * p,
-          y: w.from[1] + (w.to[1] - w.from[1]) * p
-        };
-      });
-      if (blobsEl && heroSection) {
-        var hr = heroSection.getBoundingClientRect();
-        var hp = Math.max(0, Math.min(1, (vh - hr.top) / (vh + hr.height)));
-        writes.push({ el: blobsEl, by: hp * 24 });
-      }
-    }
+    var p = clamp01(y / docMax);
+    var mapRect = map ? map.getBoundingClientRect() : null;
 
     hdr.classList.toggle('is-stuck', y > 80);
     hdrCta.classList.toggle('is-in', y > 400);
@@ -110,21 +124,160 @@
     // The hero button breathes until the visitor engages, then stops for good.
     if (!calmed && y > 40) { heroCta.classList.add('is-calm'); calmed = true; }
 
-    if (writes) {
-      writes.forEach(function (w) {
-        if (w.by !== undefined) { w.el.style.setProperty('--by', w.by + 'px'); return; }
-        w.el.style.setProperty('--wx', w.x + '%');
-        w.el.style.setProperty('--wy', w.y + '%');
+    // Sky: morning -> lavender afternoon -> sunset, while the sun sinks
+    // behind the mountains by the time you reach the footer.
+    sky2.style.opacity = ramp(p, 0.25, 0.55);
+    sky3.style.opacity = ramp(p, 0.68, 0.95);
+    if (!reduce) {
+      sun.style.transform = 'translate3d(' + (-p * 12) + 'vw,' + (p * 62) + 'vh,0)';
+      clouds.style.transform = 'translate3d(0,' + (-p * 60) + 'px,0)';
+      layers.forEach(function (l) {
+        var off = (y * l._speed) % tileW;
+        l.style.transform = 'translate3d(' + (-off) + 'px,0,0)';
+      });
+      live.forEach(function (s) {
+        var d = (y + vh / 2 - s._top) * s._speed;
+        s.style.transform = 'translate3d(0,' + Math.max(-90, Math.min(90, d)) + 'px,0)';
       });
     }
+    if (mapRect) drawMap(mapRect, vh);
+
     ticking = false;
   }
+  layers.forEach(function (l) { l._speed = parseFloat(l.dataset.speed) || 0; });
+  stickers.forEach(function (s) { s._speed = parseFloat(s.dataset.speed) || 0; });
+
   addEventListener('scroll', function () {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(onScroll);
   }, { passive: true });
+
+  var rsz;
+  var lastW = innerWidth;
+  addEventListener('resize', function () {
+    // Phones fire resize whenever the URL bar slides in/out mid-scroll. Only
+    // a width change moves the layout, so a height-only one stays cheap.
+    if (innerWidth === lastW) {
+      docMax = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      return;
+    }
+    lastW = innerWidth;
+    clearTimeout(rsz);
+    rsz = setTimeout(function () { measure(); onScroll(); }, 120);
+  });
+  // Fonts and lazy images change the page height after first paint.
+  addEventListener('load', function () { measure(); onScroll(); });
+
+  /* ---------- Journey map: a road through every level node ----------
+     The path is rebuilt in pixels from the real node positions, so it fits
+     any layout; the trail's dash offset then draws it as you scroll and each
+     node lights up when the trail reaches it. */
+  var mapSvg = document.getElementById('mapPath');
+  var mapSteps = map ? [].slice.call(map.querySelectorAll('.step')) : [];
+  var trail = mapSvg && mapSvg.querySelector('.trail');
+  var trailLen = 0, nodeYs = [];
+
+  function buildMap() {
+    var box = map.getBoundingClientRect();
+    var pts = mapSteps.map(function (st) {
+      var r = st.querySelector('.node').getBoundingClientRect();
+      return [Math.round(r.left + r.width / 2 - box.left), Math.round(r.top + r.height / 2 - box.top)];
+    });
+    if (!pts.length) return;
+    var d = 'M' + pts[0][0] + ' ' + pts[0][1];
+    for (var k = 1; k < pts.length; k++) {
+      var a = pts[k - 1], b = pts[k], my = (a[1] + b[1]) / 2;
+      d += ' C' + a[0] + ' ' + my + ',' + b[0] + ' ' + my + ',' + b[0] + ' ' + b[1];
+    }
+    mapSvg.setAttribute('viewBox', '0 0 ' + Math.round(box.width) + ' ' + Math.round(box.height));
+    mapSvg.querySelectorAll('path').forEach(function (pth) { pth.setAttribute('d', d); });
+    trailLen = trail.getTotalLength();
+    trail.style.strokeDasharray = trailLen;
+    nodeYs = pts.map(function (pt) { return pt[1]; });
+  }
+
+  function drawMap(r, vh) {
+    // Drawn up to the point of the map that sits at 65% of the viewport.
+    var reach = vh * 0.65 - r.top;
+    var f = reduce ? 1 : clamp01(reach / r.height);
+    trail.style.strokeDashoffset = trailLen * (1 - f);
+    mapSteps.forEach(function (st, k) {
+      var lit = reduce || nodeYs[k] <= reach + 10;
+      if (lit !== st.classList.contains('lit')) st.classList.toggle('lit', lit);
+    });
+  }
+
+  measure();
   onScroll();
+
+  /* ---------- Confetti: tiny DOM bits, Web Animations, then removed ---------- */
+  var COLORS = ['#FF4D8D', '#FF7A3D', '#FFC93D', '#6CCB4F', '#4AA8FF', '#7B61FF'];
+  function burst(x, y, opts) {
+    if (reduce || !Element.prototype.animate) return;
+    opts = opts || {};
+    var n = opts.n || 22, host = opts.host || document.body;
+    for (var k = 0; k < n; k++) {
+      var s = document.createElement('span');
+      s.className = 'confetti' + (opts.chars ? ' e' : '');
+      if (opts.chars) s.textContent = opts.chars[k % opts.chars.length];
+      else s.style.background = COLORS[k % COLORS.length];
+      s.style.left = x + 'px';
+      s.style.top = y + 'px';
+      host.appendChild(s);
+      var ang = Math.random() * Math.PI * 2;
+      var v = 50 + Math.random() * (opts.spread || 140);
+      var dx = Math.cos(ang) * v, dy = Math.sin(ang) * v - 70;
+      var rot = Math.random() * 720 - 360;
+      s.animate([
+        { transform: 'translate(-50%,-50%) rotate(0deg)', opacity: 1 },
+        { transform: 'translate(calc(-50% + ' + dx + 'px),calc(-50% + ' + dy + 'px)) rotate(' + rot / 2 + 'deg)', opacity: 1, offset: 0.45 },
+        { transform: 'translate(calc(-50% + ' + dx * 1.2 + 'px),calc(-50% + ' + (dy + 180) + 'px)) rotate(' + rot + 'deg)', opacity: 0 }
+      ], { duration: 1000 + Math.random() * 600, easing: 'cubic-bezier(.2,.7,.4,1)' })
+        .onfinish = (function (node) { return function () { node.remove(); }; })(s);
+    }
+  }
+  function burstAt(el, opts) {
+    var r = el.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2, opts);
+  }
+
+  /* ---------- Stickers: tap to make them jump ---------- */
+  stickers.forEach(function (s) {
+    s.addEventListener('click', function () {
+      s.classList.remove('jump');
+      void s.offsetWidth;
+      s.classList.add('jump');
+      burstAt(s, { n: 6, chars: [s.textContent.trim()], spread: 70 });
+    });
+  });
+
+  /* ---------- Count-up stats + one-time party on the final panel ---------- */
+  var counters = [].slice.call(document.querySelectorAll('[data-count]'));
+  var finalPanel = document.getElementById('finalPanel');
+  if (!reduce && 'IntersectionObserver' in window) {
+    counters.forEach(function (c) { c.textContent = '0'; });
+    var fx = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        fx.unobserve(e.target);
+        var el = e.target;
+        if (el === finalPanel) {
+          setTimeout(function () { burstAt(el, { n: 36, spread: 260 }); }, 300);
+          return;
+        }
+        var to = +el.dataset.count, t0 = null;
+        (function tick(t) {
+          if (!t0) t0 = t;
+          var k = Math.min(1, (t - t0) / 1100);
+          el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) requestAnimationFrame(tick);
+        })(performance.now());
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (c) { fx.observe(c); });
+    if (finalPanel) fx.observe(finalPanel);
+  }
 
   /* ---------- Header nav: which section you are actually in ----------
      One observer over the sections the nav points at. The band is the middle
@@ -222,24 +375,6 @@
       }, 200); // --t-exit
     });
   });
-
-  /* ---------- Hero blob parallax (desktop only) ---------- */
-  if (!reduce && matchMedia('(min-width: 900px)').matches) {
-    var blobs = document.querySelectorAll('.blob');
-    var pTicking = false;
-    addEventListener('scroll', function () {
-      if (pTicking) return;
-      pTicking = true;
-      requestAnimationFrame(function () {
-        var y = Math.min(window.scrollY, 900);
-        blobs.forEach(function (b, i) {
-          var depth = [0.045, -0.03, 0.02][i] || 0;
-          b.style.transform = 'translate3d(0,' + Math.max(-40, Math.min(40, y * depth)) + 'px,0)';
-        });
-        pTicking = false;
-      });
-    }, { passive: true });
-  }
 
   /* =========================================================
      Interactive demo lesson
@@ -558,6 +693,7 @@
         flash(target, 'pop');
         flash(el.xp.parentNode, 'pop');
         play('right');
+        burstAt(target, { n: 14, spread: 90 });
       } else {
         hearts--;
         breaking = true;
@@ -591,6 +727,7 @@
       el.body.hidden = true; el.foot.hidden = true; el.hud.hidden = true;
       el.end.hidden = false;
       el.end.querySelector('.end-emoji').textContent = won ? '🎉' : '💔';
+      if (won) burstAt(el.end.querySelector('.end-emoji'), { n: 40, spread: 240 });
       el.endTitle.textContent = won ? '¡Lección completada!' : 'Te quedaste sin vidas';
       el.endText.innerHTML = won
         ? 'Has ganado <b>' + xp + ' XP</b>. Tu peque hace esto dos veces por semana — pero con una profe al otro lado animándole.'
@@ -626,14 +763,13 @@
      The whole business runs through WhatsApp, so every buy-intent control on
      the page lands in the same inbox with the message already written.
 
-     data-wa="" uses the general text; data-wa="inicial" / "completo" say which
+     data-wa="" uses the general text; data-wa="completo" says which
      plan the parent was looking at when they tapped. That context arrives in
      Kommo as the first line of the conversation, so the reply can pick up
      where the page left off instead of starting from "¿en qué te ayudo?". */
   var WA_PHONE = '393792913474';
   var WA_TEXT = {
     '':         '¡Hola! Acabo de ver la página y me gustaría obtener más información por favor',
-    inicial:    '¡Hola! Acabo de ver la página y quiero empezar el Plan Inicial de $15 para mi hijo/a',
     completo:   '¡Hola! Acabo de ver la página y quiero información sobre el Plan Completo'
   };
 
@@ -695,6 +831,9 @@
         '\n\nContacto: ' + answers[0] + ' · ' + answers[1] +
         '\nEdad: ' + answers[2];
       sendBtn.href = 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text);
+      // The dialog sits in the top layer, so the confetti has to live inside it.
+      var r = endEl.querySelector('.end-emoji').getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2, { n: 28, spread: 180, host: intake });
     }
 
     document.getElementById('intakeClose').addEventListener('click', function () { intake.close(); });

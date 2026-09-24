@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LET Academy — Inglés en vivo para niños de 7 a 14 años</title>
-<meta name="description" content="Clases de inglés en vivo con profes certificados para niños de 7 a 14 años. Grupos reducidos, 100% online. Primera clase gratis, sin tarjeta.">
-<meta name="theme-color" content="#FFFCFA">
+<meta name="description" content="Clases de inglés en vivo con profes certificados para niños de 7 a 14 años. Grupos reducidos, 100% online. Programa completo por $50/mes con garantía de devolución de 1 semana, sin preguntas.">
+<meta name="theme-color" content="#8FD1FF">
 <meta name="color-scheme" content="light">
 
 <meta property="og:title" content="Inglés que sí les divierte — LET Academy">
-<meta property="og:description" content="Clases en vivo con profes certificados para niños de 7 a 14 años. Primera clase gratis.">
+<meta property="og:description" content="Clases en vivo con profes certificados para niños de 7 a 14 años. Garantía de devolución de 1 semana.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -25,23 +25,49 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <!-- Both faces are self-hosted variable woff2, latin subset: one file per
-     family, same origin, no third-party DNS + TLS + stylesheet round trip
-     before the first glyph. Cold Meta traffic on a phone used to reach Google
-     twice before the display face existed. -->
+     family, same origin, no third-party round trip before the first glyph. -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fredoka-latin-var.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/figtree-latin-var.woff2" crossorigin>
 
 <link rel="stylesheet" href="styles.css">
 
-<!-- The hero frame is the LCP element on a phone. Preloaded, it is requested
-     with the CSS instead of after the layout that reveals it. AVIF only, and
-     gated by type: a browser without AVIF skips this line entirely and the
-     <picture> below hands it the WebP. -->
+<!-- The hero frame is the LCP element on a phone. -->
 <link rel="preload" as="image" type="image/avif" fetchpriority="high"
       href="assets/optimized/teachers/jordi-meeting-800.avif"
       imagesrcset="assets/optimized/teachers/jordi-meeting-400.avif 400w, assets/optimized/teachers/jordi-meeting-800.avif 800w"
       imagesizes="(min-width:900px) 452px, 84vw">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+/* js: enables reveals + the loading screen. lite: low-memory phones and Data
+   Saver get still scenery (see styles.css LITE MODE). */
+(function (d, n) {
+  var c = n.connection, lite = (c && c.saveData) || (n.deviceMemory && n.deviceMemory <= 2) ||
+    (n.hardwareConcurrency && n.hardwareConcurrency <= 2);
+  d.className += ' js' + (lite ? ' lite' : '');
+})(document.documentElement, navigator);
+</script>
+<!-- Critical paint: sky colour + loading screen, inline so the very first
+     frame is never white, even before styles.css arrives. -->
+<style>
+html{background:#BDE6FF}
+#splash{display:none}
+.js #splash{position:fixed;inset:0;z-index:999;display:grid;place-items:center;
+  background:linear-gradient(180deg,#7FC8FF,#E2F4FF);
+  transition:opacity .5s ease,visibility .5s;animation:sp-out .5s 6s forwards}
+.js #splash.out{opacity:0;visibility:hidden}
+.sp-in{display:flex;flex-direction:column;align-items:center;gap:16px;
+  font:700 22px/1 "Fredoka","Trebuchet MS",system-ui,sans-serif;color:#1F1A3D}
+.sp-logo{width:76px;height:76px;border-radius:24px;background:#FF7A3D;box-shadow:0 6px 0 #C4490F;
+  display:grid;place-items:center;animation:sp-hop .8s ease-in-out infinite alternate}
+.sp-logo img{width:56px;height:auto}
+.sp-dots{display:flex;gap:8px}
+.sp-dots i{width:12px;height:12px;border-radius:50%;background:#7B61FF;animation:sp-dot .9s ease-in-out infinite}
+.sp-dots i:nth-child(2){background:#FF4D8D;animation-delay:.15s}
+.sp-dots i:nth-child(3){background:#FFC93D;animation-delay:.3s}
+@keyframes sp-hop{to{transform:translateY(-12px) rotate(-6deg)}}
+@keyframes sp-dot{50%{transform:translateY(-8px)}}
+@keyframes sp-out{to{opacity:0;visibility:hidden}}
+@media (prefers-reduced-motion:reduce){.sp-logo,.sp-dots i{animation:none}}
+</style>
 
 <script type="application/ld+json">
 {
@@ -66,12 +92,12 @@
       "@type": "FAQPage",
       "@id": "https://www.letjunior.com/#faq",
       "mainEntity": [
-        {"@type":"Question","name":"¿Necesita saber inglés antes de empezar?","acceptedAnswer":{"@type":"Answer","text":"No. Empezamos desde cero si hace falta. En la clase gratuita valoramos su nivel y le asignamos el grupo que le corresponde, así que nunca está ni perdido ni aburrido."}},
+        {"@type":"Question","name":"¿Necesita saber inglés antes de empezar?","acceptedAnswer":{"@type":"Answer","text":"No. Empezamos desde cero si hace falta. En la primera clase valoramos su nivel y le asignamos el grupo que le corresponde, así que nunca está ni perdido ni aburrido."}},
         {"@type":"Question","name":"¿Las clases son grabadas?","acceptedAnswer":{"@type":"Answer","text":"Son 100&nbsp;% en vivo, con profe y compañeros. Nada de vídeos pregrabados: hablan desde el primer día."}},
-        {"@type":"Question","name":"¿Cuánto dura cada clase y cuántas hay a la semana?","acceptedAnswer":{"@type":"Answer","text":"Una hora por clase. El Plan Inicial son dos clases por semana, martes y jueves; el Plan Completo son tres, lunes, miércoles y viernes. Los días se mantienen fijos, así que entra en la rutina de la semana sin recolocar nada."}},
-        {"@type":"Question","name":"¿Cuánto cuesta?","acceptedAnswer":{"@type":"Answer","text":"Se empieza con el Plan Inicial: $15 por dos semanas, cuatro clases, con garantía de devolución. Si le encaja, el Plan Completo son $50 al mes, doce clases, sin permanencia y cancelable cuando queráis."}},
+        {"@type":"Question","name":"¿Cuánto dura cada clase y cuántas hay a la semana?","acceptedAnswer":{"@type":"Answer","text":"Una hora por clase. Son tres clases por semana, lunes, miércoles y viernes. Los días se mantienen fijos, así que entra en la rutina de la semana sin recolocar nada."}},
+        {"@type":"Question","name":"¿Cuánto cuesta?","acceptedAnswer":{"@type":"Answer","text":"El programa completo cuesta $50 al mes y lo incluye todo: doce clases en vivo, grupos de máximo 4, plataforma interactiva y seguimiento del progreso. Sin permanencia, y con garantía de devolución durante la primera semana."}},
         {"@type":"Question","name":"¿Qué necesito en casa para conectarme?","acceptedAnswer":{"@type":"Answer","text":"Un ordenador o tablet con cámara y conexión a internet. Nada que instalar: se entra desde el navegador con un enlace."}},
-        {"@type":"Question","name":"¿Puedo cancelar si no le gusta?","acceptedAnswer":{"@type":"Answer","text":"Sí, cuando queráis y sin penalización. No hay permanencia ni letra pequeña. Y en las dos primeras semanas, si no dice sus primeras palabras, os devolvemos los $15."}}
+        {"@type":"Question","name":"¿Puedo cancelar si no le gusta?","acceptedAnswer":{"@type":"Answer","text":"Sí, cuando queráis y sin penalización. No hay permanencia ni letra pequeña. Y si en la primera semana no le gusta o no aprende, os devolvemos el dinero sin preguntas."}}
       ]
     }
   ]
@@ -81,7 +107,91 @@
 </head>
 <body>
 
+<div id="splash" aria-hidden="true">
+  <div class="sp-in">
+    <span class="sp-logo"><img src="assets/optimized/brand/logo-globo-144.webp" width="56" height="54" alt=""></span>
+    LET Academy
+    <span class="sp-dots"><i></i><i></i><i></i></span>
+  </div>
+</div>
+
 <a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- ============ THE WORLD ============
+     One fixed cartoon landscape behind the whole page, all inline SVG (no
+     image requests). main.js pans the layers sideways at different speeds as
+     you scroll, moves the sun down and cross-fades the sky from morning to
+     sunset. Everything is decorative. -->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <symbol id="cloud" viewBox="0 0 200 100">
+    <path d="M30 88Q2 88 6 64Q10 44 34 46Q38 16 72 18Q96 2 120 20Q146 10 160 36Q192 36 194 62Q196 88 168 88Z" fill="#fff"/>
+    <path d="M30 88Q14 88 10 76Q60 86 192 72Q188 88 168 88Z" fill="#D6ECFF"/>
+  </symbol>
+  <symbol id="t-far" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 180Q150 80 300 160Q450 100 600 170Q760 70 900 160Q1050 110 1200 180V300H0Z" fill="#C4C9FF"/>
+  </symbol>
+  <symbol id="t-mtn" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 260L130 140Q160 112 190 140L330 260L440 110Q475 80 510 110L650 250L760 150Q790 122 820 150L930 250L1030 130Q1060 102 1090 130L1200 260V300H0Z" fill="#9AA6FF"/>
+    <path d="M162 126Q178 128 190 140L330 260V300H250Z M477 95Q496 98 510 110L650 250V300H560Z M792 136Q808 138 820 150L930 250V300H860Z M1062 116Q1078 118 1090 130L1200 260V300H1120Z" fill="#8391F2"/>
+    <path d="M110 158L130 140Q160 112 190 140L210 157L192 152L176 163L158 150L138 162Z M424 132L440 110Q475 80 510 110L528 128L510 123L494 134L476 121L456 133Z M742 166L760 150Q790 122 820 150L838 166L820 161L804 172L786 159L766 170Z M1014 149L1030 130Q1060 102 1090 130L1106 149L1090 144L1074 155L1056 142L1036 154Z" fill="#fff"/>
+  </symbol>
+  <symbol id="t-mid" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 230Q150 180 300 215Q450 250 600 210Q750 170 900 215Q1050 255 1200 230V300H0Z" fill="#A6E27E"/>
+    <g fill="#3FA34D">
+      <path d="M300 160L284 196H316Z M300 176L280 214H320Z"/><rect x="297" y="212" width="6" height="10" rx="2" fill="#8A5A3B"/>
+      <path d="M336 176L322 206H350Z M336 190L318 222H354Z"/><rect x="333" y="220" width="6" height="8" rx="2" fill="#8A5A3B"/>
+      <path d="M880 160L864 196H896Z M880 176L860 214H900Z"/><rect x="877" y="212" width="6" height="10" rx="2" fill="#8A5A3B"/>
+    </g>
+    <g><rect x="647" y="186" width="6" height="18" rx="2" fill="#8A5A3B"/><circle cx="650" cy="178" r="16" fill="#58B947"/><circle cx="642" cy="186" r="11" fill="#58B947"/><circle cx="659" cy="186" r="11" fill="#58B947"/></g>
+    <g><rect x="1087" y="222" width="6" height="18" rx="2" fill="#8A5A3B"/><circle cx="1090" cy="214" r="15" fill="#FF9F43"/><circle cx="1082" cy="222" r="10" fill="#FF9F43"/><circle cx="1099" cy="222" r="10" fill="#FF9F43"/></g>
+  </symbol>
+  <symbol id="t-front" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <path d="M0 270Q200 235 400 262Q600 290 800 258Q1000 228 1200 270V300H0Z" fill="#6CCB4F"/>
+    <g fill="#fff"><circle cx="120" cy="262" r="4"/><circle cx="480" cy="276" r="4"/><circle cx="1010" cy="252" r="4"/></g>
+    <g fill="#FF4D8D"><circle cx="170" cy="258" r="4"/><circle cx="700" cy="276" r="4"/></g>
+    <g fill="#FFC93D"><circle cx="260" cy="256" r="4"/><circle cx="860" cy="262" r="4"/><circle cx="1130" cy="266" r="4"/></g>
+  </symbol>
+</svg>
+
+<div class="world" aria-hidden="true">
+  <div class="sky sky-1"></div>
+  <div class="sky sky-2" id="sky2"></div>
+  <div class="sky sky-3" id="sky3"></div>
+
+  <div class="sun" id="sun">
+    <svg viewBox="0 0 120 120" focusable="false">
+      <g class="rays" fill="#FFD95A">
+        <rect id="ray" x="56" y="2" width="8" height="18" rx="4"/>
+        <use href="#ray" transform="rotate(30 60 60)"/><use href="#ray" transform="rotate(60 60 60)"/>
+        <use href="#ray" transform="rotate(90 60 60)"/><use href="#ray" transform="rotate(120 60 60)"/>
+        <use href="#ray" transform="rotate(150 60 60)"/><use href="#ray" transform="rotate(180 60 60)"/>
+        <use href="#ray" transform="rotate(210 60 60)"/><use href="#ray" transform="rotate(240 60 60)"/>
+        <use href="#ray" transform="rotate(270 60 60)"/><use href="#ray" transform="rotate(300 60 60)"/>
+        <use href="#ray" transform="rotate(330 60 60)"/>
+      </g>
+      <circle cx="60" cy="60" r="34" fill="#FFC93D"/>
+      <circle cx="52" cy="50" r="10" fill="#FFE08A"/>
+      <g class="eyes" fill="#1F1A3D"><ellipse cx="49" cy="58" rx="3.5" ry="5"/><ellipse cx="71" cy="58" rx="3.5" ry="5"/></g>
+      <circle cx="42" cy="69" r="5" fill="#FF8FA3" opacity=".8"/><circle cx="78" cy="69" r="5" fill="#FF8FA3" opacity=".8"/>
+      <path d="M50 70Q60 80 70 70" stroke="#1F1A3D" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="clouds" id="clouds">
+    <svg class="cloud" style="--y:14vh;--w:170px;--t:90s;--d:-10s"><use href="#cloud"/></svg>
+    <svg class="cloud" style="--y:34vh;--w:110px;--t:70s;--d:-45s"><use href="#cloud"/></svg>
+    <svg class="cloud" style="--y:22vh;--w:230px;--t:120s;--d:-80s"><use href="#cloud"/></svg>
+    <svg class="cloud" style="--y:48vh;--w:140px;--t:100s;--d:-25s"><use href="#cloud"/></svg>
+    <svg class="cloud" style="--y:8vh;--w:90px;--t:60s;--d:-35s"><use href="#cloud"/></svg>
+  </div>
+
+  <div class="land">
+    <div class="lyr" data-speed=".04"><svg><use href="#t-far"/></svg><svg><use href="#t-far"/></svg><svg><use href="#t-far"/></svg></div>
+    <div class="lyr" data-speed=".09"><svg><use href="#t-mtn"/></svg><svg><use href="#t-mtn"/></svg><svg><use href="#t-mtn"/></svg></div>
+    <div class="lyr" data-speed=".18"><svg><use href="#t-mid"/></svg><svg><use href="#t-mid"/></svg><svg><use href="#t-mid"/></svg></div>
+    <div class="lyr" data-speed=".3"><svg><use href="#t-front"/></svg><svg><use href="#t-front"/></svg><svg><use href="#t-front"/></svg></div>
+  </div>
+</div>
 
 <!-- ============ HEADER ============ -->
 <header class="hdr" id="hdr">
@@ -100,7 +210,7 @@
     </nav>
 
     <div class="hdr-actions">
-      <a class="btn btn-primary btn-sm hdr-cta" id="hdrCta" data-wa href="#reservar">Empieza por $15</a>
+      <a class="btn btn-primary btn-sm hdr-cta" id="hdrCta" data-wa href="#reservar">Empieza sin riesgo</a>
     </div>
   </div>
 </header>
@@ -109,20 +219,19 @@
 
 <!-- ============ 1. HERO ============ -->
 <section class="hero">
-  <div class="blobs" aria-hidden="true">
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
-  </div>
+  <span class="stk" aria-hidden="true" data-speed="-.12" style="--x:3%;--y:18%"><i>⭐</i></span>
+  <span class="stk d" aria-hidden="true" data-speed=".08" style="--x:46%;--y:12%"><i>✏️</i></span>
+  <span class="stk" aria-hidden="true" data-speed="-.06" style="--x:88%;--y:70%"><i>🎈</i></span>
+  <span class="stk d" aria-hidden="true" data-speed=".14" style="--x:40%;--y:78%"><i>🚀</i></span>
 
   <div class="wrap hero-in">
     <div class="hero-copy">
       <p class="chip reveal" data-d="0">
-        <span class="star" aria-hidden="true">★</span>
+        <span class="chip-dot" aria-hidden="true">👋</span>
         Grupos reducidos · La misma profe siempre
       </p>
 
-      <h1>Inglés que <em>sí</em> les divierte</h1>
+      <h1>Inglés que <em>sí</em> les <span class="squiggle">divierte</span> <span class="wave-emoji" aria-hidden="true">🎉</span></h1>
 
       <p class="lede reveal" data-d="80">
         Clases en vivo para niños de 7 a 14 años, en grupos reducidos y con
@@ -131,15 +240,16 @@
 
       <div class="hero-cta reveal" data-d="160">
         <a class="btn btn-primary btn-lg breathe" id="heroCta" data-wa href="#reservar">
-          Empieza por $15 — 2 semanas <span class="arrow" aria-hidden="true">→</span>
+          Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span>
         </a>
-        <p class="fineprint">2 semanas de prueba · Con garantía de devolución</p>
+        <p class="fineprint">$50/mes · Si no le gusta la primera semana, te devolvemos el dinero</p>
         <a class="link-under" href="#metodo">Ver cómo funciona <span aria-hidden="true">›</span></a>
       </div>
     </div>
 
     <div class="hero-visual reveal" data-d="120" role="img"
          aria-label="Una clase de LET Academy en directo: Jordi y siete alumnos conectados">
+      <span class="rainbow" aria-hidden="true"></span>
       <div class="screen-mock">
         <div class="mock-top">
           <span class="bar"><i></i></span>
@@ -221,28 +331,38 @@
             </picture>
           </div>
         </div>
-        <p class="mock-say" lang="en">“It’s a <b>green dragon</b>!”</p>
+        <p class="mock-say" lang="en">“It’s a <b>green dragon</b>!” 🐉</p>
       </div>
       <div class="hero-chips">
         <span class="hero-chip chip-xp">⭐ 1.240 XP</span>
         <span class="hero-chip chip-streak">🔥 7 días</span>
       </div>
     </div>
+  </div>
 
   <ul class="trust reveal" data-d="240">
-    <li>Profes certificados</li>
-    <!-- Deliberadamente sin número: el Plan Inicial es hasta 8 y el Completo
-         máximo 4. Poner "máximo 4" aquí sería cierto para el producto de pago
-         y falso para la puerta de entrada, que es justo la contradicción que
-         señalaban las auditorías. Los números exactos van en la tabla. -->
-    <li>Grupos reducidos</li>
-    <li>Clases en vivo</li>
+    <li class="t-grape">🎓 Profes certificados</li>
+    <li class="t-mango">📚 Apoyo académico</li>
+    <li class="t-bubble">🔴 Clases en vivo</li>
+    <li class="t-grass">📊 Reporte mensual</li>
+  </ul>
+</section>
+
+<!-- ============ 1b. STATS ============ -->
+<section class="stats" aria-label="El programa en números">
+  <ul class="wrap stat-grid">
+    <li class="stat s-mango reveal"><span class="stat-ic" aria-hidden="true">📅</span><b class="stat-n" data-count="12">12</b><span>clases en vivo al mes</span></li>
+    <li class="stat s-grape reveal"><span class="stat-ic" aria-hidden="true">🧒</span><b class="stat-n" data-count="4">4</b><span>niños máximo por grupo</span></li>
+    <li class="stat s-sky reveal"><span class="stat-ic" aria-hidden="true">🗓️</span><b class="stat-n" data-count="3">3</b><span>días por semana</span></li>
+    <li class="stat s-grass reveal"><span class="stat-ic" aria-hidden="true">🛡️</span><b class="stat-n" data-count="1">1</b><span>semana de garantía</span></li>
   </ul>
 </section>
 
 <!-- ============ 2. SOCIAL PROOF ============ -->
 <section class="proof" id="familias">
+  <span class="stk d" aria-hidden="true" data-speed=".1" style="--x:92%;--y:6%"><i>💬</i></span>
   <div class="wrap">
+    <p class="kicker k-bubble reveal">🎬 Familias reales</p>
     <h2 class="reveal">Lo que dicen las familias</h2>
   </div>
 
@@ -343,13 +463,17 @@
 
 <!-- ============ 3. METHODOLOGY ============ -->
 <section class="method" id="metodo">
+  <span class="stk" aria-hidden="true" data-speed="-.1" style="--x:90%;--y:4%"><i>🧩</i></span>
+  <span class="stk d" aria-hidden="true" data-speed=".12" style="--x:2%;--y:60%"><i>🎵</i></span>
   <div class="wrap">
-    <h2 class="reveal">Aprender inglés sin darse cuenta</h2>
+    <p class="kicker k-grape reveal">✨ Nuestro método</p>
+    <h2 class="reveal">Aprender inglés <span class="hl hl-sun">sin darse cuenta</span></h2>
     <p class="lede reveal">Tres cosas que hacemos distinto, y que son la razón por la que vuelven cada semana.</p>
 
     <ul class="cards">
-      <li class="glass reveal">
-        <span class="ic ic-game" aria-hidden="true">
+      <li class="mcard m-grape reveal">
+        <span class="m-art" aria-hidden="true">🎮</span>
+        <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
             <rect x="2.6" y="7.2" width="18.8" height="9.6" rx="4.8"/>
             <path d="M7.4 10.6v3.2M5.8 12.2h3.2"/>
@@ -357,28 +481,33 @@
             <circle cx="17.8" cy="13.6" r=".95" fill="currentColor" stroke="none"/>
           </svg>
         </span>
+        <p class="m-kick">Juega y aprende</p>
         <h3>Plataforma interactiva</h3>
         <p>Juegos, retos y recompensas que convierten la práctica en algo que piden repetir.</p>
       </li>
-      <li class="glass reveal">
-        <span class="ic ic-reel" aria-hidden="true">
+      <li class="mcard m-mango reveal">
+        <span class="m-art" aria-hidden="true">🎬</span>
+        <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
             <rect x="2.6" y="5.4" width="18.8" height="13.2" rx="3.2"/>
             <path d="M2.6 9.8h18.8"/>
             <path d="M7.4 5.6 5.9 9.6M12.2 5.6l-1.5 4M17 5.6l-1.5 4"/>
           </svg>
         </span>
+        <p class="m-kick">Mira, escucha, habla</p>
         <h3>Método audiovisual</h3>
         <p>Vídeo, música y conversación desde el minuto uno. Escuchan y hablan antes de escribir.</p>
       </li>
-      <li class="glass reveal">
-        <span class="ic ic-live" aria-hidden="true">
+      <li class="mcard m-sky reveal">
+        <span class="m-art" aria-hidden="true">👩‍🏫</span>
+        <span class="ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
             <rect x="2.6" y="4.4" width="18.8" height="15.2" rx="3.4"/>
             <circle cx="12" cy="10.3" r="2.5"/>
             <path d="M7.7 16.9a4.7 4.7 0 0 1 8.6 0"/>
           </svg>
         </span>
+        <p class="m-kick">Siempre en directo</p>
         <h3>Clases en vivo personalizadas</h3>
         <p>Profes certificados en grupos de máximo 4, adaptando el ritmo a cada niño.</p>
       </li>
@@ -386,13 +515,37 @@
 
     <p class="proofline reveal"><span class="ck" aria-hidden="true"></span> El 90&nbsp;% de los alumnos dice sus primeras palabras en inglés en la primera semana.</p>
 
-    <p class="reveal center"><a class="btn btn-outline" href="#pruebalo">Probar una pregunta ahora</a></p>
+    <p class="reveal center"><a class="btn btn-outline" href="#pruebalo">Probar una pregunta ahora 🎯</a></p>
+  </div>
+</section>
+
+<!-- ============ 3a. JOURNEY MAP ============ -->
+<section class="journey" id="camino">
+  <span class="stk d" aria-hidden="true" data-speed="-.1" style="--x:88%;--y:30%"><i>🏔️</i></span>
+  <div class="wrap narrow">
+    <p class="kicker k-grass reveal">🗺️ Paso a paso</p>
+    <h2 class="reveal">El camino de tu peque</h2>
+    <p class="lede reveal">Del primer mensaje a hablar inglés en clase, nivel a nivel.</p>
+
+    <div class="map" id="map">
+      <svg class="map-path" id="mapPath" aria-hidden="true" focusable="false"><path class="road"/><path class="trail"/></svg>
+      <ol class="steps">
+        <li class="step"><span class="node n-bubble" aria-hidden="true">💬</span><div class="step-card"><p class="lvl">Nivel 1</p><h3>Nos escribes</h3><p>Tres toques y te contactamos por WhatsApp. Sin formularios eternos.</p></div></li>
+        <li class="step"><span class="node n-sun" aria-hidden="true">🧭</span><div class="step-card"><p class="lvl">Nivel 2</p><h3>Vemos su nivel</h3><p>En la primera clase valoramos su inglés y le asignamos el grupo que le corresponde.</p></div></li>
+        <li class="step"><span class="node n-grape" aria-hidden="true">👩‍🏫</span><div class="step-card"><p class="lvl">Nivel 3</p><h3>Conoce a su profe</h3><p>La misma profe todo el curso, en un grupo de máximo 4 niños.</p></div></li>
+        <li class="step"><span class="node n-mango" aria-hidden="true">🎮</span><div class="step-card"><p class="lvl">Nivel 4</p><h3>¡A jugar en inglés!</h3><p>Lunes, miércoles y viernes: retos, XP y rachas, hablando desde el primer día.</p></div></li>
+        <li class="step"><span class="node n-grass" aria-hidden="true">🏆</span><div class="step-card"><p class="lvl">Nivel 5</p><h3>Ves su progreso</h3><p>Seguimiento e informes para que sepas exactamente cómo avanza.</p></div></li>
+      </ol>
+    </div>
   </div>
 </section>
 
 <!-- ============ 3b. INTERACTIVE DEMO LESSON ============ -->
 <section class="demo" id="pruebalo">
+  <span class="stk" aria-hidden="true" data-speed=".1" style="--x:4%;--y:8%"><i>🎯</i></span>
+  <span class="stk d" aria-hidden="true" data-speed="-.08" style="--x:90%;--y:50%"><i>🦖</i></span>
   <div class="wrap narrow">
+    <p class="kicker k-mango reveal">🕹️ Pruébalo tú</p>
     <h2 class="reveal">Así es una pregunta de clase</h2>
     <p class="lede reveal">Tres preguntas reales, con vidas, XP y racha — igual que las ve tu peque. Escribe tu respuesta y te corregimos al momento.</p>
 
@@ -450,8 +603,8 @@
       <div class="lesson-end" id="lsnEnd" hidden>
         <p class="end-emoji" aria-hidden="true">🎉</p>
         <h3 id="lsnEndTitle">¡Lección completada!</h3>
-        <p id="lsnEndText">Has ganado <b>30 XP</b>. Tu peque haría esto dos veces por semana, con profe en directo.</p>
-        <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza sus 2 semanas por $15 <span class="arrow" aria-hidden="true">→</span></a>
+        <p id="lsnEndText">Has ganado <b>30 XP</b>. Tu peque haría esto tres veces por semana, con profe en directo.</p>
+        <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
         <button class="btn btn-outline btn-sm" id="lsnRetry" type="button">Volver a intentarlo</button>
       </div>
     </div>
@@ -462,9 +615,11 @@
 
 <!-- ============ 4. TEACHERS ============ -->
 <section class="teachers" id="profes">
+  <span class="stk" aria-hidden="true" data-speed="-.1" style="--x:92%;--y:3%"><i>🍎</i></span>
   <div class="wrap">
+    <p class="kicker k-sky reveal">🧑‍🏫 El equipo</p>
     <h2 class="reveal">Conoce a tus profes</h2>
-    <p class="lede reveal">Todos certificados, todos con experiencia enseñando a niños. Y todos algo payasos.</p>
+    <p class="lede reveal">Todos certificados, todos con experiencia enseñando a niños. Y todos algo payasos. 🤡</p>
 
     <figure class="team reveal">
       <picture>
@@ -490,7 +645,7 @@
             <img src="assets/optimized/teachers/jordi-280.webp" width="560" height="700" alt="Jordi, profesor de LET Academy" loading="lazy" decoding="async">
           </picture>
         </div>
-        <h3>Jordi</h3>
+        <h3>Jordi <span aria-hidden="true">🎸</span></h3>
         <p class="cred">Certificado internacionalmente</p>
       </li>
       <li class="card teacher">
@@ -503,7 +658,7 @@
             <img src="assets/optimized/teachers/sofia-840.webp" width="560" height="700" alt="Sofia, profesora de LET Academy" loading="lazy" decoding="async">
           </picture>
         </div>
-        <h3>Sofia</h3>
+        <h3>Sofia <span aria-hidden="true">🌻</span></h3>
         <p class="cred">Certificada internacionalmente</p>
       </li>
       <li class="card teacher">
@@ -516,22 +671,24 @@
             <img src="assets/optimized/teachers/ersa-560.webp" width="560" height="700" alt="Ersa, profesora de LET Academy" loading="lazy" decoding="async">
           </picture>
         </div>
-        <h3>Ersa</h3>
+        <h3>Ersa <span aria-hidden="true">🌈</span></h3>
         <p class="cred">Certificada internacionalmente</p>
       </li>
     </ul>
   </div>
   <div class="dots" data-rail="railTeach" aria-hidden="true"></div>
 
-  <p class="wrap closing reveal">Cada peque tiene profe asignado, no van rotando. <a class="link-under" href="#reservar">Reserva su clase gratis ›</a></p>
+  <p class="wrap closing reveal">Cada peque tiene profe asignado, no van rotando. <a class="link-under" href="#reservar">Reserva su plaza ›</a></p>
 </section>
 
 <!-- ============ 4b. WRITTEN REVIEWS ============ -->
 <section class="reviews" id="opiniones">
+  <span class="stk d" aria-hidden="true" data-speed=".1" style="--x:3%;--y:10%"><i>💌</i></span>
   <div class="wrap">
+    <p class="kicker k-sun reveal">⭐ 5 estrellas</p>
     <h2 class="reveal">Lo que nos escriben los padres</h2>
     <ul class="rv-grid">
-      <li class="rv rv-wide reveal">
+      <li class="rv rv-wide rv-sky reveal">
         <div class="rv-head">
         <picture>
             <source type="image/avif" srcset="assets/optimized/reviews/maria-jose-acevedo-112.avif 112w, assets/optimized/reviews/maria-jose-acevedo-224.avif 224w" sizes="56px">
@@ -569,7 +726,7 @@
           <p>Quiero agradecer especialmente al profesor Jordi, que ha estado siempre disponible para mi hija con cualquier tema que no entendía o tarea del colegio.</p>
         </blockquote>
       </li>
-      <li class="rv reveal">
+      <li class="rv rv-pink reveal">
         <div class="rv-head">
         <picture>
             <source type="image/avif" srcset="assets/optimized/reviews/gustavo-bravo-112.avif 112w, assets/optimized/reviews/gustavo-bravo-224.avif 224w" sizes="56px">
@@ -587,7 +744,7 @@
           <p>100 % recomendado. Los profesores son profesionales, disponibles y amables. En poco tiempo mi pequeño Santiago ya estaba nombrando cosas en inglés por toda la casa.</p>
         </blockquote>
       </li>
-      <li class="rv reveal">
+      <li class="rv rv-green reveal">
         <div class="rv-head">
         <picture>
             <source type="image/avif" srcset="assets/optimized/reviews/jose-ramirez-112.avif 112w, assets/optimized/reviews/jose-ramirez-224.avif 224w" sizes="56px">
@@ -610,67 +767,61 @@
 </section>
 
 <!-- ============ 4c. PLANS + GUARANTEE ============
-     Cifras tomadas de la auditoría de conversión (Plan Inicial $15/2 semanas,
-     Plan Completo $50/mes). CONFIRMAR antes de publicar: son un compromiso
-     comercial, y hoy el sitio, el bot y los anuncios no dicen lo mismo. -->
+     Un solo plan: Programa Completo $50/mes + garantía de 1 semana (decisión
+     de Jordi, 2026-09-20). El Plan Inicial de $15 se retiró. CONFIRMAR que el
+     bot de WhatsApp y los anuncios de Meta dicen lo mismo. -->
 <section class="plans" id="planes">
+  <span class="stk" aria-hidden="true" data-speed="-.12" style="--x:90%;--y:8%"><i>💎</i></span>
   <div class="wrap">
-    <h2 class="reveal">Empieza pequeño, sigue si funciona</h2>
-    <p class="lede reveal">Nadie firma un curso entero para un niño que todavía no sabe si le va a gustar. Por eso hay una entrada de dos semanas antes de cualquier compromiso.</p>
+    <p class="kicker k-mango reveal">🎟️ Precio</p>
+    <h2 class="reveal">Un programa completo. Una semana para decidir.</h2>
+    <p class="lede reveal">Todo incluido por un solo precio. Si en la primera semana no le gusta o no aprende, te devolvemos el dinero. Sin preguntas.</p>
 
-    <ul class="plan-grid">
-      <li class="plan plan-entry reveal">
-        <p class="plan-tag">Para empezar</p>
-        <h3>Plan Inicial</h3>
-        <p class="plan-price"><b>$15</b> <span>2 semanas</span></p>
-        <ul class="plan-specs">
-          <li><b>4 clases</b> de 1 hora</li>
-          <li>2 días por semana <span class="plan-days">martes y jueves</span></li>
-          <li>Hasta <b>8 niños</b> por grupo</li>
-          <li>Profe fija, la misma las cuatro clases</li>
-        </ul>
-        <p class="plan-note">Con garantía de devolución.</p>
-        <a class="btn btn-primary" data-wa="inicial" href="#reservar">Empezar por $15 <span class="arrow" aria-hidden="true">→</span></a>
-      </li>
+    <div class="plans-body">
+      <ul class="plan-grid">
+        <li class="plan plan-entry reveal">
+          <span class="plan-star" aria-hidden="true">⭐</span>
+          <p class="plan-tag">Programa completo</p>
+          <h3>Todo incluido</h3>
+          <p class="plan-price"><b>$50</b> <span>al mes</span></p>
+          <ul class="plan-specs">
+            <li><b>12 clases</b> en vivo de 1 hora al mes</li>
+            <li>3 días por semana <span class="plan-days">lunes, miércoles y viernes</span></li>
+            <li><b>Máximo 4 niños</b> por grupo</li>
+            <li>Profe fija: la misma todo el curso</li>
+            <li>Plataforma interactiva con juegos, XP y rachas</li>
+            <li>Seguimiento del progreso e informes</li>
+          </ul>
+          <p class="plan-note">Sin permanencia. Cancela cuando quieras.</p>
+          <a class="btn btn-primary" data-wa="completo" href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
+        </li>
+      </ul>
 
-      <li class="plan plan-full reveal">
-        <p class="plan-tag">Si le engancha</p>
-        <h3>Plan Completo</h3>
-        <p class="plan-price"><b>$50</b> <span>al mes</span></p>
-        <ul class="plan-specs">
-          <li><b>12 clases</b> de 1 hora al mes</li>
-          <li>3 días por semana <span class="plan-days">lunes, miércoles y viernes</span></li>
-          <li><b>Máximo 4 niños</b> por grupo</li>
-          <li>Seguimiento del progreso e informes</li>
-        </ul>
-        <p class="plan-note">Sin permanencia. Cancela cuando quieras.</p>
-        <a class="btn btn-outline" data-wa="completo" href="#reservar">Preguntar por el Plan Completo</a>
-      </li>
-    </ul>
-
-    <!-- The strongest risk-remover in the whole funnel, and until now it was
-         not on the page at all. It gets its own block, not a footnote. -->
-    <aside class="guarantee reveal">
-      <span class="guarantee-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z" fill="currentColor"/></svg>
-      </span>
-      <div>
-        <h3>Si no dice sus primeras palabras, te devolvemos el dinero</h3>
-        <p>Sin formularios ni preguntas incómodas. Escríbenos al acabar las dos semanas y lo resolvemos por WhatsApp.</p>
-      </div>
-    </aside>
+      <aside class="guarantee reveal">
+        <span class="guarantee-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z" fill="currentColor"/></svg>
+        </span>
+        <div>
+          <p class="guarantee-kicker">Garantía de 1 semana</p>
+          <h3>Si no le gusta o no aprende en la primera semana, te devolvemos el dinero</h3>
+          <p>Sin preguntas ni formularios. Escríbenos por WhatsApp durante la primera semana y lo resolvemos.</p>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
 <!-- ============ 5. FAQ ============ -->
 <section class="faq" id="faq">
+  <span class="stk d" aria-hidden="true" data-speed=".1" style="--x:5%;--y:12%"><i>❓</i></span>
   <div class="wrap narrow">
+    <p class="kicker k-sky reveal">🤔 Dudas</p>
     <h2 class="reveal">Preguntas de otros padres</h2>
 
     <div class="acc reveal">
       <details open>
         <summary>¿Necesita saber inglés antes de empezar?<span class="plus" aria-hidden="true">+</span></summary>
-        <div class="acc-body"><div><p>No. Empezamos desde cero si hace falta. En la clase gratuita valoramos su nivel y le asignamos el grupo que le corresponde, así que nunca está ni perdido ni aburrido.</p></div></div>
+        <div class="acc-body"><div><p>No. Empezamos desde cero si hace falta. En la primera clase valoramos su nivel y le asignamos el grupo que le corresponde, así que nunca está ni perdido ni aburrido.</p></div></div>
       </details>
       <details>
         <summary>¿Las clases son grabadas?<span class="plus" aria-hidden="true">+</span></summary>
@@ -678,11 +829,11 @@
       </details>
       <details>
         <summary>¿Cuánto dura cada clase y cuántas hay a la semana?<span class="plus" aria-hidden="true">+</span></summary>
-        <div class="acc-body"><div><p>Una hora por clase. El Plan Inicial son dos clases por semana, martes y jueves; el Plan Completo son tres, lunes, miércoles y viernes. Los días se mantienen fijos, así que entra en la rutina de la semana sin recolocar nada.</p></div></div>
+        <div class="acc-body"><div><p>Una hora por clase. Son tres clases por semana, lunes, miércoles y viernes. Los días se mantienen fijos, así que entra en la rutina de la semana sin recolocar nada.</p></div></div>
       </details>
       <details>
         <summary>¿Cuánto cuesta?<span class="plus" aria-hidden="true">+</span></summary>
-        <div class="acc-body"><div><p>Se empieza con el Plan Inicial: $15 por dos semanas, cuatro clases, con garantía de devolución. Si le encaja, el Plan Completo son $50 al mes, doce clases, sin permanencia y cancelable cuando queráis.</p></div></div>
+        <div class="acc-body"><div><p>El programa completo cuesta $50 al mes y lo incluye todo: doce clases en vivo, grupos de máximo 4, plataforma interactiva y seguimiento del progreso. Sin permanencia, y con garantía de devolución durante la primera semana.</p></div></div>
       </details>
       <details>
         <summary>¿Qué necesito en casa para conectarme?<span class="plus" aria-hidden="true">+</span></summary>
@@ -690,7 +841,7 @@
       </details>
       <details>
         <summary>¿Puedo cancelar si no le gusta?<span class="plus" aria-hidden="true">+</span></summary>
-        <div class="acc-body"><div><p>Sí, cuando queráis y sin penalización. No hay permanencia ni letra pequeña. Y en las dos primeras semanas, si no dice sus primeras palabras, os devolvemos los $15.</p></div></div>
+        <div class="acc-body"><div><p>Sí, cuando queráis y sin penalización. No hay permanencia ni letra pequeña. Y si en la primera semana no le gusta o no aprende, os devolvemos el dinero sin preguntas.</p></div></div>
       </details>
     </div>
 
@@ -701,12 +852,13 @@
 <!-- ============ 6. FINAL CTA ============ -->
 <section class="final" id="reservar">
   <div class="wrap">
-    <div class="panel reveal">
+    <div class="panel reveal" id="finalPanel">
       <span class="peek peek-l" aria-hidden="true">🐙</span>
       <span class="peek peek-r" aria-hidden="true">🦕</span>
-      <h2>Dos semanas por $15. Y si no habla, te devolvemos el dinero.</h2>
-      <p>Cuatro clases en vivo para que veas si le encaja, antes de comprometerte con nada más.</p>
-      <a class="btn btn-invert btn-lg" data-wa href="#reservar">Empieza por $15 <span class="arrow" aria-hidden="true">→</span></a>
+      <span class="peek peek-b" aria-hidden="true">🦒</span>
+      <h2>Pruébalo una semana. Si no le gusta, te devolvemos el dinero.</h2>
+      <p>Programa completo por $50 al mes, sin permanencia. Si en la primera semana no le gusta o no aprende, te lo devolvemos sin preguntas.</p>
+      <a class="btn btn-invert btn-lg" data-wa href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
       <ul class="risk">
         <li>Garantía de devolución</li>
         <li>Cancela cuando quieras</li>
@@ -720,13 +872,16 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="ftr" id="ftr">
+  <svg class="ftr-hill" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 50Q240 0 480 40T960 36T1440 44V90H0Z" fill="#4CB944"/>
+    <path d="M0 70Q300 34 620 64T1240 58T1440 62V90H0Z" fill="#267A33"/>
+  </svg>
   <div class="wrap ftr-in">
     <div class="ftr-brand">
       <span class="logo"><picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-36.avif 36w, assets/optimized/brand/logo-globo-72.avif 72w, assets/optimized/brand/logo-globo-144.avif 144w" sizes="34px"><source type="image/webp" srcset="assets/optimized/brand/logo-globo-36.webp 36w, assets/optimized/brand/logo-globo-72.webp 72w, assets/optimized/brand/logo-globo-144.webp 144w" sizes="34px"><img class="logo-mark" src="assets/optimized/brand/logo-globo-144.webp" width="34" height="33" alt="" decoding="async"></picture><span class="logo-word">LET Academy</span></span>
       <p>Inglés en vivo para niños de 7 a 14 años. 100&nbsp;% online, con profes de verdad.</p>
       <!-- Solo las cuentas que existen. Instagram y TikTok vuelven cuando
-           tengan URL real: un icono que no lleva a ningún sitio lee peor que
-           no tenerlo. -->
+           tengan URL real. -->
       <ul class="social">
         <li><a href="https://www.youtube.com/@let_academy" target="_blank" rel="noopener" aria-label="LET Academy en YouTube">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77C22 15.2 22 12 22 12s0-3.2-.4-4.8ZM10 15.2V8.8l5.2 3.2-5.2 3.2Z"/></svg>
@@ -738,7 +893,7 @@
     </div>
     <nav class="ftr-col" aria-label="Academia">
       <h3>Academia</h3>
-      <ul><li><a href="#metodo">Método</a></li><li><a href="#profes">Profes</a></li><li><a href="#planes">Precios</a></li><li><a href="#opiniones">Opiniones</a></li></ul>
+      <ul><li><a href="#metodo">Método</a></li><li><a href="#camino">Cómo empezar</a></li><li><a href="#profes">Profes</a></li><li><a href="#planes">Precios</a></li><li><a href="#opiniones">Opiniones</a></li></ul>
     </nav>
     <nav class="ftr-col" aria-label="Ayuda">
       <h3>Ayuda</h3>
@@ -746,24 +901,21 @@
     </nav>
     <nav class="ftr-col" aria-label="Legal">
       <h3>Legal</h3>
-      <!-- TODO: estas tres páginas no existen todavía. No se quitan como los
-           iconos sociales porque en la UE son obligatorias, no opcionales:
-           hay que escribirlas, no borrar el enlace. -->
+      <!-- TODO: estas tres páginas no existen todavía. En la UE son
+           obligatorias: hay que escribirlas, no borrar el enlace. -->
       <ul><li><a href="#">Aviso legal</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul>
     </nav>
   </div>
   <!-- TODO: razón social, CIF y domicilio -->
-  <p class="wrap legal">© 2026 LET Academy · Todos los derechos reservados.</p>
+  <p class="wrap legal">© 2026 LET Academy · Todos los derechos reservados. Hecho con 🧡 para peques curiosos.</p>
 </footer>
 
 <!-- Sticky mobile CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza por $15 <span class="arrow" aria-hidden="true">→</span></a>
+  <a class="btn btn-primary btn-lg" data-wa href="#reservar">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
 </div>
 
-<!-- Quick-contact flow: every WhatsApp CTA opens this first. Three taps,
-     no typing, then WhatsApp opens with the plan context plus what the
-     parent just answered already written in. -->
+<!-- Quick-contact flow: every WhatsApp CTA opens this first. -->
 <dialog class="intake" id="intake">
   <button class="intake-close" id="intakeClose" type="button" aria-label="Cerrar">✕</button>
   <div class="lesson-hud">
