@@ -921,11 +921,13 @@ h2 + .lede{margin-top:var(--s3)}
 .guarantee p{color:var(--ink-2);font-size:15px;margin-top:var(--s1);max-width:56ch}
 .guarantee-kicker{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--grass-ink);margin-bottom:var(--s1)}
 @media (min-width:900px){
-  .plans-body{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;margin-top:var(--s6)}
-  .plans-body .plan-grid,.plans-body .guarantee{margin-top:0}
-  .guarantee{align-items:center;transform:rotate(1.5deg)}
-  .js .guarantee.reveal.is-in{transform:rotate(1.5deg)}
+  .guarantee{align-items:center}
 }
+/* One plan: the price card and the guarantee stack as one centred column,
+   the guarantee sitting right under the price it backs. */
+.plans-body{max-width:640px;margin-inline:auto}
+.plans .kicker,.plans h2,.plans .lede{margin-inline:auto;text-align:center}
+.plans .kicker{display:flex;width:fit-content}
 
 /* =========================================================
    5 — FAQ
