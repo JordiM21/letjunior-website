@@ -40,7 +40,7 @@ const KINDS = {
                         } },
 
   teachers:           { widths: [280, 560, 840], alpha: false, aspect: 4 / 5,
-                        note: 'Portraits in Conoce a tus profes',
+                        note: 'Portraits in Profes Apasionados',
                         crop: {
                           jordi: { focus: [0.50, 0.33], zoom: 0.55 },
                           sofia: { focus: [0.50, 0.29], zoom: 0.80 },
