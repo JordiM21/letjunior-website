@@ -20,6 +20,11 @@
   ];
   var WA_PHONE = '393792913474';
   var LEAD_URL = 'https://letjunior-hub.vercel.app/api/hooks/form/teumO-UI4q1W6baW9_A7te8fT5lZ0DsJ'; // empty = nothing is sent
+  // Phone validation + country codes (lazy-loaded when the results screen shows).
+  var PHONE_LIB = {
+    src: 'https://cdn.jsdelivr.net/npm/libphonenumber-js@1.13.14/bundle/libphonenumber-mobile.js',
+    integrity: 'sha384-fLAc0PFtqy25CzgKfiXfVyT/FzLWJW4GrwSfkpV69MGBJojd6Zz0/1qGuctYcrxg'
+  };
 
   // [name, flag, region for date formatting, time zones: first one is the default]
   var COUNTRIES = [
@@ -109,7 +114,7 @@
   var card = document.getElementById('quiz');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var plan = new URLSearchParams(location.search).get('plan');
-  var ORDER = ['intro', 'q1', 'q2', 'q3', 'seek', 'results', 'thanks'];
+  var ORDER = ['intro', 'q1', 'q2', 'q3', 'seek', 'results', 'contact', 'thanks'];
   var st = {}, slots = [], current = 'intro', seekTimer;
 
   // Put the country this phone is in first, so most parents answer Q2 with one tap.
@@ -124,6 +129,7 @@
       '<span class="q-count">' + n + '/3</span></div>' +
       '<p class="lesson-step">Pregunta ' + n + ' de 3</p>';
   }
+  function yrs(n) { return n + (n === 1 ? ' año' : ' años'); }
   function pressed(on) { return ' aria-pressed="' + !!on + '"'; }
 
   var VIEWS = {
@@ -143,7 +149,13 @@
     q1: function () {
       var h = '';
       for (var a = 7; a <= 14; a++) h += '<li><button class="opt age" type="button" style="--i:' + (a - 7) + '" data-age="' + a + '"' + pressed(st.age === a) + '><b>' + a + '</b><small>años</small></button></li>';
-      return '<div class="scr">' + hud(1) + '<h2 class="lesson-q">¿Cuántos años tiene tu peque?</h2><ul class="opts ages">' + h + '</ul></div>';
+      var other = st.age != null && (st.age < 7 || st.age > 14); // an age typed in the "otra edad" box
+      return '<div class="scr">' + hud(1) + '<h2 class="lesson-q">¿Cuántos años tiene tu peque?</h2><ul class="opts ages">' + h + '</ul>' +
+        '<button class="opt age-other" type="button" data-other aria-expanded="' + other + '" aria-controls="age-form">Otra edad</button>' +
+        '<form class="age-form" id="age-form" novalidate' + (other ? '' : ' hidden') + '><label for="age-in">Edad de tu peque</label>' +
+          '<div class="age-row"><input id="age-in" type="text" inputmode="numeric" maxlength="2" autocomplete="off" placeholder="Ej. 5" value="' + (other ? st.age : '') + '" aria-describedby="age-err">' +
+          '<button class="btn btn-primary" type="submit">Seguir <span class="arrow" aria-hidden="true">→</span></button></div>' +
+          '<p class="fld-err" id="age-err" role="alert" hidden></p></form></div>';
     },
     q2: function () {
       var h = COUNTRIES.map(function (c, k) {
@@ -166,7 +178,7 @@
       return '<div class="scr scr-center" role="status">' +
         '<p class="big-emoji seek" aria-hidden="true">🔍</p>' +
         '<h2>Buscando grupos…</h2><ul class="checks">' +
-          '<li style="--i:0"><span class="ck"></span>Peques de ' + st.age + ' años</li>' +
+          '<li style="--i:0"><span class="ck"></span>Peques de ' + yrs(st.age) + '</li>' +
           '<li style="--i:1"><span class="ck"></span>Horario de ' + st.country.name + '</li>' +
           '<li style="--i:2"><span class="ck"></span>Nivel: ' + st.level[2].toLowerCase() + '</li></ul></div>';
     },
@@ -175,8 +187,8 @@
         return '<div class="scr scr-center">' +
           '<p class="big-emoji" aria-hidden="true">🗓️</p>' +
           '<h2>Estamos abriendo un grupo nuevo</h2>' +
-          '<p>Ahora mismo no hay un grupo abierto para <b>' + st.age + ' años</b> en un horario cómodo para ' + st.country.name + ', pero abrimos grupos nuevos cada mes.</p>' +
-          '<a class="btn btn-primary btn-lg btn-block" data-reserve="avisame" href="' + waLink(msg('Me gustaría que me aviséis cuando abra un grupo.')) + '" target="_blank" rel="noopener">Avísame por WhatsApp <span class="arrow" aria-hidden="true">→</span></a></div>';
+          '<p>Ahora mismo no hay un grupo abierto para <b>' + yrs(st.age) + '</b> en un horario cómodo para ' + st.country.name + ', pero abrimos grupos nuevos cada mes.</p>' +
+          '<button class="btn btn-primary btn-lg btn-block" type="button" data-reserve="avisame">Avísame por WhatsApp <span class="arrow" aria-hidden="true">→</span></button></div>';
       }
       var h = slots.map(function (s, k) {
         return '<li><button class="opt slot" type="button" style="--i:' + k + '" data-slot="' + k + '"' + pressed(st.slot === s) + '>' +
@@ -189,40 +201,97 @@
         '<h2>Encontramos un grupo disponible para tu peque</h2>' +
         '<p>' + (slots.length > 1 ? 'Elige el que más te guste.' : 'Tócalo para apartar el cupo.') + ' <span class="tz-note">Horarios en hora de ' + st.country.name + '.</span></p>' +
         '<ul class="opts slots">' + h + '</ul>' +
-        '<a class="btn btn-primary btn-lg btn-block" id="reserve" data-reserve="reservar" target="_blank" rel="noopener" aria-disabled="true">Reservar por WhatsApp <span class="arrow" aria-hidden="true">→</span></a>' +
-        '<p class="fineprint center">Te confirmamos el cupo por WhatsApp. <a class="link-under" data-reserve="otro_horario" href="' + waLink(msg('Ninguno de estos horarios me viene bien, ¿hay otras opciones?')) + '" target="_blank" rel="noopener">¿Ninguno te va bien?</a></p></div>';
+        '<button class="btn btn-primary btn-lg btn-block" type="button" id="reserve" data-reserve="reservar"' + (st.slot ? '' : ' aria-disabled="true"') + '>Reservar mi cupo <span class="arrow" aria-hidden="true">→</span></button>' +
+        '<p class="fineprint center">Te confirmamos el cupo por WhatsApp. <button class="link-under" type="button" data-reserve="otro_horario">¿Ninguno te va bien?</button></p></div>';
+    },
+    contact: function () {
+      var c = ccOf(st.cc);
+      var plain = !c; // phone library didn't load: one plain field, number typed with its "+"
+      return '<form class="scr" novalidate>' +
+        '<div class="lesson-hud q-hud"><button class="q-back" type="button" data-back aria-label="Volver">‹</button></div>' +
+        '<span class="kicker k-grape">🙌 Último paso</span>' +
+        '<h2>¡Ya casi estamos!</h2>' +
+        '<p>Déjanos tu nombre y tu WhatsApp para confirmarte el cupo.</p>' +
+        '<div class="fld"><label for="c-name">Tu nombre</label>' +
+          '<input id="c-name" type="text" autocomplete="name" maxlength="80" placeholder="Nombre y apellido" value="' + esc(st.name || '') + '" aria-describedby="c-name-err">' +
+          '<p class="fld-err" id="c-name-err" role="alert" hidden></p></div>' +
+        '<div class="fld"><label for="c-tel">Tu WhatsApp</label>' +
+          '<div class="tel">' + (plain ? '' :
+            '<div class="cc"><button class="cc-btn" id="cc-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Prefijo del país: ' + esc(c.name) + ' +' + c.code + '">' +
+              '<span class="flag" aria-hidden="true">' + c.flag + '</span><b>+' + c.code + '</b><i aria-hidden="true">▾</i></button>' +
+              '<div class="cc-pop" hidden><input class="cc-q" type="text" role="combobox" aria-expanded="true" aria-controls="cc-list" aria-autocomplete="list" aria-label="Buscar país o prefijo" placeholder="Buscar país o prefijo" autocomplete="off" autocapitalize="off" spellcheck="false">' +
+              '<ul class="cc-list" id="cc-list" role="listbox" aria-label="Países"></ul></div></div>') +
+            '<input id="c-tel" type="tel" inputmode="tel" autocomplete="' + (plain ? 'tel' : 'tel-national') + '" placeholder="' + (plain ? '+34 600 123 456' : 'Tu número') + '" value="' + esc(st.tel || '') + '" aria-describedby="c-tel-hint c-tel-err"></div>' +
+          '<p class="fld-hint" id="c-tel-hint">Un móvil con WhatsApp: ahí te escribiremos.</p>' +
+          '<p class="fld-err" id="c-tel-err" role="alert" hidden></p></div>' +
+        '<button class="btn btn-primary btn-lg btn-block" type="submit" id="c-go">Enviar <span class="arrow" aria-hidden="true">→</span></button>' +
+        '<p class="fineprint center">Solo usamos tus datos para confirmarte el cupo. <a class="link-under" href="privacidad" target="_blank" rel="noopener">Privacidad</a></p></form>';
     },
     thanks: function () {
       return '<div class="scr scr-center">' +
         '<p class="big-emoji party" aria-hidden="true">🥳</p>' +
-        '<h2>¡Gracias! Ya casi está</h2>' +
-        '<p>Envía el mensaje que te dejamos escrito en WhatsApp y te respondemos enseguida para confirmar el cupo.</p>' +
+        '<h2>¡Gracias, ' + esc(st.name) + '!</h2>' +
+        '<p>Ya tenemos tus datos y te escribiremos por WhatsApp para confirmar el cupo. Si quieres, puedes escribirnos tú ahora.</p>' +
         (st.slot ? '<p class="recap"><span aria-hidden="true">🗓️</span> ' + st.slot.days + ' · ' + st.slot.time + '</p>' : '') +
         '<div class="end-actions">' +
-          '<a class="btn btn-primary btn-lg btn-block" href="' + waLink('¡Hola! Tengo una pregunta sobre LET Academy.') + '" target="_blank" rel="noopener">💬 Contáctanos</a>' +
-          '<a class="btn btn-outline btn-lg btn-block" href="/">Seguir explorando</a></div>' +
-        (st.sent ? '<p class="fineprint">¿No se abrió WhatsApp? <a class="link-under" href="' + st.sent + '" target="_blank" rel="noopener">Tócalo aquí</a></p>' : '') + '</div>';
+          '<a class="btn btn-primary btn-lg btn-block" href="' + waLink(hello()) + '" target="_blank" rel="noopener">💬 Enviar un mensaje</a>' +
+          '<a class="btn btn-outline btn-lg btn-block" href="/">Seguir explorando</a></div></div>';
     }
   };
 
-  /* ---------- WhatsApp message ---------- */
-  function msg(tail) {
-    return '¡Hola! 👋 Acabo de hacer el test de cupo en la web.\n\n' +
-      '🎂 Edad: ' + st.age + ' años\n' +
-      '🌎 País: ' + st.country.name + '\n' +
-      '📚 Nivel: ' + st.level[2] +
-      (plan === 'completo' ? '\n⭐ Me interesa el Plan Completo' : '') +
-      '\n\n' + tail;
+  /* ---------- Phone: country codes + validation (libphonenumber, loaded on demand) ---------- */
+  var lib = null, libP, ccList = [];
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function norm(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+  function flag(cc) { return String.fromCodePoint.apply(null, cc.split('').map(function (c) { return 127397 + c.charCodeAt(0); })); }
+  function loadLib() {
+    return libP || (libP = new Promise(function (done) {
+      var s = document.createElement('script');
+      s.src = PHONE_LIB.src; s.integrity = PHONE_LIB.integrity; s.crossOrigin = 'anonymous';
+      s.onload = function () {
+        try {
+          var l = window.libphonenumber, dn = new Intl.DisplayNames(['es'], { type: 'region' });
+          ccList = l.getCountries().map(function (cc) {
+            var n = dn.of(cc);
+            return { cc: cc, name: n, code: l.getCountryCallingCode(cc), flag: flag(cc), key: norm(n + ' ' + cc) };
+          }).sort(function (a, b) { return a.name.localeCompare(b.name, 'es'); });
+          lib = l;
+        } catch (x) { ccList = []; } // old browser: falls back to the plain "+34…" field
+        done();
+      };
+      s.onerror = function () { done(); };
+      document.head.appendChild(s);
+    }));
   }
+  function ccOf(cc) { return ccList.filter(function (c) { return c.cc === cc; })[0]; }
+  // Default prefix: the country picked in question 2, else the phone's own region, else Spain.
+  function defaultCc() {
+    var loc = ((navigator.language || '').split('-')[1] || '').toUpperCase();
+    return [st.country.cc, loc, 'ES'].filter(function (cc) { return cc && ccOf(cc); })[0];
+  }
+  // The number box → { valid, e164, why }. Valid = right length AND the right shape for a mobile in that country.
+  // (Can't prove the number is on WhatsApp: that needs a paid, unofficial service.)
+  function readPhone(raw) {
+    var flat = raw.replace(/[\s().-]/g, '');
+    if (!lib) return { valid: /^\+\d{8,15}$/.test(flat), e164: flat };
+    var p = lib.parsePhoneNumberFromString(raw, st.cc);
+    // Argentines write mobiles as "11 2345 6789"; the international form needs a 9 after +54.
+    if (st.cc === 'AR' && !(p && p.isValid())) p = lib.parsePhoneNumberFromString('+549' + raw.replace(/\D/g, '').replace(/^0+/, '')) || p;
+    var t = p && p.getType();
+    if (p && p.isValid() && (!t || t === 'MOBILE' || t === 'FIXED_LINE_OR_MOBILE')) return { valid: true, e164: p.number };
+    var len = lib.validatePhoneNumberLength(raw, st.cc); // TOO_SHORT | TOO_LONG | INVALID_LENGTH | undefined (length ok)
+    return { valid: false, why: len === 'TOO_SHORT' ? 'short' : len === 'TOO_LONG' ? 'long' : p && p.isValid() ? 'landline' : 'shape' };
+  }
+
+  /* ---------- WhatsApp message ---------- */
   function waLink(text) { return 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text); }
-  function slotMsg(s) {
-    return msg('Quiero reservar este horario: ' + s.days.toLowerCase() + ', ' + s.time + ' (hora de ' + st.country.name + ').\n' +
-      '(Ref. LET: ' + s.g.days.map(function (d) { return DAY_ES[d]; }).join('/') + ' ' + s.g.time + ', ' + TEACHER_TZ + ')');
+  function hello() {
+    return 'Hola, soy ' + st.name + ' y acabo de completar el formulario en la página. Me gustaría saber más del programa de inglés para niños';
   }
 
   /* ---------- Navigation: every screen is a history entry, so the phone's back button steps back a question ---------- */
   function ready(s) {
-    var need = { q2: 'age', q3: 'country', seek: 'level', results: 'level', thanks: 'level' }[s];
+    var need = { q2: 'age', q3: 'country', seek: 'level', results: 'level', contact: 'choice', thanks: 'level' }[s];
     return !need || st[need] != null;
   }
   function go(s, push) {
@@ -239,7 +308,7 @@
     h.tabIndex = -1;
     h.focus({ preventScroll: true });
     if (s === 'seek') seekTimer = setTimeout(function () { go('results', false); history.replaceState({ s: 'results' }, ''); }, reduce ? 300 : 1700);
-    if (s === 'results') track('cupo_results', { found: slots.length });
+    if (s === 'results') { track('cupo_results', { found: slots.length }); loadLib(); }
     if (s === 'thanks') burstFrom(card.querySelector('.big-emoji'));
   }
   history.replaceState({ s: 'intro' }, '');
@@ -265,8 +334,15 @@
     if (d.go) { go(d.go, true); if (d.go === 'q1') track('cupo_start'); }
     else if ('back' in d) history.back();
     else if (d.age) pick(b, 'age', +d.age, 'q2');
+    else if ('other' in d) {
+      var f = document.getElementById('age-form'), open = f.hidden;
+      f.hidden = !open; b.setAttribute('aria-expanded', open);
+      card.querySelectorAll('.age').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      if (open) document.getElementById('age-in').focus();
+    }
     else if (d.country) {
       var c = COUNTRIES[+d.country];
+      st.cc = null;
       pick(b, 'country', { name: c[0], cc: c[2], tz: c[3].indexOf(HERE) >= 0 ? HERE : c[3][0] }, 'q3');
     }
     else if (d.level) {
@@ -278,18 +354,135 @@
       st.slot = slots[+d.slot];
       card.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
       var r = document.getElementById('reserve');
-      r.href = waLink(slotMsg(st.slot));
       r.removeAttribute('aria-disabled');
       r.classList.add('pop');
       r.addEventListener('animationend', function () { r.classList.remove('pop'); }, { once: true });
     }
     else if ('reserve' in d) {
       if (b.getAttribute('aria-disabled')) { e.preventDefault(); card.querySelector('.slots').classList.add('shake'); setTimeout(function () { card.querySelector('.slots').classList.remove('shake'); }, 500); return; }
-      st.sent = b.href;
-      track('Lead');
-      sendLead(d.reserve);
-      setTimeout(function () { go('thanks', true); }, 200);
+      st.choice = d.reserve;
+      loadLib().then(function () { st.cc = st.cc || defaultCc(); go('contact', true); });
     }
+    else if (b.id === 'cc-btn') toggleCc();
+  });
+
+  /* ---------- "Ya casi estamos": name + number → lead → thanks (they choose to message us) ---------- */
+  function fail(id, text) {
+    var e = document.getElementById(id + '-err'), i = document.getElementById(id);
+    e.textContent = text; e.hidden = false; i.setAttribute('aria-invalid', 'true');
+    var t = card.querySelector('.tel'); if (t && id === 'c-tel') t.classList.add('bad');
+    i.focus();
+  }
+  function clearErr(id) {
+    var e = document.getElementById(id + '-err'), i = document.getElementById(id);
+    e.hidden = true; i.removeAttribute('aria-invalid');
+    var t = card.querySelector('.tel'); if (t && id === 'c-tel') t.classList.remove('bad');
+  }
+  var PHONE_ERR = {
+    short: 'Le faltan dígitos a ese número{c}. Revísalo.',
+    long: 'Ese número tiene dígitos de más{c}. Revísalo.',
+    landline: 'Ese parece un teléfono fijo{c}. Escribe un móvil con WhatsApp.',
+    shape: 'Ese número no parece un móvil válido{c}. Revisa el prefijo y los dígitos.'
+  };
+
+  card.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (e.target.id === 'age-form') {
+      var v = document.getElementById('age-in').value, n = +v;
+      if (!/^\d{1,2}$/.test(v) || n < 1) {
+        var er = document.getElementById('age-err');
+        er.textContent = 'Escribe la edad con uno o dos números.'; er.hidden = false;
+        return document.getElementById('age-in').focus();
+      }
+      st.age = n;
+      return go('q2', true);
+    }
+    var name = document.getElementById('c-name').value.trim(), tel = document.getElementById('c-tel').value.trim();
+    if (name.length < 2) return fail('c-name', 'Escribe tu nombre para que sepamos con quién hablar.');
+    var p = readPhone(tel), c = ccOf(st.cc);
+    if (!tel) return fail('c-tel', 'Escribe tu número de WhatsApp.');
+    if (!p.valid) return fail('c-tel', PHONE_ERR[p.why || 'shape'].replace('{c}', c ? ' para ' + c.name + ' (+' + c.code + ')' : ''));
+    st.name = name; st.tel = tel; st.phone = p.e164;
+    track('Lead');
+    sendLead(st.choice);
+    go('thanks', true);
+  });
+
+  card.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.id === 'age-in') { t.value = t.value.replace(/\D/g, ''); document.getElementById('age-err').hidden = true; }
+    else if (t.id === 'c-name') clearErr('c-name');
+    else if (t.id === 'c-tel') {
+      clearErr('c-tel');
+      if (!lib) return;
+      var v = t.value, atEnd = t.selectionStart === v.length;
+      if (v.charAt(0) === '+') { // pasted "+34 600…": switch the prefix to match
+        var p = lib.parsePhoneNumberFromString(v);
+        if (p && p.country && p.country !== st.cc) { st.cc = p.country; setCc(); }
+      }
+      if (atEnd && v.charAt(0) !== '+') t.value = new lib.AsYouType(st.cc).input(v);
+    }
+    else if (t.classList.contains('cc-q')) renderCc(t.value);
+  });
+
+  /* Country-code picker: button + searchable listbox (name, ISO code or dial code). */
+  var ccView = [], ccAct = 0;
+  function ccPop() { return card.querySelector('.cc-pop'); }
+  function setCc() {
+    var c = ccOf(st.cc), b = document.getElementById('cc-btn');
+    b.querySelector('.flag').textContent = c.flag;
+    b.querySelector('b').textContent = '+' + c.code;
+    b.setAttribute('aria-label', 'Prefijo del país: ' + c.name + ' +' + c.code);
+    clearErr('c-tel');
+  }
+  function renderCc(q) {
+    var n = norm(q).replace(/^\+/, ''), digits = /^\d+$/.test(n);
+    ccView = ccList.filter(function (c) { return !n || (digits ? String(c.code).indexOf(n) === 0 : c.key.indexOf(n) >= 0); });
+    if (!n) ccView = ccView.filter(function (c) { return c.cc === st.cc; }).concat(ccView.filter(function (c) { return c.cc !== st.cc; }));
+    ccAct = 0;
+    document.getElementById('cc-list').innerHTML = ccView.length ? ccView.map(function (c, k) {
+      return '<li class="cc-opt' + (k ? '' : ' act') + '" role="option" id="cc-o-' + c.cc + '" data-cc="' + c.cc + '" aria-selected="' + (c.cc === st.cc) + '">' +
+        '<span class="flag" aria-hidden="true">' + c.flag + '</span><span class="cc-n">' + esc(c.name) + '</span><b>+' + c.code + '</b></li>';
+    }).join('') : '<li class="cc-none" role="presentation">No encontramos ese país</li>';
+    card.querySelector('.cc-q').setAttribute('aria-activedescendant', ccView.length ? 'cc-o-' + ccView[0].cc : '');
+  }
+  function moveCc(to) {
+    if (!ccView.length) return;
+    var opts = card.querySelectorAll('.cc-opt');
+    opts[ccAct].classList.remove('act');
+    ccAct = (to + ccView.length) % ccView.length;
+    opts[ccAct].classList.add('act');
+    opts[ccAct].scrollIntoView({ block: 'nearest' });
+    card.querySelector('.cc-q').setAttribute('aria-activedescendant', opts[ccAct].id);
+  }
+  function toggleCc(open) {
+    var pop = ccPop(), btn = document.getElementById('cc-btn');
+    open = open == null ? pop.hidden : open;
+    pop.hidden = !open;
+    btn.setAttribute('aria-expanded', open);
+    if (open) { var q = pop.querySelector('.cc-q'); q.value = ''; renderCc(''); q.focus(); }
+  }
+  function pickCc(cc) {
+    st.cc = cc; setCc(); toggleCc(false);
+    var t = document.getElementById('c-tel');
+    if (t.value && t.value.charAt(0) !== '+') t.value = new lib.AsYouType(cc).input(t.value.replace(/\D/g, ''));
+    t.focus();
+  }
+  card.addEventListener('click', function (e) {
+    var o = e.target.closest('.cc-opt');
+    if (o) pickCc(o.dataset.cc);
+  });
+  card.addEventListener('keydown', function (e) {
+    if (!e.target.classList.contains('cc-q')) return;
+    var k = e.key;
+    if (k === 'ArrowDown' || k === 'ArrowUp') { e.preventDefault(); moveCc(ccAct + (k === 'ArrowDown' ? 1 : -1)); }
+    else if (k === 'Enter') { e.preventDefault(); if (ccView.length) pickCc(ccView[ccAct].cc); }
+    else if (k === 'Escape') { e.preventDefault(); toggleCc(false); document.getElementById('cc-btn').focus(); }
+    else if (k === 'Tab') toggleCc(false);
+  });
+  document.addEventListener('click', function (e) {
+    var pop = ccPop();
+    if (pop && !pop.hidden && !e.target.closest('.cc')) toggleCc(false);
   });
 
   /* ---------- Lead to our own endpoint (fire-and-forget; WhatsApp stays the source of truth) ---------- */
@@ -302,6 +495,8 @@
       body: JSON.stringify({              // flat, as the Hub expects
         _form: 'Reserva de cupo',
         _hp: document.getElementById('hp').value, // honeypot: real visitors leave it empty
+        'Nombre': st.name,
+        'Teléfono': st.phone,             // E.164, e.g. +34600123456
         'Acción': choice,                 // reservar | otro_horario | avisame
         'Edad': st.age,
         'País': st.country.name,

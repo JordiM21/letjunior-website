@@ -1251,6 +1251,60 @@ h2 + .lede{margin-top:var(--s3)}
 .lite .cloud:nth-child(1){left:6%} .lite .cloud:nth-child(2){left:62%} .lite .cloud:nth-child(3){left:30%}
 .lite .cloud:nth-child(4){left:80%} .lite .cloud:nth-child(5){left:44%}
 
+/* /cupo — "Otra edad" */
+.opt.age-other{justify-content:center;min-height:52px;font-size:15px}
+.opt.age-other[aria-expanded="true"]{border-color:var(--grape);background:var(--grape-soft)}
+.age-form{display:flex;flex-direction:column;gap:6px}
+.age-form[hidden]{display:none}
+.age-form label{font-weight:800;font-size:15px;color:var(--ink)}
+.age-row{display:flex;gap:var(--s2);align-items:stretch}
+.age-row input{
+  flex:0 0 96px;min-height:54px;padding:var(--s3);text-align:center;font:700 22px var(--display);color:var(--ink);
+  background:var(--surface);border:2.5px solid var(--line-2);border-bottom-width:5px;border-radius:var(--r-m);
+}
+.age-row input:focus-visible{outline:3px solid color-mix(in srgb,var(--grape) 40%,transparent);outline-offset:2px;border-color:var(--grape)}
+.age-row .btn{flex:1 1 0;min-width:0;margin-top:0;padding-inline:var(--s3)}
+.age-row input{min-width:0;flex-basis:84px}
+
+/* /cupo — "Ya casi estamos": name + WhatsApp number with country-code picker */
+button.link-under{background:none;border:0;padding:0;font:inherit;cursor:pointer}
+.fld{display:flex;flex-direction:column;gap:6px;position:relative}
+.fld label{font-weight:800;font-size:15px;color:var(--ink)}
+.fld input[type=text],.fld input[type=tel]{
+  width:100%;min-height:54px;padding:var(--s3) var(--s4);font:700 16px var(--body);color:var(--ink);
+  background:var(--surface);border:2.5px solid var(--line-2);border-bottom-width:5px;border-radius:var(--r-m);
+}
+.fld input::placeholder{color:var(--muted);font-weight:600;opacity:.8}
+.fld input:focus-visible,.cc-btn:focus-visible{outline:3px solid color-mix(in srgb,var(--grape) 40%,transparent);outline-offset:2px;border-color:var(--grape)}
+.fld input[aria-invalid=true],.tel.bad .cc-btn{border-color:var(--bubble-ink);background:var(--bubble-soft)}
+.fld-hint{font-size:13px;font-weight:600;color:var(--muted)}
+.fld-err{font-size:14px;font-weight:700;color:var(--bubble-ink);line-height:1.35}
+.tel{display:flex;gap:var(--s2);align-items:stretch}
+.tel input{flex:1 1 auto;min-width:0}
+.cc{flex:0 0 auto}
+.cc-btn{
+  display:flex;align-items:center;gap:6px;height:100%;min-height:54px;padding:0 var(--s3);cursor:pointer;
+  font:800 16px var(--body);color:var(--ink);background:var(--cream);
+  border:2.5px solid var(--line-2);border-bottom-width:5px;border-radius:var(--r-m);
+}
+.cc-btn .flag{font-size:22px;line-height:1}
+.cc-btn i{font-style:normal;font-size:12px;color:var(--ink-2)}
+.cc-pop{
+  position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:5;background:var(--surface);
+  border:2.5px solid var(--line-2);border-radius:var(--r-m);box-shadow:var(--shadow-soft);overflow:hidden;
+}
+.cc-pop[hidden]{display:none}
+.cc-pop input{width:100%;padding:var(--s3) var(--s4);font:700 16px var(--body);color:var(--ink);border:0;border-bottom:2px solid var(--line);background:var(--cream)}
+.cc-pop input:focus-visible{outline:none;background:var(--grape-soft)}
+.cc-list{max-height:248px;overflow-y:auto;overscroll-behavior:contain}
+.cc-opt,.cc-none{display:flex;align-items:center;gap:var(--s3);padding:10px var(--s4);font-size:15px;font-weight:700;cursor:pointer}
+.cc-opt .flag{font-size:22px;line-height:1}
+.cc-opt .cc-n{flex:1 1 auto;min-width:0}
+.cc-opt b{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.cc-opt.act,.cc-opt:hover{background:var(--grape-soft)}
+.cc-opt[aria-selected=true]{background:var(--sky-soft)}
+.cc-none{color:var(--muted);cursor:default}
+
 /* =========================================================
    REDUCED MOTION — non-negotiable
    ========================================================= */
