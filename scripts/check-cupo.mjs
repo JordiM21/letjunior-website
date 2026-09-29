@@ -19,9 +19,11 @@ assert.strictEqual(hm(nextSlot(1, '22:00', winter), 'America/Mexico_City'), 'Mon
 assert.strictEqual(hm(nextSlot(4, '23:00', summer), 'Europe/Rome'), 'Thu 23:00');
 assert.strictEqual(hm(nextSlot(1, '01:00', summer), 'America/Los_Angeles'), 'Sun 16:00');
 
-// Matching: only groups covering the age, 7:00–21:00 local, max 3, sorted by time.
-const r = match(9, 'cero', { name: 'México', cc: 'MX', tz: 'America/Mexico_City' }, summer);
-assert.ok(r.length >= 1 && r.length <= 3);
-r.forEach(s => assert.ok(9 >= s.g.ages[0] && 9 <= s.g.ages[1] && s.mins >= 420 && s.mins <= 1260));
-assert.deepStrictEqual(r.map(s => s.mins), r.map(s => s.mins).sort((a, b) => a - b));
+// Matching: both slots for any age, sorted by local time. Rome 04:00 Mon/Wed/Fri = Mexico 20:00 Sun/Tue/Thu.
+const mx = { name: 'México', cc: 'MX', tz: 'America/Mexico_City' };
+const r = match(9, 'cero', mx, summer);
+assert.strictEqual(r.length, 2);
+assert.strictEqual(match(14, 'avanzado', { name: 'España', cc: 'ES', tz: 'Europe/Madrid' }, summer).length, 2);
+assert.strictEqual(r.map(s => s.mins).join(), '900,1200');
+assert.strictEqual(r[1].days, 'Domingo, martes y jueves');
 console.log('cupo ok:', r.map(s => s.days + ' ' + s.time).join(' | '));

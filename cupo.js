@@ -1,28 +1,25 @@
 /* LET Academy — /cupo placement funnel.
    Intro → 3 taps → groups that fit, shown in the family's own clock → WhatsApp.
-   No backend on purpose: the answers and the chosen slot travel inside the
-   WhatsApp message, so they arrive in Kommo as the first line of the chat. */
+   The answers and the chosen slot travel inside the WhatsApp message (first
+   line of the chat in Kommo) and, once LEAD_URL is set, are POSTed there too. */
 (function () {
   'use strict';
 
   /* ================= EDIT HERE: open groups =================
      time + days are on YOUR clock (TEACHER_TZ). days: 1 = lunes … 7 = domingo.
-     ages: [min, max], both included.
+     ages (optional): [min, max], both included. Leave it out and any age fits.
      levels (optional): which answers to question 3 fit ('cero', 'basico',
        'avanzado'). Leave it out and any level fits.
      spots (optional): shows "Quedan N cupos" on the card.
-     Groups that land before 7:00 or after 21:00 for the family are hidden. */
+     Every group is offered whatever the family's local hour is. */
   var TEACHER_TZ = 'Europe/Rome';
-  var GROUPS = [                  // TODO: placeholder — replace with the real schedule
-    { ages: [7, 8],   days: [1, 3], time: '22:00', spots: 3 },
-    { ages: [7, 8],   days: [6],    time: '17:00' },
-    { ages: [8, 10],  days: [2, 4], time: '22:00', spots: 2 },
-    { ages: [9, 11],  days: [6],    time: '18:00' },
-    { ages: [11, 14], days: [2, 4], time: '23:00', spots: 4 },
-    { ages: [11, 14], days: [1, 3], time: '18:30' },
-    { ages: [12, 14], days: [5],    time: '22:30', levels: ['basico', 'avanzado'] }
+  var CLASS_MIN = 60;
+  var GROUPS = [
+    { days: [1, 3, 5], time: '23:00' },
+    { days: [1, 3, 5], time: '04:00' }
   ];
   var WA_PHONE = '393792913474';
+  var LEAD_URL = 'https://letjunior-hub.vercel.app/api/hooks/form/teumO-UI4q1W6baW9_A7te8fT5lZ0DsJ'; // empty = nothing is sent
 
   // [name, flag, region for date formatting, time zones: first one is the default]
   var COUNTRIES = [
@@ -88,20 +85,20 @@
     var loc = place.cc ? 'es-' + place.cc : 'es';
     var dates = g.days.map(function (d) { return nextSlot(d, g.time, now); });
     var lp = wall(place.tz, dates[0]);
+    var hm = new Intl.DateTimeFormat(loc, { timeZone: place.tz, hour: 'numeric', minute: '2-digit' }).format;
     return {
       g: g,
       days: joinEs(dates.map(new Intl.DateTimeFormat(loc, { timeZone: place.tz, weekday: 'long' }).format)),
-      time: new Intl.DateTimeFormat(loc, { timeZone: place.tz, hour: 'numeric', minute: '2-digit' }).format(dates[0]),
+      time: hm(dates[0]) + ' – ' + hm(new Date(+dates[0] + CLASS_MIN * 60000)),
       mins: lp.hour * 60 + +lp.minute
     };
   }
 
   function match(age, level, place, now) {
-    var fit = GROUPS.filter(function (g) { return age >= g.ages[0] && age <= g.ages[1]; });
+    var fit = GROUPS.filter(function (g) { return !g.ages || (age >= g.ages[0] && age <= g.ages[1]); });
     var byLevel = fit.filter(function (g) { return !g.levels || g.levels.indexOf(level) >= 0; });
     if (byLevel.length) fit = byLevel;
     return fit.map(function (g) { return describe(g, place, now); })
-      .filter(function (s) { return s.mins >= 7 * 60 && s.mins <= 21 * 60; })
       .sort(function (a, b) { return a.mins - b.mins; })
       .slice(0, 3);
   }
@@ -179,7 +176,7 @@
           '<p class="big-emoji" aria-hidden="true">🗓️</p>' +
           '<h2>Estamos abriendo un grupo nuevo</h2>' +
           '<p>Ahora mismo no hay un grupo abierto para <b>' + st.age + ' años</b> en un horario cómodo para ' + st.country.name + ', pero abrimos grupos nuevos cada mes.</p>' +
-          '<a class="btn btn-primary btn-lg btn-block" data-reserve href="' + waLink(msg('Me gustaría que me aviséis cuando abra un grupo.')) + '" target="_blank" rel="noopener">Avísame por WhatsApp <span class="arrow" aria-hidden="true">→</span></a></div>';
+          '<a class="btn btn-primary btn-lg btn-block" data-reserve="avisame" href="' + waLink(msg('Me gustaría que me aviséis cuando abra un grupo.')) + '" target="_blank" rel="noopener">Avísame por WhatsApp <span class="arrow" aria-hidden="true">→</span></a></div>';
       }
       var h = slots.map(function (s, k) {
         return '<li><button class="opt slot" type="button" style="--i:' + k + '" data-slot="' + k + '"' + pressed(st.slot === s) + '>' +
@@ -192,8 +189,8 @@
         '<h2>Encontramos un grupo disponible para tu peque</h2>' +
         '<p>' + (slots.length > 1 ? 'Elige el que más te guste.' : 'Tócalo para apartar el cupo.') + ' <span class="tz-note">Horarios en hora de ' + st.country.name + '.</span></p>' +
         '<ul class="opts slots">' + h + '</ul>' +
-        '<a class="btn btn-primary btn-lg btn-block" id="reserve" data-reserve target="_blank" rel="noopener" aria-disabled="true">Reservar por WhatsApp <span class="arrow" aria-hidden="true">→</span></a>' +
-        '<p class="fineprint center">Te confirmamos el cupo por WhatsApp. <a class="link-under" data-reserve href="' + waLink(msg('Ninguno de estos horarios me viene bien, ¿hay otras opciones?')) + '" target="_blank" rel="noopener">¿Ninguno te va bien?</a></p></div>';
+        '<a class="btn btn-primary btn-lg btn-block" id="reserve" data-reserve="reservar" target="_blank" rel="noopener" aria-disabled="true">Reservar por WhatsApp <span class="arrow" aria-hidden="true">→</span></a>' +
+        '<p class="fineprint center">Te confirmamos el cupo por WhatsApp. <a class="link-under" data-reserve="otro_horario" href="' + waLink(msg('Ninguno de estos horarios me viene bien, ¿hay otras opciones?')) + '" target="_blank" rel="noopener">¿Ninguno te va bien?</a></p></div>';
     },
     thanks: function () {
       return '<div class="scr scr-center">' +
@@ -219,7 +216,7 @@
   }
   function waLink(text) { return 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text); }
   function slotMsg(s) {
-    return msg('Quiero reservar este horario: ' + s.days.toLowerCase() + ' a las ' + s.time + ' (hora de ' + st.country.name + ').\n' +
+    return msg('Quiero reservar este horario: ' + s.days.toLowerCase() + ', ' + s.time + ' (hora de ' + st.country.name + ').\n' +
       '(Ref. LET: ' + s.g.days.map(function (d) { return DAY_ES[d]; }).join('/') + ' ' + s.g.time + ', ' + TEACHER_TZ + ')');
   }
 
@@ -290,9 +287,33 @@
       if (b.getAttribute('aria-disabled')) { e.preventDefault(); card.querySelector('.slots').classList.add('shake'); setTimeout(function () { card.querySelector('.slots').classList.remove('shake'); }, 500); return; }
       st.sent = b.href;
       track('Lead');
+      sendLead(d.reserve);
       setTimeout(function () { go('thanks', true); }, 200);
     }
   });
+
+  /* ---------- Lead to our own endpoint (fire-and-forget; WhatsApp stays the source of truth) ---------- */
+  function sendLead(choice) {
+    if (!LEAD_URL) return;
+    var s = choice === 'reservar' ? st.slot : null;
+    fetch(LEAD_URL, {
+      method: 'POST', mode: 'cors', keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({              // flat, as the Hub expects
+        _form: 'Reserva de cupo',
+        _hp: document.getElementById('hp').value, // honeypot: real visitors leave it empty
+        'Acción': choice,                 // reservar | otro_horario | avisame
+        'Edad': st.age,
+        'País': st.country.name,
+        'Zona horaria': st.country.tz,
+        'Nivel': st.level[2],
+        'Plan': plan || '',
+        'Horario (su hora)': s ? s.days + ', ' + s.time : '',
+        'Horario (Italia)': s ? s.g.days.map(function (x) { return DAY_ES[x]; }).join('/') + ' ' + s.g.time : '',
+        'Página': location.href
+      })
+    }).catch(function () {});
+  }
 
   /* ---------- Analytics: no-ops until GA4 / Meta Pixel are on the page ---------- */
   function track(name, params) {
