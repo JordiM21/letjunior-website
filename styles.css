@@ -214,6 +214,25 @@ h2 + .lede{margin-top:var(--s3)}
 .btn-outline{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2.5px var(--ink),0 5px 0 var(--ink)}
 .btn-outline:active{transform:translateY(4px);box-shadow:inset 0 0 0 2.5px var(--ink),0 1px 0 var(--ink)}
 
+/* the app's "Student" door colour, so the button already looks like the app */
+.btn-play{background:var(--grape-ink);color:var(--on-color);box-shadow:0 5px 0 var(--grape-edge),0 14px 22px -10px rgba(90,63,224,.55)}
+.btn-play:active{transform:translateY(4px);box-shadow:0 1px 0 var(--grape-edge)}
+@media (hover:hover){ .btn-play:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--grape-edge),0 18px 24px -10px rgba(90,63,224,.6)} }
+
+/* bridge to app.letjunior.com: circle wipe out of the tapped button (same as the app's) */
+.bridge{
+  position:fixed;inset:0;z-index:200;pointer-events:none;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 45%,var(--grape),var(--grape-ink) 60%);
+  clip-path:circle(0% at var(--wx,50%) var(--wy,50%));
+}
+.bridge.in{pointer-events:auto;animation:bridgeIn 550ms var(--e-entrance) forwards}
+@keyframes bridgeIn{to{clip-path:circle(150% at var(--wx,50%) var(--wy,50%))}}
+.bridge-logo{font-family:var(--display);font-weight:700;font-size:clamp(36px,7vw,64px);color:#fff;opacity:0}
+.bridge-logo span{color:var(--sun)}
+.bridge.in .bridge-logo{animation:bridgePop 600ms var(--e-spring) 250ms both,bridgeBob 1.1s ease-in-out 850ms infinite}
+@keyframes bridgePop{from{opacity:0;transform:scale(.4) rotate(-8deg)}to{opacity:1;transform:none}}
+@keyframes bridgeBob{50%{transform:translateY(-8px) rotate(2deg)}}
+
 .btn-invert{background:var(--ink);color:var(--surface);box-shadow:0 5px 0 #000,0 14px 22px -10px rgba(0,0,0,.5)}
 .btn-invert:active{transform:translateY(4px);box-shadow:0 1px 0 #000}
 
@@ -288,9 +307,10 @@ h2 + .lede{margin-top:var(--s3)}
 .logo-mark{width:36px;height:35px;object-fit:contain;display:block;}
 .logo picture{display:contents}
 .logo-word{font-size:18px;white-space:nowrap;color:var(--ink)}
-.hdr-cta{white-space:nowrap}
+.hdr-cta,.hdr-app{white-space:nowrap}
+.hdr-actions .hdr-app{gap:6px}
 @media (max-width:430px){
-  .hdr-cta{font-size:13px;padding-inline:var(--s3)}
+  .hdr-cta,.hdr-app{font-size:13px;padding-inline:var(--s3)}
   .logo-word{display:none}
 }
 .hdr-nav{display:none;gap:var(--s5);margin-left:var(--s5)}
@@ -307,7 +327,9 @@ h2 + .lede{margin-top:var(--s3)}
 .hdr-nav a.is-current{color:var(--grape-ink)}
 .hdr-nav a.is-current::after{transform:scaleX(1)}
 .hdr-actions{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
-@media (min-width:900px){ .hdr-nav{display:flex} }
+.hdr-nav a{white-space:nowrap}
+/* 1100, not 900: with the Alumnos button too, the links wrap below this */
+@media (min-width:1100px){ .hdr-nav{display:flex} }
 
 
 /* =========================================================
@@ -336,6 +358,25 @@ h2 + .lede{margin-top:var(--s3)}
 .hero-cta{display:flex;flex-direction:column;align-items:stretch;gap:var(--s3);width:100%;margin-top:var(--s3)}
 .hero-cta .btn{width:100%}
 .hero-cta .fineprint,.hero-cta .link-under{text-align:center;align-self:center}
+
+/* Hero age picker: the first tap already answers question 1 of /cupo */
+.age-card{
+  width:100%;max-width:460px;align-self:center;text-align:center;
+  background:var(--surface);border-radius:var(--r-l);padding:var(--s5) var(--s4) var(--s3);
+  box-shadow:inset 0 0 0 3px var(--mango),0 8px 0 var(--mango-ink),var(--shadow-soft);
+}
+.age-q{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.2;color:var(--ink);margin-bottom:var(--s4)}
+.age-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+.age-btn{
+  display:grid;place-items:center;min-height:60px;border-radius:18px;
+  background:var(--surface);color:var(--ink);text-decoration:none;
+  font-family:var(--display);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;
+  box-shadow:inset 0 0 0 2.5px var(--ink),0 5px 0 var(--ink);
+  transition:transform var(--t-micro) var(--e-standard),box-shadow var(--t-micro) var(--e-standard),background-color var(--t-ui) var(--e-standard);
+}
+.age-btn:active{transform:translateY(4px);box-shadow:inset 0 0 0 2.5px var(--ink),0 1px 0 var(--ink);background:var(--sun)}
+@media (hover:hover){ .age-btn:hover{background:var(--sun)} }
+.age-other{display:inline-block;margin-top:var(--s2);padding:var(--s3);font-weight:700;color:var(--ink-2);text-underline-offset:3px}
 
 .breathe::after{
   content:"";position:absolute;inset:-3px;border-radius:inherit;pointer-events:none;
@@ -430,6 +471,7 @@ h2 + .lede{margin-top:var(--s3)}
   .hero-in{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:var(--s8)}
   .hero-cta{flex-direction:row;align-items:center;flex-wrap:wrap;width:auto;gap:var(--s4)}
   .hero-cta .btn{width:auto}
+  .hero-cta .age-card{flex-basis:100%;align-self:flex-start}
   .hero-cta .fineprint{order:3;flex-basis:100%;text-align:left;align-self:flex-start}
   .hero-visual{transform:rotate(2deg)}
   .js .hero-visual.reveal.is-in{transform:rotate(2deg)}
@@ -539,62 +581,97 @@ h2 + .lede{margin-top:var(--s3)}
   .rail{scroll-snap-type:none;padding-inline:max(var(--pad-x),calc((100vw - var(--maxw)) / 2 + var(--pad-x)))}
 }
 
-/* =========================================================
-   3 — METHODOLOGY — bold coloured game cards
-   ========================================================= */
-.method .cards{display:grid;gap:var(--s5);margin-top:var(--s6)}
-.mcard{
-  position:relative;overflow:hidden;isolation:isolate;
-  border-radius:32px;padding:var(--s5) var(--s5) var(--s6);
-  color:#fff;background:var(--c);
-  box-shadow:0 9px 0 var(--c-edge),var(--shadow-soft);
-  display:flex;flex-direction:column;gap:var(--s2);
-  transition:transform var(--t-ui) var(--e-spring);
-}
-.mcard::before{
-  content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
-  background:rgba(255,255,255,.12);z-index:-1;
-}
-.mcard::after{
-  content:"";position:absolute;left:-40px;bottom:-70px;width:180px;height:180px;border-radius:50%;
-  border:14px solid rgba(255,255,255,.1);z-index:-1;
-}
-.m-grape{--c:var(--grape-ink);--c-edge:var(--grape-edge)}
-.m-mango{--c:var(--cta);--c-edge:var(--cta-edge)}
-.m-sky{--c:var(--sky-ink);--c-edge:var(--sky-edge)}
-.m-art{
-  position:absolute;right:var(--s4);top:var(--s4);font-size:64px;line-height:1;
-  animation:bobslow 5s ease-in-out infinite;
-}
-.m-mango .m-art{animation-delay:-1.6s}
-.m-sky .m-art{animation-delay:-3.2s}
-.mcard .ic{
-  width:54px;height:54px;border-radius:18px;display:grid;place-items:center;
-  background:#fff;color:var(--c);margin-bottom:var(--s3);
-  box-shadow:0 4px 0 rgba(0,0,0,.18);
-}
-.mcard .ic svg{width:28px;height:28px}
-.m-kick{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.mcard h3{font-size:24px;color:#fff;max-width:14ch}
-.mcard p:last-child{font-size:15.5px;color:#fff}
-.is-in .ic{animation:bob 600ms var(--e-spring) 200ms 1}
 @keyframes bob{0%{transform:translateY(0)}40%{transform:translateY(-10px) rotate(-8deg)}100%{transform:translateY(0)}}
 
-.proofline{
-  display:flex;align-items:center;justify-content:center;gap:var(--s3);
-  width:fit-content;margin:var(--s7) auto 0;
-  background:var(--surface);border-radius:var(--r-pill);padding:var(--s3) var(--s5);
-  box-shadow:0 5px 0 var(--line-2);
-  color:var(--ink);font-weight:700;font-size:15px;text-align:left;
+/* =========================================================
+   3 — LO QUE RECIBE — one idea per slide: picture + two lines.
+   Native swipe on phones; arrows + "1 / 4" counter everywhere.
+   ========================================================= */
+.gets .wrap > .kicker,.gets .wrap > h2{display:flex;width:fit-content;margin-inline:auto;text-align:center}
+.gets-box{
+  margin-top:var(--s6);background:var(--surface);border-radius:32px;overflow:hidden;
+  padding:var(--s4) 0 var(--s5);
+  box-shadow:inset 0 0 0 3px var(--grape),0 10px 0 var(--grape-edge),var(--shadow-soft);
 }
-.proofline .ck{background:var(--grass-ink);width:1.6em;height:1.6em;flex:0 0 1.6em;border-radius:50%;-webkit-mask:none;mask:none;position:relative}
-.proofline .ck::before{
-  content:"";position:absolute;inset:0;background:#fff;
-  -webkit-mask:no-repeat center/55% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M1 6l3.2 3.2L11 2.4' stroke='%23000' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  mask:no-repeat center/55% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M1 6l3.2 3.2L11 2.4' stroke='%23000' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+.gets-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
+.gets-track::-webkit-scrollbar{display:none}
+.gets-track:focus-visible{outline:3px solid var(--grape-ink);outline-offset:-3px}
+.get{flex:0 0 100%;scroll-snap-align:start;display:grid;gap:var(--s5);align-content:start;padding:0 var(--s4)}
+.get-art{
+  position:relative;overflow:hidden;min-height:250px;border-radius:24px;
+  display:grid;place-items:center;padding:var(--s4);
 }
-.method .center{margin-top:var(--s6)}
-@media (min-width:900px){ .method .cards{grid-template-columns:repeat(3,1fr)} }
+.get-kick{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--grape-ink)}
+.get-copy h3{font-size:clamp(24px,3.2vw,36px);line-height:1.1;margin:4px 0 var(--s2);max-width:18ch}
+.get-copy p:last-child{font-size:16.5px;color:var(--ink-2);max-width:40ch}
+
+/* slide 1 — live class */
+.art-live{background:var(--grape);background-image:radial-gradient(rgba(255,255,255,.18) 2px,transparent 2px);background-size:18px 18px}
+.art-live .frame{position:relative;width:100%;max-width:440px;border-radius:18px;background:#fff;padding:6px;box-shadow:0 8px 0 var(--grape-edge);transform:rotate(-2deg)}
+.art-live picture{display:block;aspect-ratio:16/9;border-radius:13px;overflow:hidden}
+.art-live img{width:100%;height:100%;object-fit:cover}
+.art-live .live{top:16px;left:16px}
+.art-live .bubble{
+  position:absolute;right:-6px;bottom:-16px;
+  font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);
+  background:var(--sun);border-radius:16px 16px 4px 16px;padding:8px 14px;box-shadow:0 4px 0 var(--sun-edge);
+  animation:bobslow 5s ease-in-out infinite;
+}
+/* slide 2 — game platform */
+.art-game{background:linear-gradient(160deg,var(--sky-soft),#C9F1F4);align-content:center;gap:var(--s3)}
+.game-top{display:flex;gap:6px;justify-content:flex-end;width:100%;max-width:440px}
+.g-chip{font-family:var(--display);font-weight:700;font-size:13px;background:#fff;color:var(--ink);border-radius:var(--r-pill);padding:4px 10px;box-shadow:0 3px 0 var(--line-2)}
+.g-chip.g-xp{background:var(--sun);box-shadow:0 3px 0 var(--sun-edge)}
+.game-grid{display:grid;grid-template-columns:1fr 1.1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;width:100%;max-width:440px;height:180px}
+.game-grid li{
+  border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:var(--c);box-shadow:0 5px 0 var(--c-edge);color:#fff;
+}
+.game-grid span{font-size:34px;line-height:1}
+.game-grid b{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 2px 0 rgba(0,0,0,.2)}
+.game-grid .g-big{grid-column:2;grid-row:1 / span 2}
+.game-grid .g-big span{font-size:56px;animation:bobslow 5s ease-in-out infinite}
+.g-sky{--c:var(--sky-ink);--c-edge:var(--sky-edge)}
+.g-bubble{--c:var(--bubble-ink);--c-edge:#8E1442}
+.g-grass{--c:var(--grass-ink);--c-edge:#17561F}
+.g-sun{--c:var(--sun);--c-edge:var(--sun-edge)}
+.g-sun b{color:var(--ink);text-shadow:none}
+/* slide 3 — monthly report */
+.art-report{background:var(--sun-soft)}
+.report{width:100%;max-width:380px;background:#fff;border-radius:20px;padding:var(--s4);box-shadow:0 6px 0 var(--sun-edge);transform:rotate(1.5deg)}
+.rp-head{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:var(--s3)}
+.rp-bars{display:flex;flex-direction:column;gap:10px}
+.rp-bars li{display:grid;grid-template-columns:92px 1fr;align-items:center;gap:var(--s2);font-size:13px;font-weight:700;color:var(--ink-2)}
+.rp-bars i{display:block;height:12px;border-radius:var(--r-pill);background:var(--cream);overflow:hidden;position:relative}
+.rp-bars i::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--grass);transform-origin:left;transform:scaleX(var(--v))}
+.rp-bars li:nth-child(2) i::after{background:var(--sky)}
+.rp-bars li:nth-child(3) i::after{background:var(--mango)}
+.rp-note{margin-top:var(--s3);font-size:14px;background:var(--grape-soft);border-radius:12px;padding:8px 12px;color:var(--ink)}
+.rp-note b{font-weight:700;color:var(--grape-ink)}
+/* slide 4 — WhatsApp with the teacher */
+.art-chat{background:var(--grass-soft)}
+.chat{display:flex;flex-direction:column;gap:10px;width:100%;max-width:360px}
+.msg{max-width:82%;font-size:15px;font-weight:600;color:var(--ink);padding:10px 14px;border-radius:18px;box-shadow:0 3px 0 rgba(31,26,61,.12)}
+.msg.me{align-self:flex-end;background:#D6F8C4;border-bottom-right-radius:4px}
+.msg.them{align-self:flex-start;background:#fff;border-bottom-left-radius:4px}
+
+.gets-nav{display:flex;align-items:center;gap:var(--s3);padding:var(--s5) var(--s4) 0}
+.round{
+  width:56px;height:56px;border:0;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:var(--grape-ink);color:#fff;box-shadow:0 5px 0 var(--grape-edge);
+  transition:transform var(--t-micro) var(--e-standard),box-shadow var(--t-micro) var(--e-standard);
+}
+.round:active{transform:translateY(4px);box-shadow:0 1px 0 var(--grape-edge)}
+.round + .round{background:var(--sun);color:var(--ink);box-shadow:0 5px 0 var(--sun-edge)}
+.round + .round:active{box-shadow:0 1px 0 var(--sun-edge)}
+.gets-count{font-family:var(--display);font-weight:700;font-size:20px;color:var(--grape-ink);margin-left:var(--s2);font-variant-numeric:tabular-nums}
+.gets-try{margin-top:var(--s7)}
+@media (min-width:900px){
+  .gets-box{padding:var(--s6) 0}
+  .get{grid-template-columns:1.1fr 1fr;align-items:center;gap:var(--s7);padding:0 var(--s6)}
+  .get-art{min-height:340px}
+  .gets-nav{justify-content:flex-end;padding:var(--s5) var(--s6) 0}
+}
 
 /* =========================================================
    3b — CRAFTS — real things they made in class
@@ -918,28 +995,74 @@ h2 + .lede{margin-top:var(--s3)}
 .plan-note{font-size:14px;color:var(--muted);font-weight:600;margin-top:auto;padding-top:var(--s2)}
 .plan .btn{margin-top:var(--s3)}
 
-.guarantee{
-  display:flex;align-items:flex-start;gap:var(--s4);margin-top:var(--s6);
-  background:var(--grass-soft);border-radius:32px;
-  padding:var(--s5);
-  box-shadow:inset 0 0 0 3px var(--grass),0 8px 0 var(--grass-edge);
-}
-.guarantee-mark{
-  flex:0 0 60px;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
-  background:var(--grass-ink);color:#fff;box-shadow:0 4px 0 #17561F;
-}
-.guarantee.is-in .guarantee-mark{animation:bob 700ms var(--e-spring) 300ms}
-.guarantee h3{font-size:var(--fs-h3)}
-.guarantee p{color:var(--ink-2);font-size:15px;margin-top:var(--s1);max-width:56ch}
-.guarantee-kicker{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--grass-ink);margin-bottom:var(--s1)}
-@media (min-width:900px){
-  .guarantee{align-items:center}
-}
-/* One plan: the price card and the guarantee stack as one centred column,
-   the guarantee sitting right under the price it backs. */
+/* One plan: price card as one centred column. */
 .plans-body{max-width:640px;margin-inline:auto}
 .plans .kicker,.plans h2,.plans .lede{margin-inline:auto;text-align:center}
 .plans .kicker{display:flex;width:fit-content}
+
+/* =========================================================
+   4d — GUARANTEE — one big promise over a ribbon, real kids + speech bubble
+   ========================================================= */
+.promise-ribbon{position:absolute;left:0;top:18%;width:100%;height:55%;z-index:0}
+.promise-in{display:grid;gap:var(--s8);align-items:center}
+.promise-copy{
+  position:relative;background:var(--surface);border-radius:32px;padding:var(--s7) var(--s5) var(--s5);
+  box-shadow:inset 0 0 0 3px var(--grass),0 10px 0 var(--grass-edge),var(--shadow-soft);
+}
+.promise-mark{position:absolute;top:-34px;left:22px;font-size:56px;line-height:1;transform:rotate(-12deg)}
+.promise-copy h2{font-size:clamp(28px,4vw,42px)}
+.promise-copy > p{margin-top:var(--s3);font-size:17px;color:var(--ink-2)}
+.promise-pills{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
+.promise-pills li{
+  font-size:14px;font-weight:800;color:var(--grass-ink);background:var(--grass-soft);
+  border-radius:var(--r-pill);padding:6px 14px 6px 12px;
+}
+.promise-pills li::before{content:"✓ ";font-weight:900}
+.promise-art{position:relative;width:100%;max-width:440px;margin-inline:auto;aspect-ratio:1/.92}
+.promise-blob{
+  position:absolute;inset:14% 6% 4% 10%;border-radius:44% 56% 50% 50% / 52% 44% 56% 48%;
+  background:var(--grape);background-image:radial-gradient(rgba(255,255,255,.18) 2px,transparent 2px);background-size:18px 18px;
+  box-shadow:0 10px 0 var(--grape-edge);transform:rotate(-6deg);
+}
+.promise-face{
+  position:absolute;border-radius:50%;overflow:hidden;background:var(--cream);
+  border:6px solid #fff;box-shadow:0 6px 0 rgba(31,26,61,.2);
+  animation:bobslow 6s ease-in-out infinite;
+}
+.promise-face img{width:100%;height:100%;object-fit:cover}
+.promise-face.f1{width:44%;aspect-ratio:1;left:8%;top:36%}
+.promise-face.f2{width:38%;aspect-ratio:1;right:4%;top:24%;animation-delay:-2s}
+.promise-face.f3{width:32%;aspect-ratio:1;right:22%;bottom:0;animation-delay:-4s}
+.promise-bubble{
+  position:absolute;left:0;top:0;z-index:1;max-width:62%;
+  font-family:var(--display);font-weight:600;font-size:17px;line-height:1.15;color:var(--grape-ink);text-align:center;
+  background:#fff;border:4px solid var(--ink);border-radius:22px;padding:12px 16px;
+  box-shadow:6px 6px 0 var(--ink);transform:rotate(-8deg);
+}
+.promise-bubble b{display:block;font-weight:700;font-size:36px;color:var(--ink)}
+.promise-bubble::after{
+  content:"";position:absolute;right:26px;bottom:-15px;width:22px;height:22px;background:#fff;
+  border:solid var(--ink);border-width:0 4px 4px 0;transform:rotate(45deg);
+}
+.promise-art.is-in .promise-bubble{animation:pop 700ms var(--e-spring) 300ms both}
+@keyframes pop{0%{transform:rotate(-8deg) scale(.6)}60%{transform:rotate(-4deg) scale(1.08)}100%{transform:rotate(-8deg) scale(1)}}
+@media (min-width:900px){
+  .promise-in{grid-template-columns:1fr 1fr;gap:var(--s8)}
+  .promise-copy{padding:var(--s8) var(--s6) var(--s6)}
+}
+
+/* Marquee band opening the teachers section */
+.ticker{
+  position:relative;z-index:1;width:110%;margin:calc(var(--sec-y) * -1 + var(--s5)) 0 var(--s7) -5%;
+  background:var(--grass);box-shadow:0 5px 0 var(--grass-edge);transform:rotate(-1.5deg);overflow:hidden;
+}
+.ticker p{display:flex;width:max-content;animation:tick 30s linear infinite}
+.ticker span{
+  white-space:pre;padding:10px 0;
+  font-family:var(--display);font-weight:700;font-size:clamp(20px,3vw,30px);letter-spacing:.02em;
+  text-transform:uppercase;color:var(--ink);
+}
+@keyframes tick{to{transform:translateX(-50%)}}
 
 /* =========================================================
    5 — FAQ
@@ -1100,8 +1223,8 @@ h2 + .lede{margin-top:var(--s3)}
 .js .kicker.reveal.is-in{transform:none}
 .js .team.reveal,.js .lesson.reveal{transform:scale(.94);transition-duration:var(--t-hero)}
 .js .team.reveal.is-in,.js .lesson.reveal.is-in{transform:none}
-.js .mcard.reveal,.js .stat.reveal{transform:translateY(30px) scale(.9) rotate(-3deg)}
-.js .mcard.reveal.is-in,.js .stat.reveal.is-in{transform:none}
+.js .stat.reveal{transform:translateY(30px) scale(.9) rotate(-3deg)}
+.js .stat.reveal.is-in{transform:none}
 .js .rv.reveal{transform:translateY(24px) rotate(2deg)}
 .js .rv.reveal.is-in{transform:none}
 .js .panel.reveal{transform:scale(.9)}
@@ -1127,7 +1250,6 @@ h2 + .lede{margin-top:var(--s3)}
   .rail > .teacher:hover{transform:translateY(-6px) rotate(0)}
   .js .reveal.is-in:hover{transition-delay:0ms}
   .js .stat.is-in:hover{transform:translateY(-4px) rotate(-1.5deg)}
-  .js .mcard.is-in:hover{transform:translateY(-6px) rotate(-1.5deg)}
   .js .rv.is-in:hover{transform:translateY(-5px) rotate(-1deg)}
 }
 
@@ -1255,7 +1377,7 @@ h2 + .lede{margin-top:var(--s3)}
    LITE MODE — low-memory devices and Data Saver (set in <head>).
    Scenery holds still; scroll parallax, reveals and the demo stay.
    ========================================================= */
-.lite .cloud,.lite .sun .rays,.lite .sun .eyes,.lite .stk i,.lite .m-art,.lite .peek,
+.lite .cloud,.lite .sun .rays,.lite .sun .eyes,.lite .stk i,.lite .ticker p,.lite .peek,
 .lite .chip-xp,.lite .chip-streak,.lite .vid-play::before,.lite .plan-star,.lite .rv-feature::after,
 .lite .breathe::after,.lite .chip-dot{animation:none}
 .lite .cloud:nth-child(1){left:6%} .lite .cloud:nth-child(2){left:62%} .lite .cloud:nth-child(3){left:30%}
