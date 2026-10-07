@@ -327,6 +327,9 @@ h2 + .lede{margin-top:var(--s3)}
   .hdr-cta,.hdr-app{font-size:13px;padding-inline:var(--s3)}
   .logo-word{display:none}
 }
+@media (max-width:374px){
+  .hdr-app-word{display:none}   /* 🎮 alone (aria-label says Zona alumnos), or the CTA spills out of the card */
+}
 .hdr-nav{display:none;gap:var(--s5);margin-left:var(--s5)}
 .hdr-nav a{
   position:relative;text-decoration:none;color:var(--ink-2);font-size:15px;font-weight:700;
