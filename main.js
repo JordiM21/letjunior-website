@@ -311,6 +311,22 @@
     watched.forEach(function (sec) { navIo.observe(sec); });
   }
 
+  /* ---------- "Lo que recibe" slider: native swipe, arrows loop, "n / 4" ---------- */
+  var gTrack = document.getElementById('getsTrack');
+  if (gTrack) {
+    var gNow = document.getElementById('getsNow');
+    var gAt = function () { return Math.round(gTrack.scrollLeft / gTrack.clientWidth); };
+    var gGo = function (d) {
+      var n = gTrack.children.length;
+      gTrack.scrollTo({ left: ((gAt() + d + n) % n) * gTrack.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    document.getElementById('getsPrev').addEventListener('click', function () { gGo(-1); });
+    document.getElementById('getsNext').addEventListener('click', function () { gGo(1); });
+    gTrack.addEventListener('scroll', function () {
+      requestAnimationFrame(function () { gNow.textContent = gAt() + 1; });
+    }, { passive: true });
+  }
+
   /* ---------- Carousel dots ---------- */
   document.querySelectorAll('.dots').forEach(function (dots) {
     var rail = document.getElementById(dots.dataset.rail);
@@ -703,4 +719,22 @@
       if (typeof window.fbq === 'function') window.fbq('trackCustom', pair[1]);
     });
   });
+
+  /* ---------- Bridge to the student app ----------
+     Purple circle grows out of the tapped button, logo pops, then we hand
+     over to app.letjunior.com, which wipes the same circle back open. */
+  var bridge = document.getElementById('bridge');
+  document.querySelectorAll('[data-bridge]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (reduce || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      var r = a.getBoundingClientRect();
+      bridge.style.setProperty('--wx', r.left + r.width / 2 + 'px');
+      bridge.style.setProperty('--wy', r.top + r.height / 2 + 'px');
+      bridge.classList.add('in');
+      setTimeout(function () { location.href = a.href; }, 750);
+    });
+  });
+  // back button restores this page from cache with the wipe still closed
+  addEventListener('pageshow', function (e) { if (e.persisted) bridge.classList.remove('in'); });
 })();

@@ -536,5 +536,13 @@
     }
   }
 
-  go('intro');
+  // Home-page age picker sends ?edad=N: that tap already answered Q1.
+  var edad = +new URLSearchParams(location.search).get('edad');
+  if (edad >= 1 && edad <= 99) {
+    st.age = edad;
+    history.replaceState({ s: 'q1' }, '');
+    go('q2');
+    history.pushState({ s: 'q2' }, '');
+    track('cupo_start', { from: 'hero_age' });
+  } else go('intro');
 })();

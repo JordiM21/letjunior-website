@@ -202,7 +202,7 @@ html{background:#BDE6FF}
     </a>
 
     <nav class="hdr-nav" aria-label="Principal">
-      <a href="#metodo">Método</a>
+      <a href="#recibe">Qué incluye</a>
       <a href="#pruebalo">Pruébalo</a>
       <a href="#profes">Profes</a>
       <a href="#planes">Precios</a>
@@ -210,6 +210,7 @@ html{background:#BDE6FF}
     </nav>
 
     <div class="hdr-actions">
+      <a class="btn btn-play btn-sm hdr-app" href="https://app.letjunior.com/?from=web#/student" data-bridge aria-label="Zona alumnos: abrir la app LET Junior"><span aria-hidden="true">🎮</span><span class="hdr-app-word">Alumnos</span></a>
       <a class="btn btn-primary btn-sm hdr-cta" id="hdrCta" href="/cupo">Empieza sin riesgo</a>
     </div>
   </div>
@@ -228,22 +229,34 @@ html{background:#BDE6FF}
     <div class="hero-copy">
       <p class="chip reveal" data-d="0">
         <span class="chip-dot" aria-hidden="true">👋</span>
-        Grupos reducidos · El mismo profe siempre
+          Educación Personalizada y de Calidad
       </p>
 
       <h1>Inglés que <em>sí</em> les <span class="squiggle">divierte</span> <span class="wave-emoji" aria-hidden="true">🎉</span></h1>
 
       <p class="lede reveal" data-d="80">
-        Clases en vivo para niños de 7 a 14 años, en grupos reducidos y con
-        el mismo profe todo el curso. 100&nbsp;% online.
+        Clases en vivo para niños, en grupos reducidos y con
+        compañeros de su misma edad y nivel. 100&nbsp;% online.
       </p>
 
       <div class="hero-cta reveal" data-d="160">
-        <a class="btn btn-primary btn-lg breathe" id="heroCta" href="/cupo">
-          Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span>
-        </a>
-        <p class="fineprint">$50/mes · Si no le gusta la primera semana, te devolvemos el dinero</p>
-        <a class="link-under" href="#metodo">Ver cómo funciona <span aria-hidden="true">›</span></a>
+        <!-- One tap = question 1 of /cupo already answered (cupo.js reads ?edad). -->
+        <nav class="age-card" id="heroCta" aria-labelledby="ageQ">
+          <p class="age-q" id="ageQ">¿Cuántos años tiene tu peque?&nbsp;<span aria-hidden="true">👇</span></p>
+          <ul class="age-grid">
+            <li><a class="age-btn" href="/cupo?edad=7">7</a></li>
+            <li><a class="age-btn" href="/cupo?edad=8">8</a></li>
+            <li><a class="age-btn" href="/cupo?edad=9">9</a></li>
+            <li><a class="age-btn" href="/cupo?edad=10">10</a></li>
+            <li><a class="age-btn" href="/cupo?edad=11">11</a></li>
+            <li><a class="age-btn" href="/cupo?edad=12">12</a></li>
+            <li><a class="age-btn" href="/cupo?edad=13">13</a></li>
+            <li><a class="age-btn" href="/cupo?edad=14">14</a></li>
+          </ul>
+          <a class="age-other" href="/cupo">Otra edad</a>
+        </nav>
+        <p class="fineprint">Mira si hay cupo en 30 segundos · Garantía de 1 semana</p>
+        <a class="link-under" href="#recibe">Ver qué incluye <span aria-hidden="true">›</span></a>
       </div>
     </div>
 
@@ -461,61 +474,97 @@ html{background:#BDE6FF}
   <div class="dots" data-rail="railProof" aria-hidden="true"></div>
 </section>
 
-<!-- ============ 3. METHODOLOGY ============ -->
-<section class="method" id="metodo">
-  <span class="stk" aria-hidden="true" data-speed="-.1" style="--x:90%;--y:4%"><i>🧩</i></span>
-  <span class="stk d" aria-hidden="true" data-speed=".12" style="--x:2%;--y:60%"><i>🎵</i></span>
+<!-- ============ 3. LO QUE RECIBE — one idea per slide, picture + two lines ============ -->
+<section class="gets" id="recibe">
+  <span class="stk" aria-hidden="true" data-speed="-.1" style="--x:90%;--y:4%"><i>🎁</i></span>
   <div class="wrap">
-    <p class="kicker k-grape reveal">✨ Nuestro método</p>
-    <h2 class="reveal">Aprender inglés <span class="hl hl-sun">sin darse cuenta</span></h2>
-    <p class="lede reveal">Tres cosas que hacemos distinto, y que son la razón por la que vuelven cada semana.</p>
+    <p class="kicker k-grape reveal">🎁 Todo incluido</p>
+    <h2 class="reveal">Lo que recibe tu peque</h2>
 
-    <ul class="cards">
-      <li class="mcard m-grape reveal">
-        <span class="m-art" aria-hidden="true">🎮</span>
-        <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-            <rect x="2.6" y="7.2" width="18.8" height="9.6" rx="4.8"/>
-            <path d="M7.4 10.6v3.2M5.8 12.2h3.2"/>
-            <circle cx="15.6" cy="11.6" r=".95" fill="currentColor" stroke="none"/>
-            <circle cx="17.8" cy="13.6" r=".95" fill="currentColor" stroke="none"/>
-          </svg>
-        </span>
-        <p class="m-kick">Juega y aprende</p>
-        <h3>Plataforma interactiva</h3>
-        <p>Juegos, retos y recompensas que convierten la práctica en algo que piden repetir.</p>
-      </li>
-      <li class="mcard m-mango reveal">
-        <span class="m-art" aria-hidden="true">🎬</span>
-        <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-            <rect x="2.6" y="5.4" width="18.8" height="13.2" rx="3.2"/>
-            <path d="M2.6 9.8h18.8"/>
-            <path d="M7.4 5.6 5.9 9.6M12.2 5.6l-1.5 4M17 5.6l-1.5 4"/>
-          </svg>
-        </span>
-        <p class="m-kick">Mira, escucha, habla</p>
-        <h3>Método audiovisual</h3>
-        <p>Vídeo, música y conversación desde el minuto uno. Escuchan y hablan antes de escribir.</p>
-      </li>
-      <li class="mcard m-sky reveal">
-        <span class="m-art" aria-hidden="true">🧑‍🏫</span>
-        <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-            <rect x="2.6" y="4.4" width="18.8" height="15.2" rx="3.4"/>
-            <circle cx="12" cy="10.3" r="2.5"/>
-            <path d="M7.7 16.9a4.7 4.7 0 0 1 8.6 0"/>
-          </svg>
-        </span>
-        <p class="m-kick">Siempre en directo</p>
-        <h3>Clases en vivo personalizadas</h3>
-        <p>Profes certificados en grupos de máximo 4, adaptando el ritmo a cada niño.</p>
-      </li>
-    </ul>
+    <div class="gets-box reveal" role="region" aria-roledescription="carrusel" aria-label="Lo que incluye el programa">
+      <ol class="gets-track" id="getsTrack" tabindex="0">
+        <li class="get" aria-roledescription="diapositiva" aria-label="1 de 4">
+          <div class="get-art art-live" aria-hidden="true">
+            <div class="frame">
+              <span class="live"><i></i>EN VIVO</span>
+              <picture>
+                <source type="image/avif" sizes="(min-width:900px) 520px, 88vw"
+                        srcset="assets/optimized/teachers/jordi-meeting-400.avif 400w, assets/optimized/teachers/jordi-meeting-800.avif 800w">
+                <source type="image/webp" sizes="(min-width:900px) 520px, 88vw"
+                        srcset="assets/optimized/teachers/jordi-meeting-400.webp 400w, assets/optimized/teachers/jordi-meeting-800.webp 800w">
+                <img src="assets/optimized/teachers/jordi-meeting-800.webp" width="800" height="450" alt="" loading="lazy" decoding="async">
+              </picture>
+              <span class="bubble" lang="en">Hello, team! 👋</span>
+            </div>
+          </div>
+          <div class="get-copy">
+            <p class="get-kick">Siempre en directo</p>
+            <h3>Clases en vivo con su profe de siempre</h3>
+            <p>Una hora, tres días por semana, con máximo 4 niños. Nada grabado: hablan inglés desde la primera clase.</p>
+          </div>
+        </li>
+        <li class="get" aria-roledescription="diapositiva" aria-label="2 de 4">
+          <div class="get-art art-game" aria-hidden="true">
+            <div class="game-top"><span class="g-chip g-xp">⭐ 1.240</span><span class="g-chip">🔥 7</span><span class="g-chip">♥♥♥</span></div>
+            <ul class="game-grid">
+              <li class="g-sky"><span>🎤</span><b lang="en">Speak up!</b></li>
+              <li class="g-bubble g-big"><span>🏰</span><b lang="en">Quests</b></li>
+              <li class="g-grass"><span>🎬</span><b lang="en">Videos</b></li>
+              <li class="g-sun"><span>🧩</span><b lang="en">Games</b></li>
+            </ul>
+          </div>
+          <div class="get-copy">
+            <p class="get-kick">Juega y aprende</p>
+            <h3>Una clase que parece un videojuego</h3>
+            <p>Retos, XP, vidas y rachas. El inglés se convierte en un juego que quieren ganar.</p>
+          </div>
+        </li>
+        <li class="get" aria-roledescription="diapositiva" aria-label="3 de 4">
+          <div class="get-art art-report" aria-hidden="true">
+            <div class="report">
+              <p class="rp-head"><span>📊</span> Informe de octubre</p>
+              <ul class="rp-bars">
+                <li><span>Speaking</span><i style="--v:.9"></i></li>
+                <li><span>Listening</span><i style="--v:.75"></i></li>
+                <li><span>Vocabulario</span><i style="--v:.82"></i></li>
+              </ul>
+              <p class="rp-note">“¡Ya se presenta sola en inglés!” <b>— su profe</b></p>
+            </div>
+          </div>
+          <div class="get-copy">
+            <p class="get-kick">Para ti</p>
+            <h3>Un informe de progreso cada mes</h3>
+            <p>Qué ha aprendido, en qué mejora y una nota de su profe. Siempre sabes cómo va.</p>
+          </div>
+        </li>
+        <li class="get" aria-roledescription="diapositiva" aria-label="4 de 4">
+          <div class="get-art art-chat" aria-hidden="true">
+            <div class="chat">
+              <p class="msg me">Profe, el viernes tiene examen de inglés 😬</p>
+              <p class="msg them">¡Lo repasamos hoy en clase! 💪</p>
+              <p class="msg me">¡Sacó un 9! 🎉</p>
+            </div>
+          </div>
+          <div class="get-copy">
+            <p class="get-kick">Apoyo académico</p>
+            <h3>Un profe que también le ayuda con el cole</h3>
+            <p>¿Deberes o examen de inglés? Cuéntaselo a su profe y lo preparan juntos.</p>
+          </div>
+        </li>
+      </ol>
 
-    <p class="proofline reveal"><span class="ck" aria-hidden="true"></span> El 90&nbsp;% de los alumnos dice sus primeras palabras en inglés en la primera semana.</p>
+      <div class="gets-nav">
+        <button class="round" type="button" id="getsPrev" aria-controls="getsTrack" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="round" type="button" id="getsNext" aria-controls="getsTrack" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="gets-count" aria-live="polite"><b id="getsNow">1</b> / 4</p>
+      </div>
+    </div>
 
-    <p class="reveal center"><a class="btn btn-outline" href="#pruebalo">Probar una pregunta ahora 🎯</a></p>
+    <p class="reveal center gets-try"><a class="btn btn-outline" href="#pruebalo">Probar una pregunta de clase 🎯</a></p>
   </div>
 </section>
 
@@ -603,18 +652,18 @@ html{background:#BDE6FF}
 <section class="journey" id="camino">
   <span class="stk d" aria-hidden="true" data-speed="-.1" style="--x:88%;--y:30%"><i>🏔️</i></span>
   <div class="wrap narrow">
-    <p class="kicker k-grass reveal">🗺️ Paso a paso</p>
+    <p class="kicker k-grass reveal">🗺️ Cómo funciona</p>
     <h2 class="reveal">El camino de tu peque</h2>
-    <p class="lede reveal">Del primer mensaje a hablar inglés en clase, nivel a nivel.</p>
+    <p class="lede reveal">De tu primer mensaje a hablar inglés, en 5 pasos.</p>
 
     <div class="map" id="map">
       <svg class="map-path" id="mapPath" aria-hidden="true" focusable="false"><path class="road"/><path class="trail"/></svg>
       <ol class="steps">
-        <li class="step"><span class="node n-bubble" aria-hidden="true">💬</span><div class="step-card"><p class="lvl">Nivel 1</p><h3>Nos escribes</h3><p>Tres preguntas rápidas, eliges horario y seguimos por WhatsApp. Sin formularios eternos.</p></div></li>
-        <li class="step"><span class="node n-sun" aria-hidden="true">🧭</span><div class="step-card"><p class="lvl">Nivel 2</p><h3>Vemos su nivel</h3><p>En la primera clase valoramos su inglés y le asignamos el grupo que le corresponde.</p></div></li>
-        <li class="step"><span class="node n-grape" aria-hidden="true">🧑‍🏫</span><div class="step-card"><p class="lvl">Nivel 3</p><h3>Conoce a su profe</h3><p>El mismo profe todo el curso, en un grupo de máximo 4 niños.</p></div></li>
-        <li class="step"><span class="node n-mango" aria-hidden="true">🎮</span><div class="step-card"><p class="lvl">Nivel 4</p><h3>¡A jugar en inglés!</h3><p>Lunes, miércoles y viernes: retos, XP y rachas, hablando desde el primer día.</p></div></li>
-        <li class="step"><span class="node n-grass" aria-hidden="true">🏆</span><div class="step-card"><p class="lvl">Nivel 5</p><h3>Ves su progreso</h3><p>Seguimiento e informes para que sepas exactamente cómo avanza.</p></div></li>
+        <li class="step"><span class="node n-bubble" aria-hidden="true">💬</span><div class="step-card"><p class="lvl">Nivel 1</p><h3>Nos escribes</h3><p>3 preguntas y eliges horario.</p></div></li>
+        <li class="step"><span class="node n-sun" aria-hidden="true">🧭</span><div class="step-card"><p class="lvl">Nivel 2</p><h3>Vemos su nivel</h3><p>En la primera clase, sin exámenes.</p></div></li>
+        <li class="step"><span class="node n-grape" aria-hidden="true">🧑‍🏫</span><div class="step-card"><p class="lvl">Nivel 3</p><h3>Conoce a su profe</h3><p>El mismo todo el curso. Máximo 4 niños.</p></div></li>
+        <li class="step"><span class="node n-mango" aria-hidden="true">🎮</span><div class="step-card"><p class="lvl">Nivel 4</p><h3>¡A jugar en inglés!</h3><p>Lunes, miércoles y viernes, 1 hora.</p></div></li>
+        <li class="step"><span class="node n-grass" aria-hidden="true">🏆</span><div class="step-card"><p class="lvl">Nivel 5</p><h3>Ves su progreso</h3><p>Un informe cada mes.</p></div></li>
       </ol>
     </div>
   </div>
@@ -686,6 +735,7 @@ html{background:#BDE6FF}
 
 <!-- ============ 4. TEACHERS ============ -->
 <section class="teachers" id="profes">
+  <div class="ticker" aria-hidden="true"><p><span>Conoce a sus profes ✦ Clases en vivo ✦ Máximo 4 niños ✦ </span><span>Conoce a sus profes ✦ Clases en vivo ✦ Máximo 4 niños ✦ </span><span>Conoce a sus profes ✦ Clases en vivo ✦ Máximo 4 niños ✦ </span><span>Conoce a sus profes ✦ Clases en vivo ✦ Máximo 4 niños ✦ </span></p></div>
   <span class="stk" aria-hidden="true" data-speed="-.1" style="--x:92%;--y:3%"><i>🍎</i></span>
   <div class="wrap">
     <p class="kicker k-sky reveal">🧑‍🏫 El equipo</p>
@@ -856,7 +906,7 @@ html{background:#BDE6FF}
   <div class="wrap">
     <p class="kicker k-mango reveal">🎟️ Precio</p>
     <h2 class="reveal">Un programa completo. Una semana para decidir.</h2>
-    <p class="lede reveal">Todo incluido por un solo precio. Si en la primera semana no le gusta o no aprende, te devolvemos el dinero. Sin preguntas.</p>
+    <p class="lede reveal">Todo incluido, un solo precio, sin permanencia.</p>
 
     <div class="plans-body">
       <ul class="plan-grid">
@@ -877,17 +927,31 @@ html{background:#BDE6FF}
           <a class="btn btn-primary" href="/cupo?plan=completo">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
         </li>
       </ul>
+    </div>
+  </div>
+</section>
 
-      <aside class="guarantee reveal">
-        <span class="guarantee-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z" fill="currentColor"/></svg>
-        </span>
-        <div>
-          <p class="guarantee-kicker">Garantía de 1 semana</p>
-          <h3>Si no le gusta o no aprende en la primera semana, te devolvemos el dinero</h3>
-          <p>Sin preguntas ni formularios. Escríbenos por WhatsApp durante la primera semana y lo resolvemos.</p>
-        </div>
-      </aside>
+<!-- ============ 4d. GUARANTEE — one big promise, one picture ============ -->
+<section class="promise" id="garantia">
+  <svg class="promise-ribbon" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 40C380 60 700 150 980 190S1300 170 1440 120V190C1300 240 1140 260 960 250S360 120 0 110Z" fill="#6CCB4F"/>
+  </svg>
+  <div class="wrap promise-in">
+    <div class="promise-copy reveal">
+      <span class="promise-mark" aria-hidden="true">🛡️</span>
+      <h2>Si no le gusta la primera semana, te devolvemos el dinero</h2>
+      <p>Sin preguntas ni formularios: un mensaje por WhatsApp y listo.</p>
+      <ul class="promise-pills">
+        <li>Sin permanencia</li>
+        <li>Cancela cuando quieras</li>
+      </ul>
+    </div>
+    <div class="promise-art reveal" aria-hidden="true">
+      <span class="promise-blob"></span>
+      <span class="promise-face f1"><picture><source type="image/avif" srcset="assets/optimized/students/mila-288.avif"><img src="assets/optimized/students/mila-288.webp" width="288" height="288" alt="" loading="lazy" decoding="async"></picture></span>
+      <span class="promise-face f2"><picture><source type="image/avif" srcset="assets/optimized/students/daniel-288.avif"><img src="assets/optimized/students/daniel-288.webp" width="288" height="288" alt="" loading="lazy" decoding="async"></picture></span>
+      <span class="promise-face f3"><picture><source type="image/avif" srcset="assets/optimized/students/josue-288.avif"><img src="assets/optimized/students/josue-288.webp" width="288" height="288" alt="" loading="lazy" decoding="async"></picture></span>
+      <p class="promise-bubble"><b>¡7 días</b> de garantía de devolución!</p>
     </div>
   </div>
 </section>
@@ -974,7 +1038,7 @@ html{background:#BDE6FF}
     </div>
     <nav class="ftr-col" aria-label="Academia">
       <h3>Academia</h3>
-      <ul><li><a href="#metodo">Método</a></li><li><a href="#camino">Cómo empezar</a></li><li><a href="#profes">Profes</a></li><li><a href="#planes">Precios</a></li><li><a href="#opiniones">Opiniones</a></li></ul>
+      <ul><li><a href="#recibe">Qué incluye</a></li><li><a href="#camino">Cómo empezar</a></li><li><a href="#profes">Profes</a></li><li><a href="#planes">Precios</a></li><li><a href="#opiniones">Opiniones</a></li><li><a href="https://app.letjunior.com/?from=web#/student" data-bridge>App de alumnos 🎮</a></li></ul>
     </nav>
     <nav class="ftr-col" aria-label="Ayuda">
       <h3>Ayuda</h3>
@@ -995,6 +1059,9 @@ html{background:#BDE6FF}
 <div class="sticky-cta" id="stickyCta">
   <a class="btn btn-primary btn-lg" href="/cupo">Empieza con garantía de 1 semana <span class="arrow" aria-hidden="true">→</span></a>
 </div>
+
+<!-- Bridge to the student app: the circle wipe + bouncing logo the app itself uses (app.letjunior.com) -->
+<div class="bridge" id="bridge" aria-hidden="true"><div class="bridge-logo">LET <span>Junior</span></div></div>
 
 <script src="main.js" defer></script>
 </body>

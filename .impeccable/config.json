@@ -95,6 +95,24 @@
         ],
         "createdAt": "2026-09-24T08:55:02.660Z",
         "reason": "Claude: only instance is the EN VIVO recording light inside the illustrated live-class mock"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-30T08:46:20.652Z",
+        "reason": "Claude triage: uppercase is only on short labels (ticker marquee, slide kickers, level tags), not body passages"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-30T08:46:20.840Z",
+        "reason": "Claude triage: inner cards are illustrated product mockups (class screen, report, chat) drawn inside a slide/hero frame, not layout nesting"
       }
     ]
   }
