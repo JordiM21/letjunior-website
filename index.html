@@ -43,6 +43,8 @@
   var c = n.connection, lite = (c && c.saveData) || (n.deviceMemory && n.deviceMemory <= 2) ||
     (n.hardwareConcurrency && n.hardwareConcurrency <= 2);
   d.className += ' js' + (lite ? ' lite' : '');
+  /* back from the app's "Visitar página" (?from=app): lift its stripes off once, then drop the flag */
+  if (/[?&]from=app/.test(location.search)) { d.className += ' from-app'; history.replaceState(null, '', location.pathname + location.hash); }
 })(document.documentElement, navigator);
 </script>
 <!-- Critical paint: sky colour + loading screen, inline so the very first
@@ -114,6 +116,7 @@ html{background:#BDE6FF}
     <span class="sp-dots"><i></i><i></i><i></i></span>
   </div>
 </div>
+<div class="leave" aria-hidden="true"><i></i><i></i><i></i><i></i><b>LET Academy</b></div>
 
 <a class="skip" href="#main">Saltar al contenido</a>
 
