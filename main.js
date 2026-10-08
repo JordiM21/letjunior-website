@@ -704,7 +704,7 @@
   /* ---------- Funnel instrumentation ----------
      Each CTA reports separately — on mobile the sticky bar usually wins,
      and you cannot see that if they share one event.
-     TODO: wire to the real analytics stack (GA4 / Meta Pixel). */
+     Meta Pixel is in <head>; GA4 still TODO. */
   var ctas = [
     ['#heroCta', 'cta_hero'],
     ['#hdrCta', 'cta_header'],
