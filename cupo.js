@@ -101,9 +101,8 @@
   var card = document.getElementById('quiz');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var plan = new URLSearchParams(location.search).get('plan');
-  var ORDER = ['intro', 'q1', 'q2', 'q3', 'seek', 'results', 'contact', 'thanks', 'nocupo'];
+  var ORDER = ['intro', 'q1', 'q2', 'q3', 'seek', 'results', 'contact', 'nocupo'];
   var MIN_AGE = 7, MAX_AGE = 14; // outside this: kind exit, no WhatsApp, no Lead
-  var WA_SHOWN = '+39 379 291 3474';
   var st = {}, slots = [], current = 'intro', seekTimer;
 
   // Put the country this phone is in first, so most parents answer Q2 with one tap.
@@ -122,10 +121,6 @@
   function pressed(on) { return ' aria-pressed="' + !!on + '"'; }
 
   var PRICE = '<p class="recap"><span aria-hidden="true">💵</span> <b>50 USD/mes</b>, todo incluido · 3 clases en vivo por semana</p>';
-  // Under the WhatsApp button: in-app browsers sometimes fail the wa.me hand-off.
-  var WA_HELP = '<p class="fineprint center">¿No se abrió WhatsApp? Escríbenos al <b>' + WA_SHOWN + '</b> ' +
-    '<button class="link-under" type="button" data-copy-wa>Copiar número</button><br>' +
-    'Es nuestro número de Italia, donde está el equipo: escribir por WhatsApp es gratis desde cualquier país.</p>';
 
   var VIEWS = {
     intro: function () {
@@ -236,16 +231,6 @@
           '<p class="fld-err" id="c-tel-err" role="alert" hidden></p></div>' +
         '<button class="btn btn-primary btn-lg btn-block" type="submit" id="c-go">Enviar <span class="arrow" aria-hidden="true">→</span></button>' +
         '<p class="fineprint center">Solo usamos tus datos para confirmarte el cupo. <a class="link-under" href="privacidad" target="_blank" rel="noopener">Privacidad</a></p></form>';
-    },
-    thanks: function () {
-      return '<div class="scr scr-center">' +
-        '<p class="big-emoji party" aria-hidden="true">🥳</p>' +
-        '<h2>¡Gracias, ' + esc(st.name) + '!</h2>' +
-        '<p>Ya tenemos tus datos y te escribiremos por WhatsApp para confirmar el cupo. Si quieres, puedes escribirnos tú ahora.</p>' +
-        (st.slot ? '<p class="recap"><span aria-hidden="true">🗓️</span> ' + st.slot.days + ' · ' + st.slot.time + '</p>' : '') +
-        '<div class="end-actions">' +
-          '<a class="btn btn-primary btn-lg btn-block" href="' + waLink(hello()) + '" target="_blank" rel="noopener">💬 Enviar un mensaje</a>' +
-          '<a class="btn btn-outline btn-lg btn-block" href="/">Seguir explorando</a></div>' + WA_HELP + '</div>';
     }
   };
 
@@ -299,12 +284,12 @@
     var s = st.choice === 'reservar' && st.slot;
     return 'Hola Sofia, vengo de la web de LET Junior. Soy ' + st.name + '. Mi peque tiene ' + yrs(st.age) +
       ', estamos en ' + st.country.name + ' y su nivel de inglés es: ' + st.level[2].toLowerCase() + '.' +
-      (s ? ' Me interesa el horario: ' + s.days.toLowerCase() + ', ' + s.time + '.' : '') + ' ¿Hay cupo?';
+      (s ? ' Me interesa el horario de ' + s.days.toLowerCase() + ' (' + s.time + ').' : '') + ' ¿Hay cupo?';
   }
 
   /* ---------- Navigation: every screen is a history entry, so the phone's back button steps back a question ---------- */
   function ready(s) {
-    var need = { nocupo: 'out', q2: 'age', q3: 'country', seek: 'level', results: 'level', contact: 'choice', thanks: 'level' }[s];
+    var need = { nocupo: 'out', q2: 'age', q3: 'country', seek: 'level', results: 'level', contact: 'choice' }[s];
     return !need || st[need] != null;
   }
   function go(s, push) {
@@ -324,7 +309,6 @@
     if (s === 'seek') seekTimer = setTimeout(function () { go('results', false); history.replaceState({ s: 'results' }, ''); }, reduce ? 300 : 1700);
     if (s === 'results') { track('QuizResults', { found: slots.length }); loadLib(); }
     if (s === 'nocupo') track('LeadNoCalifica', { motivo: st.out, edad: st.age, pais: st.country ? st.country.name : '' });
-    if (s === 'thanks') burstFrom(card.querySelector('.big-emoji'));
   }
   history.replaceState({ s: 'intro' }, '');
   addEventListener('popstate', function (e) {
@@ -347,7 +331,6 @@
     if (!b) return;
     var d = b.dataset;
     if (d.go) { go(d.go, true); if (d.go === 'q1') track('QuizStart', { from: 'cupo' }); }
-    else if ('copyWa' in d) copyWa(b);
     else if ('back' in d) history.back();
     else if (d.age) { st.out = null; step(1, 'edad', +d.age); pick(b, 'age', +d.age, 'q2'); }
     else if ('other' in d) {
@@ -385,7 +368,7 @@
     else if (b.id === 'cc-btn') toggleCc();
   });
 
-  /* ---------- "Ya casi estamos": name + number → lead → thanks (they choose to message us) ---------- */
+  /* ---------- "Ya casi estamos": name + number → lead → /gracias (they choose to message us) ---------- */
   function fail(id, text) {
     var e = document.getElementById(id + '-err'), i = document.getElementById(id);
     e.textContent = text; e.hidden = false; i.setAttribute('aria-invalid', 'true');
@@ -424,9 +407,8 @@
     if (!tel) return fail('c-tel', 'Escribe tu número de WhatsApp.');
     if (!p.valid) return fail('c-tel', PHONE_ERR[p.why || 'shape'].replace('{c}', c ? ' para ' + c.name + ' (+' + c.code + ')' : ''));
     st.name = name; st.tel = tel; st.phone = p.e164;
-    track('Lead', { edad: st.age, pais: st.country.name, nivel: st.level[0], accion: st.choice }, { eventID: EVENT_ID });
     sendLead(st.choice);
-    go('thanks', true);
+    finish();
   });
 
   card.addEventListener('input', function (e) {
@@ -506,6 +488,22 @@
     if (pop && !pop.hidden && !e.target.closest('.cc')) toggleCc(false);
   });
 
+  function finish() {
+    var s = st.choice === 'reservar' && st.slot;
+    var lead = { edad: st.age, pais: st.country.name, nivel: st.level[0], accion: st.choice };
+    lastStep = 0; // not an abandon
+    try {
+      sessionStorage.setItem('lj_quiz', JSON.stringify({
+        nombre: st.name.split(/\s+/)[0], edad: st.age, pais: st.country.name, nivel: st.level[2],
+        horario: s ? s.days + ' · ' + s.time : '', accion: st.choice, wa: waLink(hello()),
+        lead: lead, eventID: EVENT_ID
+      }));
+    } catch (e) {
+      track('Lead', lead, { eventID: EVENT_ID }); // no storage (private mode): fire here, best-effort
+    }
+    location.assign('/gracias');
+  }
+
   /* ---------- Lead to our own endpoint (fire-and-forget; WhatsApp stays the source of truth) ---------- */
   function sendLead(choice) {
     if (!LEAD_URL) return;
@@ -542,33 +540,9 @@
   function step(n, question, answer) { lastStep = n; track('QuizStep', { step: n, question: question, answer: answer }); }
   // Started but left before the end. Best-effort: some browsers drop it on close.
   addEventListener('pagehide', function () {
-    if (lastStep && current !== 'thanks' && current !== 'nocupo') track('QuizAbandon', { last_step: lastStep, screen: current });
+    if (lastStep && current !== 'nocupo') track('QuizAbandon', { last_step: lastStep, screen: current });
   });
-  function copyWa(b) {
-    var done = function () { b.textContent = '¡Copiado!'; };
-    if (navigator.clipboard) navigator.clipboard.writeText(WA_SHOWN).then(done, function () {}); else done();
-    track('WhatsAppFallback', { page: 'cupo' });
-  }
 
-  /* ---------- Confetti (same look as the home page) ---------- */
-  var COLORS = ['#FF4D8D', '#FF7A3D', '#FFC93D', '#6CCB4F', '#4AA8FF', '#7B61FF'];
-  function burstFrom(el) {
-    if (reduce || !el || !Element.prototype.animate) return;
-    var r = el.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
-    for (var k = 0; k < 30; k++) {
-      var s = document.createElement('span');
-      s.className = 'confetti';
-      s.style.cssText = 'left:' + x + 'px;top:' + y + 'px;background:' + COLORS[k % COLORS.length];
-      document.body.appendChild(s);
-      var ang = Math.random() * Math.PI * 2, v = 50 + Math.random() * 180;
-      var dx = Math.cos(ang) * v, dy = Math.sin(ang) * v - 70, rot = Math.random() * 720 - 360;
-      s.animate([
-        { transform: 'translate(-50%,-50%)', opacity: 1 },
-        { transform: 'translate(calc(-50% + ' + dx + 'px),calc(-50% + ' + dy + 'px)) rotate(' + rot / 2 + 'deg)', opacity: 1, offset: 0.45 },
-        { transform: 'translate(calc(-50% + ' + dx * 1.2 + 'px),calc(-50% + ' + (dy + 180) + 'px)) rotate(' + rot + 'deg)', opacity: 0 }
-      ], { duration: 1000 + Math.random() * 600, easing: 'cubic-bezier(.2,.7,.4,1)' }).onfinish = s.remove.bind(s);
-    }
-  }
 
   // Home-page age picker sends ?edad=N: that tap already answered Q1.
   var edad = +new URLSearchParams(location.search).get('edad');

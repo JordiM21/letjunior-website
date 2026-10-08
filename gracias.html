@@ -57,6 +57,11 @@ main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:20px 16px
 h1{font-size:clamp(28px,7.5vw,38px);font-weight:700;text-align:center}
 h1 mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit;padding:0 2px}
 .sub{text-align:center;color:var(--muted);font-size:16px}
+.hi{text-align:center;font:600 17px var(--display);color:var(--grass-ink);margin-bottom:-8px}
+.recap{background:var(--sky-soft);border-radius:20px;padding:12px 14px}
+.recap-h{font:600 15px var(--display);margin-bottom:6px}
+.recap ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:15px;font-weight:600}
+.recap li{display:flex;gap:8px}
 
 
 .team{margin:0;border-radius:22px;overflow:hidden;position:relative;aspect-ratio:974/548;background:var(--sun-soft)}
@@ -89,6 +94,14 @@ h1 mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit
 :focus-visible{outline:3px solid var(--sky-ink);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<!-- Microsoft Clarity · session recordings + heatmaps (inputs are masked by default) -->
+<script>
+(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "yuftc56zh8");
+</script>
 <!-- Meta Pixel · LET Junior Web -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -148,14 +161,27 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
 
   <section class="card">
     <div class="check" aria-hidden="true">🎉</div>
-    <h1>¡Hay cupo para <mark>tu peque</mark>!</h1>
-    <p class="sub">Escríbenos por WhatsApp y te reservamos un lugar en <span id="band">el grupo de su edad</span>.</p>
+    <p class="hi" id="hi" hidden></p>
+    <h1 id="title">¡Hay cupo para <mark>tu peque</mark>!</h1>
+    <p class="sub" id="sub">Escríbenos por WhatsApp y te reservamos un lugar en <span id="band">el grupo de su edad</span>.</p>
 
-    <a class="btn btn-primary btn-block" href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">
+    <a class="btn btn-primary btn-block" id="wa" href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2Z"/></svg>
-      Reservar mi cupo por WhatsApp
+      <span id="waLabel">Reservar mi cupo por WhatsApp</span>
     </a>
     <p class="price">💵 <b>50 USD al mes</b> · exámenes y certificados incluidos</p>
+
+    <!-- Filled from the /cupo answers (sessionStorage); stays hidden for Instant Form visitors. -->
+    <div class="recap" id="recap" hidden>
+      <p class="recap-h">✅ Tu solicitud</p>
+      <ul>
+        <li><span aria-hidden="true">🎂</span><span id="rEdad"></span></li>
+        <li><span aria-hidden="true">🌎</span><span id="rPais"></span></li>
+        <li><span aria-hidden="true">📚</span><span id="rNivel"></span></li>
+        <li id="rHorarioLi" hidden><span aria-hidden="true">🗓️</span><span id="rHorario"></span></li>
+      </ul>
+    </div>
+
     <p class="fine">Te respondemos en minutos desde nuestro número internacional <b>+39 379 291 3474</b>.<br>
       ¿No se abrió WhatsApp? <button class="copy" type="button" id="copyWa">Copiar número</button></p>
 
@@ -177,10 +203,37 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
   </section>
 </main>
 <script>
-/* ?edad=9 → "el grupo de 9 a 10 años" (bands 7-8, 9-10, 11-12, 13-14) */
 (function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function band(n) { var lo = n - (n - 7) % 2; return 'el grupo de ' + lo + ' a ' + (lo + 1) + ' años'; } // 7-8, 9-10, 11-12, 13-14
+
+  // Instant Form visitors: ?edad=9 → "el grupo de 9 a 10 años"
   var n = +new URLSearchParams(location.search).get('edad');
-  if (n >= 7 && n <= 14) { var lo = n - (n - 7) % 2; document.getElementById('band').textContent = 'el grupo de ' + lo + ' a ' + (lo + 1) + ' años'; }
+  if (n >= 7 && n <= 14) $('band').textContent = band(n);
+
+  // Coming from the /cupo quiz: recap their answers, use their prefilled WhatsApp text, fire the Lead once.
+  var q = null;
+  try { q = JSON.parse(sessionStorage.getItem('lj_quiz')); } catch (e) {}
+  if (!q) return;
+  var COPY = {
+    reservar: ['¡Hay cupo para <mark>tu peque</mark>!', 'Escríbenos por WhatsApp y te confirmamos el lugar en ' + band(q.edad) + '.', 'Reservar mi cupo por WhatsApp'],
+    otro_horario: ['Buscamos un horario para <mark>tu peque</mark>', 'Escríbenos por WhatsApp y te contamos qué otros horarios tenemos.', 'Ver horarios por WhatsApp'],
+    avisame: ['Te avisamos cuando abra <mark>su grupo</mark>', 'Escríbenos por WhatsApp y te guardamos un lugar en la lista.', 'Apuntarme por WhatsApp']
+  }[q.accion] || [];
+  if (COPY[0]) { $('title').innerHTML = COPY[0]; $('sub').textContent = COPY[1]; $('waLabel').textContent = COPY[2]; }
+  if (q.nombre) { $('hi').textContent = '¡Gracias, ' + q.nombre + '!'; $('hi').hidden = false; }
+  if (q.wa) $('wa').href = q.wa;
+  $('rEdad').textContent = q.edad + (q.edad === 1 ? ' año' : ' años');
+  $('rPais').textContent = q.pais;
+  $('rNivel').textContent = q.nivel;
+  if (q.horario) { $('rHorario').textContent = q.horario + ' (hora de ' + q.pais + ')'; $('rHorarioLi').hidden = false; }
+  $('recap').hidden = false;
+
+  if (q.lead && !q.fired && window.fbq) {
+    fbq('track', 'Lead', q.lead, { eventID: q.eventID });
+    q.fired = true; // a reload shows the recap again but doesn't count a second Lead
+    try { sessionStorage.setItem('lj_quiz', JSON.stringify(q)); } catch (e) {}
+  }
 })();
 document.getElementById("copyWa").addEventListener("click", function () {
   var b = this;
