@@ -709,14 +709,15 @@
     ['#heroCta', 'cta_hero'],
     ['#hdrCta', 'cta_header'],
     ['#stickyCta .btn', 'cta_sticky'],
-    ['#reservar .btn', 'cta_final']
+    ['#reservar .btn', 'cta_final'],
+    ['#planes .btn-primary', 'cta_precios']
   ];
   ctas.forEach(function (pair) {
     var el = document.querySelector(pair[0]);
     if (!el) return;
     el.addEventListener('click', function () {
       if (typeof window.gtag === 'function') window.gtag('event', pair[1]);
-      if (typeof window.fbq === 'function') window.fbq('trackCustom', pair[1]);
+      if (typeof window.fbq === 'function') window.fbq('trackCustom', 'CTAClick', { cta_location: pair[1].replace('cta_', '') });
     });
   });
 

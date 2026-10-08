@@ -25,12 +25,16 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '278354874748985');
 fbq('track', 'PageView');
-/* Any WhatsApp link, including ones cupo.js builds later */
+/* Any WhatsApp link, including ones cupo.js builds later.
+   Contact once per visit (a real conversation), WhatsAppClick on every tap, labelled by button. */
 document.addEventListener('click', function (e) {
-  if (e.target.closest && e.target.closest('a[href*="wa.me/"]')) {
-    fbq('track', 'Contact');
-    fbq('trackCustom', 'WhatsAppClick');
-  }
+  var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
+  if (!a) return;
+  var p = { page: location.pathname, cta: a.textContent.replace(/\s+/g, ' ').trim().slice(0, 40) };
+  var first = true;
+  try { first = !sessionStorage.getItem('lj_contact'); sessionStorage.setItem('lj_contact', '1'); } catch (_) {}
+  if (first) fbq('track', 'Contact', p);
+  fbq('trackCustom', 'WhatsAppClick', p);
 });
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -121,12 +125,20 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
   <span class="stk d" style="--x:78%;--y:18%" aria-hidden="true"><i>🎨</i></span>
   <input type="text" id="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
   <section class="lesson quiz" id="quiz">
-    <!-- Works without JS too: straight to WhatsApp. -->
-    <div class="scr scr-center">
+    <!-- Intro ships in the HTML so it paints before cupo.js runs (LCP).
+         cupo.js keeps this node on first load; without JS, the noscript link takes over. -->
+    <div class="scr scr-center" data-static>
       <p class="big-emoji" aria-hidden="true">🎒</p>
+      <span class="kicker k-grape">⏱️ 30 segundos</span>
       <h1>¿Hay un cupo para tu peque?</h1>
-      <p>Escríbenos y te contamos qué grupos tienen sitio.</p>
-      <a class="btn btn-primary btn-lg btn-block" href="https://wa.me/393792913474">Escríbenos por WhatsApp</a>
+      <p>Responde estas <b>3 preguntas</b> para saber si tenemos un cupo disponible para tu peque.</p>
+      <ul class="q-preview" aria-label="Te preguntaremos">
+        <li style="--i:0"><span aria-hidden="true">🎂</span>Edad</li>
+        <li style="--i:1"><span aria-hidden="true">🌎</span>País</li>
+        <li style="--i:2"><span aria-hidden="true">📚</span>Nivel</li></ul>
+      <button class="btn btn-primary btn-lg btn-block breathe" type="button" data-go="q1">¡Empezar! <span class="arrow" aria-hidden="true">→</span></button>
+      <noscript><a class="btn btn-outline btn-lg btn-block" href="https://wa.me/393792913474">Escríbenos por WhatsApp</a></noscript>
+      <p class="fineprint">Sin compromiso · Sin pedirte datos personales</p>
     </div>
   </section>
 </main>

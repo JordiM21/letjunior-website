@@ -1285,6 +1285,7 @@ h2 + .lede{margin-top:var(--s3)}
   animation:scr-in var(--t-scene) var(--e-entrance) both;
 }
 .scr.back{animation-name:scr-back}
+.scr[data-static]{animation:none} /* server-rendered intro: visible at first paint */
 @keyframes scr-in{from{opacity:0;transform:translateX(32px)}}
 @keyframes scr-back{from{opacity:0;transform:translateX(-32px)}}
 .scr-center{align-items:center;text-align:center}

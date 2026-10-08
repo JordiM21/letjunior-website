@@ -23,12 +23,16 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '278354874748985');
 fbq('track', 'PageView');
-/* Any WhatsApp link, including ones cupo.js builds later */
+/* Any WhatsApp link, including ones cupo.js builds later.
+   Contact once per visit (a real conversation), WhatsAppClick on every tap, labelled by button. */
 document.addEventListener('click', function (e) {
-  if (e.target.closest && e.target.closest('a[href*="wa.me/"]')) {
-    fbq('track', 'Contact');
-    fbq('trackCustom', 'WhatsAppClick');
-  }
+  var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
+  if (!a) return;
+  var p = { page: location.pathname, cta: a.textContent.replace(/\s+/g, ' ').trim().slice(0, 40) };
+  var first = true;
+  try { first = !sessionStorage.getItem('lj_contact'); sessionStorage.setItem('lj_contact', '1'); } catch (_) {}
+  if (first) fbq('track', 'Contact', p);
+  fbq('trackCustom', 'WhatsAppClick', p);
 });
 </script>
 <noscript><img height="1" width="1" style="display:none"
