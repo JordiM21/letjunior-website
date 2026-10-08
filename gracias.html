@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>¡Listo! · LET Junior</title>
+<link rel="icon" href="/favicon.png">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#FFFDF8;color:#1E2640;line-height:1.5}
+  main{max-width:480px;margin:0 auto;padding:28px 18px 40px;display:grid;gap:16px}
+  .tag{font-weight:800;letter-spacing:.08em;font-size:.8rem;color:#C9461A;margin:0}
+  h1{font-size:1.9rem;line-height:1.15;margin:0}
+  p{margin:0}
+  .wa{display:block;text-align:center;background:#1DAA55;color:#fff;font-weight:800;font-size:1.1rem;
+      text-decoration:none;padding:16px;border-radius:16px;box-shadow:0 5px 0 #13803F}
+  .wa:active{transform:translateY(3px);box-shadow:0 2px 0 #13803F}
+  .note{font-size:.92rem;color:#4C5878;background:#F3F6FF;border-radius:12px;padding:12px}
+  ul{margin:0;padding-left:20px;display:grid;gap:6px;font-weight:600}
+</style>
+<!-- Meta Pixel · LET Junior Web -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '278354874748985');
+fbq('track', 'PageView');
+/* Any WhatsApp link, including ones cupo.js builds later */
+document.addEventListener('click', function (e) {
+  if (e.target.closest && e.target.closest('a[href*="wa.me/"]')) {
+    fbq('track', 'Contact');
+    fbq('trackCustom', 'WhatsAppClick');
+  }
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<main>
+  <p class="tag">LET JUNIOR</p>
+  <h1>¡Listo! Recibimos tu solicitud.</h1>
+  <p>Toca el botón y te enviamos los horarios disponibles para tu hijo/a por WhatsApp.</p>
+
+  <a class="wa" data-wa href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">Recibir horarios por WhatsApp</a>
+
+  <p class="note">Si prefieres, Sofia te escribirá en los próximos minutos desde el número
+    <strong>+39 379 291 3474</strong>. Guárdalo para reconocer el mensaje.</p>
+
+  <!-- TODO: 30-60 s class clip (muted, subtitled) goes here once recorded. -->
+
+  <ul>
+    <li>Grupos de máximo 4 alumnos</li>
+    <li>3 clases en vivo por semana con profesor real</li>
+    <li>50 USD al mes, exámenes y certificados incluidos</li>
+  </ul>
+
+  <a class="wa" data-wa href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">Hablar con Sofia por WhatsApp</a>
+</main>
+</body>
+</html>
