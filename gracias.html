@@ -2,22 +2,92 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¡Listo! — LET Academy</title>
 <meta name="robots" content="noindex">
-<title>¡Listo! · LET Junior</title>
-<link rel="icon" href="/favicon.png">
+<meta name="theme-color" content="#7FC8FF">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/fredoka-latin-var.woff2" crossorigin>
+<!-- Lands straight after a form, so everything is inline: no stylesheet, no JS
+     besides the pixel. Same tokens and pieces as styles.css, trimmed down. -->
 <style>
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#FFFDF8;color:#1E2640;line-height:1.5}
-  main{max-width:480px;margin:0 auto;padding:28px 18px 40px;display:grid;gap:16px}
-  .tag{font-weight:800;letter-spacing:.08em;font-size:.8rem;color:#C9461A;margin:0}
-  h1{font-size:1.9rem;line-height:1.15;margin:0}
-  p{margin:0}
-  .wa{display:block;text-align:center;background:#1DAA55;color:#fff;font-weight:800;font-size:1.1rem;
-      text-decoration:none;padding:16px;border-radius:16px;box-shadow:0 5px 0 #13803F}
-  .wa:active{transform:translateY(3px);box-shadow:0 2px 0 #13803F}
-  .note{font-size:.92rem;color:#4C5878;background:#F3F6FF;border-radius:12px;padding:12px}
-  ul{margin:0;padding-left:20px;display:grid;gap:6px;font-weight:600}
+@font-face{font-family:"Fredoka";src:url("assets/fonts/fredoka-latin-var.woff2") format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"Figtree";src:url("assets/fonts/figtree-latin-var.woff2") format("woff2");font-weight:300 900;font-display:swap}
+:root{
+  --cta:#CA4B15;--cta-edge:#8A310A;--sun:#FFC93D;--sun-soft:#FFF3C9;--sun-ink:#8A5A00;
+  --grass-ink:#237A33;--grass-soft:#E3F7D9;--sky-ink:#1B62B8;--sky-soft:#DDF0FF;
+  --bubble-ink:#C7205E;--bubble-soft:#FFE0EC;
+  --ink:#1F1A3D;--muted:#5E587A;--line-2:#D7D2EE;--surface:#fff;
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box}
+html{background:#BDE6FF}
+body{margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);font:16px/1.55 var(--body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:linear-gradient(180deg,#7FC8FF 0%,#B4E2FF 50%,#E2F4FF 100%) fixed}
+h1,h2{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+
+/* World: sun + hills, decorative */
+.sun{position:fixed;top:18px;right:4vw;width:clamp(70px,10vw,120px);z-index:0}
+.sun svg{display:block;width:100%;overflow:visible}
+.rays{transform-origin:60px 60px;animation:spin 40s linear infinite}
+.eyes{transform-origin:60px 58px;animation:blink 5s infinite}
+.hills{position:fixed;left:0;right:0;bottom:0;height:150px;width:100%;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:20px 16px 170px;display:grid;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:8px;justify-self:start;text-decoration:none;color:var(--ink);
+  font:700 18px var(--display);background:var(--surface);border-radius:20px;padding:8px 16px 8px 10px;
+  box-shadow:0 5px 0 rgba(31,26,61,.10)}
+.logo img{width:30px;height:29px;display:block}
+
+.card{background:var(--surface);border-radius:32px;padding:22px 18px 22px;display:grid;gap:14px;
+  box-shadow:0 6px 0 var(--line-2),0 22px 40px -22px rgba(31,26,61,.45);
+  animation:pop .6s var(--spring) both}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}}
+.check{width:54px;height:54px;border-radius:50%;background:var(--grass-soft);display:grid;place-items:center;
+  font-size:28px;justify-self:center;animation:party 1.4s .4s var(--spring) both}
+@keyframes party{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.15) rotate(8deg)}100%{transform:none}}
+h1{font-size:clamp(28px,7.5vw,38px);font-weight:700;text-align:center}
+h1 mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit;padding:0 2px}
+.sub{text-align:center;color:var(--muted);font-size:16px}
+
+
+.team{margin:0;border-radius:22px;overflow:hidden;position:relative;aspect-ratio:974/548;background:var(--sun-soft)}
+.team img{width:100%;height:100%;object-fit:cover;display:block}
+.team figcaption{position:absolute;left:10px;bottom:10px;background:var(--surface);border-radius:3000px;
+  padding:5px 12px;font:600 14px var(--display);box-shadow:0 3px 0 rgba(31,26,61,.15)}
+
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chips li{border-radius:3000px;padding:5px 10px;font-weight:700;font-size:13px;white-space:nowrap}
+.chips li:nth-child(1){background:var(--sun-soft);color:var(--sun-ink)}
+.chips li:nth-child(2){background:var(--bubble-soft);color:var(--bubble-ink)}
+.chips li:nth-child(3){background:var(--grass-soft);color:var(--grass-ink)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:56px;padding:12px 10px;white-space:nowrap;
+  border-radius:3000px;text-decoration:none;font:600 clamp(15px,4.2vw,18px)/1.1 var(--display);text-align:center;
+  transition:transform .14s,box-shadow .14s}
+.btn-primary{background:var(--cta);color:#fff;box-shadow:0 5px 0 var(--cta-edge),0 14px 22px -10px rgba(202,75,21,.55)}
+.btn-primary:active{transform:translateY(4px);box-shadow:0 1px 0 var(--cta-edge)}
+.btn-outline{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2.5px var(--ink),0 5px 0 var(--ink)}
+.btn-outline:active{transform:translateY(4px);box-shadow:inset 0 0 0 2.5px var(--ink),0 1px 0 var(--ink)}
+.btn svg{width:20px;height:20px;flex:none}
+@media (hover:hover){.btn:hover{transform:translateY(-2px)}}
+.btn-block{width:100%;font-size:clamp(16px,4.6vw,19px);min-height:60px}
+.price{text-align:center;font-weight:700;font-size:15px;margin-top:-2px}
+.price b{color:var(--cta)}
+.more{justify-self:center;font-weight:700;font-size:14px;color:var(--muted)}
+.fine{text-align:center;font-size:13px;color:var(--muted)}
+.fine b{white-space:nowrap}
+.copy{font:inherit;font-weight:700;color:var(--ink);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+:focus-visible{outline:3px solid var(--sky-ink);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <!-- Meta Pixel · LET Junior Web -->
 <script>
@@ -28,37 +98,95 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '278354874748985');
 fbq('track', 'PageView');
-/* Any WhatsApp link, including ones cupo.js builds later */
+/* Any WhatsApp link, including ones cupo.js builds later.
+   Contact once per visit (a real conversation), WhatsAppClick on every tap, labelled by button. */
 document.addEventListener('click', function (e) {
-  if (e.target.closest && e.target.closest('a[href*="wa.me/"]')) {
-    fbq('track', 'Contact');
-    fbq('trackCustom', 'WhatsAppClick');
-  }
+  var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
+  if (!a) return;
+  var p = { page: location.pathname, cta: a.textContent.replace(/\s+/g, ' ').trim().slice(0, 40) };
+  var first = true;
+  try { first = !sessionStorage.getItem('lj_contact'); sessionStorage.setItem('lj_contact', '1'); } catch (_) {}
+  if (first) fbq('track', 'Contact', p);
+  fbq('trackCustom', 'WhatsAppClick', p);
 });
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
+<div class="sun" aria-hidden="true">
+  <svg viewBox="0 0 120 120" focusable="false">
+    <g class="rays" fill="#FFD95A">
+      <rect id="ray" x="56" y="2" width="8" height="18" rx="4"/>
+      <use href="#ray" transform="rotate(30 60 60)"/><use href="#ray" transform="rotate(60 60 60)"/>
+      <use href="#ray" transform="rotate(90 60 60)"/><use href="#ray" transform="rotate(120 60 60)"/>
+      <use href="#ray" transform="rotate(150 60 60)"/><use href="#ray" transform="rotate(180 60 60)"/>
+      <use href="#ray" transform="rotate(210 60 60)"/><use href="#ray" transform="rotate(240 60 60)"/>
+      <use href="#ray" transform="rotate(270 60 60)"/><use href="#ray" transform="rotate(300 60 60)"/>
+      <use href="#ray" transform="rotate(330 60 60)"/>
+    </g>
+    <circle cx="60" cy="60" r="34" fill="#FFC93D"/>
+    <circle cx="52" cy="50" r="10" fill="#FFE08A"/>
+    <g class="eyes" fill="#1F1A3D"><ellipse cx="49" cy="58" rx="3.5" ry="5"/><ellipse cx="71" cy="58" rx="3.5" ry="5"/></g>
+    <circle cx="42" cy="69" r="5" fill="#FF8FA3" opacity=".8"/><circle cx="78" cy="69" r="5" fill="#FF8FA3" opacity=".8"/>
+    <path d="M50 70Q60 80 70 70" stroke="#1F1A3D" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+<svg class="hills" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path d="M0 180Q150 80 300 160Q450 100 600 170Q760 70 900 160Q1050 110 1200 180V300H0Z" fill="#C4C9FF"/>
+  <path d="M0 230Q150 180 300 215Q450 250 600 210Q750 170 900 215Q1050 255 1200 230V300H0Z" fill="#A6E27E"/>
+  <path d="M0 270Q200 235 400 262Q600 290 800 258Q1000 228 1200 270V300H0Z" fill="#6CCB4F"/>
+  <g fill="#FF4D8D"><circle cx="170" cy="262" r="5"/><circle cx="700" cy="278" r="5"/></g>
+  <g fill="#FFC93D"><circle cx="260" cy="258" r="5"/><circle cx="860" cy="264" r="5"/><circle cx="1130" cy="268" r="5"/></g>
+</svg>
+
 <main>
-  <p class="tag">LET JUNIOR</p>
-  <h1>¡Listo! Recibimos tu solicitud.</h1>
-  <p>Toca el botón y te enviamos los horarios disponibles para tu hijo/a por WhatsApp.</p>
+  <a class="logo" href="/">
+    <picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-72.avif"><img src="assets/optimized/brand/logo-globo-72.webp" width="30" height="29" alt=""></picture>
+    LET Academy
+  </a>
 
-  <a class="wa" data-wa href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">Recibir horarios por WhatsApp</a>
+  <section class="card">
+    <div class="check" aria-hidden="true">🎉</div>
+    <h1>¡Hay cupo para <mark>tu peque</mark>!</h1>
+    <p class="sub">Escríbenos por WhatsApp y te reservamos un lugar en <span id="band">el grupo de su edad</span>.</p>
 
-  <p class="note">Si prefieres, Sofia te escribirá en los próximos minutos desde el número
-    <strong>+39 379 291 3474</strong>. Guárdalo para reconocer el mensaje.</p>
+    <a class="btn btn-primary btn-block" href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2Z"/></svg>
+      Reservar mi cupo por WhatsApp
+    </a>
+    <p class="price">💵 <b>50 USD al mes</b> · exámenes y certificados incluidos</p>
+    <p class="fine">Te respondemos en minutos desde nuestro número internacional <b>+39 379 291 3474</b>.<br>
+      ¿No se abrió WhatsApp? <button class="copy" type="button" id="copyWa">Copiar número</button></p>
 
-  <!-- TODO: 30-60 s class clip (muted, subtitled) goes here once recorded. -->
+    <figure class="team">
+      <picture>
+        <source type="image/avif" srcset="assets/optimized/teachers/teachers-grupo-noedit-600.avif">
+        <img src="assets/optimized/teachers/teachers-grupo-noedit-600.webp" width="974" height="548" alt="El equipo de profesores de LET Academy" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>👋 Tus profes</figcaption>
+    </figure>
 
-  <ul>
-    <li>Grupos de máximo 4 alumnos</li>
-    <li>3 clases en vivo por semana con profesor real</li>
-    <li>50 USD al mes, exámenes y certificados incluidos</li>
-  </ul>
+    <ul class="chips">
+      <li>🎥 Clases 100% en vivo</li>
+      <li>👧 Máx. 4 por grupo</li>
+      <li>✅ Garantía 1 semana</li>
+    </ul>
 
-  <a class="wa" data-wa href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">Hablar con Sofia por WhatsApp</a>
+    <a class="more" href="/">Ver más info sobre LET Academy ›</a>
+  </section>
 </main>
+<script>
+/* ?edad=9 → "el grupo de 9 a 10 años" (bands 7-8, 9-10, 11-12, 13-14) */
+(function () {
+  var n = +new URLSearchParams(location.search).get('edad');
+  if (n >= 7 && n <= 14) { var lo = n - (n - 7) % 2; document.getElementById('band').textContent = 'el grupo de ' + lo + ' a ' + (lo + 1) + ' años'; }
+})();
+document.getElementById("copyWa").addEventListener("click", function () {
+  var b = this;
+  if (navigator.clipboard) navigator.clipboard.writeText("+39 379 291 3474").then(function () { b.textContent = "¡Copiado!"; }, function () {});
+  if (window.fbq) fbq("trackCustom", "WhatsAppFallback", { page: "/gracias" });
+});
+</script>
 </body>
 </html>
