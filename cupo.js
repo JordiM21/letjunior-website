@@ -1,4 +1,4 @@
-/* LET Academy — /cupo placement funnel.
+/* LET Junior — /cupo placement funnel.
    Intro → 3 taps → groups that fit, shown in the family's own clock → WhatsApp.
    The answers and the chosen slot travel inside the WhatsApp message (first
    line of the chat in Kommo) and, once LEAD_URL is set, are POSTed there too. */
@@ -120,7 +120,7 @@
   function yrs(n) { return n + (n === 1 ? ' año' : ' años'); }
   function pressed(on) { return ' aria-pressed="' + !!on + '"'; }
 
-  var PRICE = '<p class="recap"><span aria-hidden="true">💵</span> <b>50 USD/mes</b>, todo incluido · 3 clases en vivo por semana</p>';
+  var PRICE = '<p class="recap price-line"><span aria-hidden="true">💵</span> <b>50 USD/mes</b> · todo incluido · 3 clases/semana</p>';
 
   var VIEWS = {
     intro: function () {
@@ -201,9 +201,8 @@
           '<span class="slot-main"><span class="slot-days">' + s.days + '</span><span class="slot-time">' + s.time + '</span></span>' +
           (s.g.spots ? '<span class="slot-tag">Quedan ' + s.g.spots + ' cupos</span>' : '') + '</button></li>';
       }).join('');
-      return '<div class="scr">' +
-        '<span class="kicker k-grass">🎉 ¡Hay cupo!</span>' +
-        '<h2>Encontramos un grupo disponible para tu peque</h2>' +
+      return '<div class="scr scr-results">' +
+        '<h2>🎉 ¡Hay cupo para tu peque!</h2>' +
         '<p>' + (slots.length > 1 ? 'Elige el que más te guste.' : 'Tócalo para apartar el cupo.') + ' <span class="tz-note">Horarios en hora de ' + st.country.name + '.</span></p>' +
         '<ul class="opts slots">' + h + '</ul>' + PRICE +
         '<button class="btn btn-primary btn-lg btn-block" type="button" id="reserve" data-reserve="reservar"' + (st.slot ? '' : ' aria-disabled="true"') + '>Reservar mi cupo <span class="arrow" aria-hidden="true">→</span></button>' +

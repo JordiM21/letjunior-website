@@ -1,4 +1,4 @@
-# LET Academy — https://www.letjunior.com/
+# LET Junior — https://www.letjunior.com/
 # Everything is public. The workbench and theme snapshots are never deployed
 # (see .gitignore), but they are disallowed here too in case a build ever
 # uploads the whole folder by mistake.

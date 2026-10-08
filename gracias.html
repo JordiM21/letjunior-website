@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>¡Listo! — LET Academy</title>
+<title>¡Listo! — LET Junior</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#7FC8FF">
 <meta name="color-scheme" content="light">
@@ -41,36 +41,30 @@ p{margin:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
 
-main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:20px 16px 170px;display:grid;gap:18px}
-.logo{display:inline-flex;align-items:center;gap:8px;justify-self:start;text-decoration:none;color:var(--ink);
-  font:700 18px var(--display);background:var(--surface);border-radius:20px;padding:8px 16px 8px 10px;
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:10px 16px 170px;display:flex;flex-direction:column;gap:10px}
+.logo{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;text-decoration:none;color:var(--ink);
+  font:700 16px var(--display);background:var(--surface);border-radius:18px;padding:6px 14px 6px 8px;
   box-shadow:0 5px 0 rgba(31,26,61,.10)}
-.logo img{width:30px;height:29px;display:block}
+.logo img{width:26px;height:25px;display:block}
 
-.card{background:var(--surface);border-radius:32px;padding:22px 18px 22px;display:grid;gap:14px;
+.card{background:var(--surface);border-radius:32px;padding:16px 16px;display:flex;flex-direction:column;gap:9px;
   box-shadow:0 6px 0 var(--line-2),0 22px 40px -22px rgba(31,26,61,.45);
   animation:pop .6s var(--spring) both}
 @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}}
-.check{width:54px;height:54px;border-radius:50%;background:var(--grass-soft);display:grid;place-items:center;
-  font-size:28px;justify-self:center;animation:party 1.4s .4s var(--spring) both}
-@keyframes party{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.15) rotate(8deg)}100%{transform:none}}
-h1{font-size:clamp(28px,7.5vw,38px);font-weight:700;text-align:center}
+h1{font-size:clamp(26px,7vw,36px);font-weight:700;text-align:center}
 h1 mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit;padding:0 2px}
-.sub{text-align:center;color:var(--muted);font-size:16px}
-.hi{text-align:center;font:600 17px var(--display);color:var(--grass-ink);margin-bottom:-8px}
-.recap{background:var(--sky-soft);border-radius:20px;padding:12px 14px}
-.recap-h{font:600 15px var(--display);margin-bottom:6px}
-.recap ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:15px;font-weight:600}
-.recap li{display:flex;gap:8px}
+.sub{text-align:center;color:var(--muted);font-size:15px;line-height:1.45}
+.hi{text-align:center;font:600 17px var(--display);color:var(--grass-ink);margin-bottom:-6px}
+.recap{background:var(--sky-soft);border-radius:16px;padding:8px 12px;font-size:13.5px;line-height:1.4;font-weight:600;text-align:center;display:grid;gap:2px}
 
 
-.team{margin:0;border-radius:22px;overflow:hidden;position:relative;aspect-ratio:974/548;background:var(--sun-soft)}
+.team{margin:0;flex:none;border-radius:22px;overflow:hidden;position:relative;aspect-ratio:974/548;background:var(--sun-soft)}
 .team img{width:100%;height:100%;object-fit:cover;display:block}
 .team figcaption{position:absolute;left:10px;bottom:10px;background:var(--surface);border-radius:3000px;
   padding:5px 12px;font:600 14px var(--display);box-shadow:0 3px 0 rgba(31,26,61,.15)}
 
-.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.chips li{border-radius:3000px;padding:5px 10px;font-weight:700;font-size:13px;white-space:nowrap}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.chips li{border-radius:3000px;padding:4px 8px;font-weight:700;font-size:12.5px;white-space:nowrap}
 .chips li:nth-child(1){background:var(--sun-soft);color:var(--sun-ink)}
 .chips li:nth-child(2){background:var(--bubble-soft);color:var(--bubble-ink)}
 .chips li:nth-child(3){background:var(--grass-soft);color:var(--grass-ink)}
@@ -85,12 +79,18 @@ h1 mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit
 .btn svg{width:20px;height:20px;flex:none}
 @media (hover:hover){.btn:hover{transform:translateY(-2px)}}
 .btn-block{width:100%;font-size:clamp(16px,4.6vw,19px);min-height:60px}
-.price{text-align:center;font-weight:700;font-size:15px;margin-top:-2px}
+.price{text-align:center;font-weight:700;font-size:14px;margin-top:-2px}
 .price b{color:var(--cta)}
-.more{justify-self:center;font-weight:700;font-size:14px;color:var(--muted)}
+.more{align-self:center;font-weight:700;font-size:14px;color:var(--muted)}
 .fine{text-align:center;font-size:13px;color:var(--muted)}
 .fine b{white-space:nowrap}
 .copy{font:inherit;font-weight:700;color:var(--ink);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+@media (max-width:600px){
+  main{min-height:100vh;min-height:100dvh;padding-bottom:16px}
+  .card{flex:1}
+  .team{flex:1 1 0;aspect-ratio:auto;min-height:72px;max-height:240px}
+  .team img{object-position:center 30%}
+}
 :focus-visible{outline:3px solid var(--sky-ink);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -156,14 +156,19 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
 <main>
   <a class="logo" href="/">
     <picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-72.avif"><img src="assets/optimized/brand/logo-globo-72.webp" width="30" height="29" alt=""></picture>
-    LET Academy
+    LET Junior
   </a>
 
   <section class="card">
-    <div class="check" aria-hidden="true">🎉</div>
-    <p class="hi" id="hi" hidden></p>
+    <p class="hi" id="hi">🎉 ¡Solicitud recibida!</p>
     <h1 id="title">¡Hay cupo para <mark>tu peque</mark>!</h1>
     <p class="sub" id="sub">Escríbenos por WhatsApp y te reservamos un lugar en <span id="band">el grupo de su edad</span>.</p>
+
+    <!-- Filled from the /cupo answers (sessionStorage); stays hidden for Instant Form visitors. -->
+    <div class="recap" id="recap" hidden>
+      <p><b>✅ Tu solicitud:</b> <span id="rLine"></span></p>
+      <p id="rHorario" hidden></p>
+    </div>
 
     <a class="btn btn-primary btn-block" id="wa" href="https://wa.me/393792913474?text=Hola%20Sofia%2C%20complet%C3%A9%20el%20formulario%20de%20LET%20Junior%20y%20quiero%20recibir%20los%20horarios.">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2Z"/></svg>
@@ -171,35 +176,23 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
     </a>
     <p class="price">💵 <b>50 USD al mes</b> · exámenes y certificados incluidos</p>
 
-    <!-- Filled from the /cupo answers (sessionStorage); stays hidden for Instant Form visitors. -->
-    <div class="recap" id="recap" hidden>
-      <p class="recap-h">✅ Tu solicitud</p>
-      <ul>
-        <li><span aria-hidden="true">🎂</span><span id="rEdad"></span></li>
-        <li><span aria-hidden="true">🌎</span><span id="rPais"></span></li>
-        <li><span aria-hidden="true">📚</span><span id="rNivel"></span></li>
-        <li id="rHorarioLi" hidden><span aria-hidden="true">🗓️</span><span id="rHorario"></span></li>
-      </ul>
-    </div>
-
     <p class="fine">Te respondemos en minutos desde nuestro número internacional <b>+39 379 291 3474</b>.<br>
       ¿No se abrió WhatsApp? <button class="copy" type="button" id="copyWa">Copiar número</button></p>
 
     <figure class="team">
       <picture>
         <source type="image/avif" srcset="assets/optimized/teachers/teachers-grupo-noedit-600.avif">
-        <img src="assets/optimized/teachers/teachers-grupo-noedit-600.webp" width="974" height="548" alt="El equipo de profesores de LET Academy" loading="lazy" decoding="async">
+        <img src="assets/optimized/teachers/teachers-grupo-noedit-600.webp" width="974" height="548" alt="El equipo de profesores de LET Junior" loading="lazy" decoding="async">
       </picture>
-      <figcaption>👋 Tus profes</figcaption>
+      <figcaption>👋 Tus profes, en vivo</figcaption>
     </figure>
 
     <ul class="chips">
-      <li>🎥 Clases 100% en vivo</li>
-      <li>👧 Máx. 4 por grupo</li>
+      <li>👧 Máx. 4 niños</li>
       <li>✅ Garantía 1 semana</li>
     </ul>
 
-    <a class="more" href="/">Ver más info sobre LET Academy ›</a>
+    <a class="more" href="/">Ver más info sobre LET Junior ›</a>
   </section>
 </main>
 <script>
@@ -221,12 +214,10 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
     avisame: ['Te avisamos cuando abra <mark>su grupo</mark>', 'Escríbenos por WhatsApp y te guardamos un lugar en la lista.', 'Apuntarme por WhatsApp']
   }[q.accion] || [];
   if (COPY[0]) { $('title').innerHTML = COPY[0]; $('sub').textContent = COPY[1]; $('waLabel').textContent = COPY[2]; }
-  if (q.nombre) { $('hi').textContent = '¡Gracias, ' + q.nombre + '!'; $('hi').hidden = false; }
+  if (q.nombre) $('hi').textContent = '🎉 ¡Gracias, ' + q.nombre + '!';
   if (q.wa) $('wa').href = q.wa;
-  $('rEdad').textContent = q.edad + (q.edad === 1 ? ' año' : ' años');
-  $('rPais').textContent = q.pais;
-  $('rNivel').textContent = q.nivel;
-  if (q.horario) { $('rHorario').textContent = q.horario + ' (hora de ' + q.pais + ')'; $('rHorarioLi').hidden = false; }
+  $('rLine').textContent = q.edad + (q.edad === 1 ? ' año' : ' años') + ' · ' + q.pais + ' · ' + q.nivel;
+  if (q.horario) { $('rHorario').textContent = '🗓️ ' + q.horario + ' (hora de ' + q.pais + ')'; $('rHorario').hidden = false; }
   $('recap').hidden = false;
 
   if (q.lead && !q.fired && window.fbq) {

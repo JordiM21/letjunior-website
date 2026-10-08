@@ -16,7 +16,7 @@
 }
 
 /* =========================================================
-   LET Academy — "playground" design tokens
+   LET Junior — "playground" design tokens
    Vibrant, cartoony, game-like: a fixed sky/hills world behind the page,
    chunky cards with a solid bottom "edge" shadow, 3D push buttons.
    Every bright hue has an -ink twin for white text / small text (WCAG AA)
@@ -1388,6 +1388,12 @@ h2 + .lede{margin-top:var(--s3)}
   display:inline-flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s4);border-radius:var(--r-pill);
   background:var(--grass-soft);color:var(--grass-ink);font-weight:800;
 }
+.recap.price-line{display:block;align-self:stretch;border-radius:var(--r-m);font-size:14px;font-weight:700;padding:var(--s2) var(--s3);text-align:center}
+.recap.price-line b{font-weight:900}
+/* Results: the whole screen (slots, price, button) fits a 375x667 phone without scrolling */
+.scr-results{gap:var(--s2)}
+.scr-results .opt.slot{min-height:60px;padding-block:var(--s2)}
+.scr-results .slot-time{font-size:22px}
 .end-actions{display:flex;flex-direction:column;gap:var(--s3);width:100%;margin-top:var(--s2)}
 .end-actions .btn-block{margin-top:0}
 

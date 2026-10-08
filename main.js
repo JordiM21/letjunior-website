@@ -1,4 +1,4 @@
-/* LET Academy — landing interactions.
+/* LET Junior — landing interactions.
    Everything here is progressive enhancement: with JS off the page is
    complete and readable. Only transform/opacity is ever animated. */
 (function () {
