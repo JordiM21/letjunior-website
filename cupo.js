@@ -29,26 +29,13 @@
   // [name, flag, region for date formatting, time zones: first one is the default]
   var COUNTRIES = [
     ['España', '🇪🇸', 'ES', ['Europe/Madrid', 'Atlantic/Canary']],
-    ['México', '🇲🇽', 'MX', ['America/Mexico_City', 'America/Monterrey', 'America/Merida', 'America/Cancun', 'America/Chihuahua', 'America/Mazatlan', 'America/Hermosillo', 'America/Tijuana']],
+    ['Italia', '🇮🇹', 'IT', ['Europe/Rome']],
     ['Colombia', '🇨🇴', 'CO', ['America/Bogota']],
-    ['Argentina', '🇦🇷', 'AR', ['America/Argentina/Buenos_Aires', 'America/Buenos_Aires', 'America/Argentina/Cordoba', 'America/Argentina/Mendoza']],
-    ['Chile', '🇨🇱', 'CL', ['America/Santiago', 'America/Punta_Arenas']],
-    ['Perú', '🇵🇪', 'PE', ['America/Lima']],
-    ['Estados Unidos', '🇺🇸', 'US', ['America/New_York', 'America/Chicago', 'America/Denver', 'America/Phoenix', 'America/Los_Angeles', 'America/Detroit', 'America/Indiana/Indianapolis', 'America/Boise', 'America/Anchorage', 'Pacific/Honolulu']],
-    ['Ecuador', '🇪🇨', 'EC', ['America/Guayaquil']],
-    ['Venezuela', '🇻🇪', 'VE', ['America/Caracas']],
-    ['Guatemala', '🇬🇹', 'GT', ['America/Guatemala']],
-    ['Bolivia', '🇧🇴', 'BO', ['America/La_Paz']],
-    ['Rep. Dominicana', '🇩🇴', 'DO', ['America/Santo_Domingo']],
-    ['Costa Rica', '🇨🇷', 'CR', ['America/Costa_Rica']],
     ['Panamá', '🇵🇦', 'PA', ['America/Panama']],
-    ['Uruguay', '🇺🇾', 'UY', ['America/Montevideo']],
-    ['Paraguay', '🇵🇾', 'PY', ['America/Asuncion']],
-    ['Honduras', '🇭🇳', 'HN', ['America/Tegucigalpa']],
-    ['El Salvador', '🇸🇻', 'SV', ['America/El_Salvador']],
-    ['Nicaragua', '🇳🇮', 'NI', ['America/Managua']],
-    ['Puerto Rico', '🇵🇷', 'PR', ['America/Puerto_Rico']]
+    ['México', '🇲🇽', 'MX', ['America/Mexico_City', 'America/Monterrey', 'America/Merida', 'America/Cancun', 'America/Chihuahua', 'America/Mazatlan', 'America/Hermosillo', 'America/Tijuana']],
+    ['Estados Unidos', '🇺🇸', 'US', ['America/New_York', 'America/Chicago', 'America/Denver', 'America/Phoenix', 'America/Los_Angeles', 'America/Detroit', 'America/Indiana/Indianapolis', 'America/Boise', 'America/Anchorage', 'Pacific/Honolulu']]
   ];
+  var SERVED = 'España, Italia, Colombia, Panamá, México y Estados Unidos';
   var HERE = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
   COUNTRIES.push(['Otro país', '🌍', '', [HERE]]);
 
@@ -114,7 +101,7 @@
   var card = document.getElementById('quiz');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var plan = new URLSearchParams(location.search).get('plan');
-  var ORDER = ['intro', 'q1', 'noage', 'q2', 'q3', 'seek', 'results', 'contact', 'thanks'];
+  var ORDER = ['intro', 'q1', 'q2', 'q3', 'seek', 'results', 'contact', 'thanks', 'nocupo'];
   var MIN_AGE = 7, MAX_AGE = 14; // outside this: kind exit, no WhatsApp, no Lead
   var WA_SHOWN = '+39 379 291 3474';
   var st = {}, slots = [], current = 'intro', seekTimer;
@@ -165,14 +152,18 @@
           '<button class="btn btn-primary" type="submit">Seguir <span class="arrow" aria-hidden="true">→</span></button></div>' +
           '<p class="fld-err" id="age-err" role="alert" hidden></p></form></div>';
     },
-    noage: function () {
+    nocupo: function () {
+      var pais = st.out === 'pais';
       return '<div class="scr scr-center">' +
         '<p class="big-emoji" aria-hidden="true">🌱</p>' +
         '<h2>¡Gracias por pensar en nosotros!</h2>' +
-        '<p>Por ahora nuestros grupos con cupo son para peques de <b>' + MIN_AGE + ' a ' + MAX_AGE + ' años</b>, así que todavía no tenemos un lugar para peques de ' + yrs(st.age) + '.</p>' +
-        '<p>Los grupos de otras edades están llenos. Cuando abramos uno nuevo lo anunciaremos aquí en la web.</p>' +
+        (pais
+          ? '<p>Por ahora nuestros horarios de clase funcionan para familias en <b>' + SERVED + '</b>, así que todavía no tenemos un grupo para tu país.</p>'
+          : '<p>Por ahora nuestros grupos con cupo son para peques de <b>' + MIN_AGE + ' a ' + MAX_AGE + ' años</b>, así que todavía no tenemos un lugar para peques de ' + yrs(st.age) + '.</p>' +
+            '<p>Los grupos de otras edades están llenos.</p>') +
+        '<p>Cuando abramos uno nuevo lo anunciaremos aquí en la web.</p>' +
         '<div class="end-actions">' +
-          '<button class="btn btn-outline btn-lg btn-block" type="button" data-back>Cambiar la edad</button>' +
+          '<button class="btn btn-outline btn-lg btn-block" type="button" data-back>' + (pais ? 'Cambiar el país' : 'Cambiar la edad') + '</button>' +
           '<a class="btn btn-outline btn-lg btn-block" href="/">Volver al inicio</a></div></div>';
     },
     q2: function () {
@@ -313,7 +304,7 @@
 
   /* ---------- Navigation: every screen is a history entry, so the phone's back button steps back a question ---------- */
   function ready(s) {
-    var need = { noage: 'age', q2: 'age', q3: 'country', seek: 'level', results: 'level', contact: 'choice', thanks: 'level' }[s];
+    var need = { nocupo: 'out', q2: 'age', q3: 'country', seek: 'level', results: 'level', contact: 'choice', thanks: 'level' }[s];
     return !need || st[need] != null;
   }
   function go(s, push) {
@@ -332,7 +323,7 @@
     h.focus({ preventScroll: true });
     if (s === 'seek') seekTimer = setTimeout(function () { go('results', false); history.replaceState({ s: 'results' }, ''); }, reduce ? 300 : 1700);
     if (s === 'results') { track('QuizResults', { found: slots.length }); loadLib(); }
-    if (s === 'noage') track('LeadNoCalifica', { edad: st.age, motivo: 'edad' });
+    if (s === 'nocupo') track('LeadNoCalifica', { motivo: st.out, edad: st.age, pais: st.country ? st.country.name : '' });
     if (s === 'thanks') burstFrom(card.querySelector('.big-emoji'));
   }
   history.replaceState({ s: 'intro' }, '');
@@ -358,7 +349,7 @@
     if (d.go) { go(d.go, true); if (d.go === 'q1') track('QuizStart', { from: 'cupo' }); }
     else if ('copyWa' in d) copyWa(b);
     else if ('back' in d) history.back();
-    else if (d.age) { step(1, 'edad', +d.age); pick(b, 'age', +d.age, 'q2'); }
+    else if (d.age) { st.out = null; step(1, 'edad', +d.age); pick(b, 'age', +d.age, 'q2'); }
     else if ('other' in d) {
       var f = document.getElementById('age-form'), open = f.hidden;
       f.hidden = !open; b.setAttribute('aria-expanded', open);
@@ -369,6 +360,7 @@
       var c = COUNTRIES[+d.country];
       st.cc = null;
       step(2, 'pais', c[0]);
+      if (!c[2]) { st.country = null; st.out = 'pais'; return go('nocupo', true); }
       pick(b, 'country', { name: c[0], cc: c[2], tz: c[3].indexOf(HERE) >= 0 ? HERE : c[3][0] }, 'q3');
     }
     else if (d.level) {
@@ -423,7 +415,8 @@
       }
       st.age = n;
       step(1, 'edad', n);
-      return go(n < MIN_AGE || n > MAX_AGE ? 'noage' : 'q2', true);
+      st.out = n < MIN_AGE || n > MAX_AGE ? 'edad' : null;
+      return go(st.out ? 'nocupo' : 'q2', true);
     }
     var name = document.getElementById('c-name').value.trim(), tel = document.getElementById('c-tel').value.trim();
     if (name.length < 2) return fail('c-name', 'Escribe tu nombre para que sepamos con quién hablar.');
@@ -549,7 +542,7 @@
   function step(n, question, answer) { lastStep = n; track('QuizStep', { step: n, question: question, answer: answer }); }
   // Started but left before the end. Best-effort: some browsers drop it on close.
   addEventListener('pagehide', function () {
-    if (lastStep && current !== 'thanks' && current !== 'noage') track('QuizAbandon', { last_step: lastStep, screen: current });
+    if (lastStep && current !== 'thanks' && current !== 'nocupo') track('QuizAbandon', { last_step: lastStep, screen: current });
   });
   function copyWa(b) {
     var done = function () { b.textContent = '¡Copiado!'; };
@@ -582,11 +575,12 @@
   if (edad >= 1 && edad <= 99) {
     st.age = edad;
     history.replaceState({ s: 'q1' }, '');
-    var first = edad < MIN_AGE || edad > MAX_AGE ? 'noage' : 'q2';
+    st.out = edad < MIN_AGE || edad > MAX_AGE ? 'edad' : null;
+    var first = st.out ? 'nocupo' : 'q2';
     go(first);
     history.pushState({ s: first }, '');
     track('QuizStart', { from: 'hero_age' });
     step(1, 'edad', edad);
-    if (first === 'noage') track('LeadNoCalifica', { edad: edad, motivo: 'edad' });
+    if (first === 'nocupo') track('LeadNoCalifica', { motivo: 'edad', edad: edad, pais: '' });
   } else go('intro');
 })();
