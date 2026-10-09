@@ -320,11 +320,7 @@ h2 + .lede{margin-top:var(--s3)}
   max-width:none;
 }
 .logo{display:inline-flex;align-items:center;gap:var(--s2);text-decoration:none;font-family:var(--display);font-weight:700}
-.logo-mark{width:36px;height:34px;object-fit:contain;display:block;filter:drop-shadow(0 3px 0 rgba(31,26,61,.14));transform-origin:50% 90%;
-  animation:logoDrop 900ms var(--e-spring) both,logoHop 4s ease-in-out 1.4s infinite}
-.logo:active .logo-mark{animation:logoDrop 900ms var(--e-spring) both,logoHop 4s ease-in-out 1.4s infinite,jump 700ms var(--e-spring)} /* names kept so the entrance does not replay */
-@keyframes logoDrop{0%{opacity:0;transform:translateY(-28px) scale(.4) rotate(-20deg)}55%{opacity:1;transform:translateY(3px) scale(1.15,.9) rotate(6deg)}75%{transform:translateY(-4px) scale(.96,1.05)}100%{transform:none}}
-@keyframes logoHop{0%,76%,100%{transform:none}82%{transform:translateY(-8px) rotate(-8deg) scale(1.06)}88%{transform:translateY(0) scale(1.1,.88)}93%{transform:translateY(-3px) scale(.97,1.03)}}
+.logo-mark{width:36px;height:34px;object-fit:contain;display:block;filter:drop-shadow(0 3px 0 rgba(31,26,61,.14))}   /* still: the brand mark is not a toy */
 .logo picture{display:contents}
 .logo-word{font-size:18px;white-space:nowrap;color:var(--ink)}
 .hdr-cta,.hdr-app{white-space:nowrap}
@@ -1261,7 +1257,6 @@ h2 + .lede{margin-top:var(--s3)}
   .btn-primary:not(:disabled):hover{background:var(--cta-deep);transform:translateY(-2px);box-shadow:0 7px 0 var(--cta-edge),0 18px 24px -10px rgba(202,75,21,.6)}
   .btn-outline:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 2.5px var(--ink),0 7px 0 var(--ink)}
   .btn-invert:hover{transform:translateY(-2px);box-shadow:0 7px 0 #000,0 18px 24px -10px rgba(0,0,0,.5)}
-  .logo:hover .logo-mark{animation:logoDrop 900ms var(--e-spring) both,logoHop 4s ease-in-out 1.4s infinite,jump 700ms var(--e-spring)}
   .vid-shot:hover img{transform:scale(1.05)}
   .vid-shot:hover .vid-play{transform:scale(1.12) rotate(-6deg)}
   .opt:hover{border-color:var(--grape)}
