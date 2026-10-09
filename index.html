@@ -59,16 +59,15 @@ html{background:#BDE6FF}
 .sp-in{display:flex;flex-direction:column;align-items:center;gap:16px;
   font:700 22px/1 "Fredoka","Trebuchet MS",system-ui,sans-serif;color:#1F1A3D}
 .sp-logo{width:76px;height:76px;
-  display:grid;place-items:center;animation:sp-hop .8s ease-in-out infinite alternate}
+  display:grid;place-items:center}
 .sp-logo img{width:64px;height:auto;filter:drop-shadow(0 4px 0 rgba(31,26,61,.14))}
 .sp-dots{display:flex;gap:8px}
 .sp-dots i{width:12px;height:12px;border-radius:50%;background:#7B61FF;animation:sp-dot .9s ease-in-out infinite}
 .sp-dots i:nth-child(2){background:#FF4D8D;animation-delay:.15s}
 .sp-dots i:nth-child(3){background:#FFC93D;animation-delay:.3s}
-@keyframes sp-hop{to{transform:translateY(-12px) rotate(-6deg)}}
 @keyframes sp-dot{50%{transform:translateY(-8px)}}
 @keyframes sp-out{to{opacity:0;visibility:hidden}}
-@media (prefers-reduced-motion:reduce){.sp-logo,.sp-dots i{animation:none}}
+@media (prefers-reduced-motion:reduce){.sp-dots i{animation:none}}
 </style>
 
 <script type="application/ld+json">
