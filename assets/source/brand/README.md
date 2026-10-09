@@ -20,12 +20,10 @@ untouched.
 
 - `30.png` / `31.png` — the full lockup on a light and a dark field, 1080×1080.
   Source material, not used directly on the site.
-- `logo-globo.png` — **derived**, not sent: the globe cut off the lavender field
-  of `30.png` into real transparency, 779×747. This is what the site uses.
-- `logo-nobg.png` — despite the name this has **no alpha channel** and is only
-  52×52, so nothing can use it. Kept only so it is not sent again by mistake.
+- `logo-let.png` — the globe on real transparency (sent 2026-10-09, trimmed to
+  356×340). This is what the site and the kids app use.
 
-Generated from the globe, at the project root: `favicon.png`,
+Generated from `logo-let.png`, at the project root: `favicon.png`,
 `apple-touch-icon.png` (on the brand field, since Apple ignores transparency)
 and `og-image.jpg` at 1200×630.
 

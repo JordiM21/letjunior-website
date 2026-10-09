@@ -902,68 +902,47 @@
     ]
   },
   {
-    "file": "assets\\source\\brand\\logo-globo.png",
+    "file": "assets\\source\\brand\\logo-let.png",
     "kind": "brand",
-    "w": 779,
-    "h": 747,
+    "w": 356,
+    "h": 340,
     "crop": null,
     "made": [
       {
         "w": 36,
         "fmt": "avif",
-        "bytes": 1520,
-        "path": "assets\\optimized\\brand\\logo-globo-36.avif"
+        "bytes": 1377,
+        "path": "assets\\optimized\\brand\\logo-let-36.avif"
       },
       {
         "w": 36,
         "fmt": "webp",
-        "bytes": 1392,
-        "path": "assets\\optimized\\brand\\logo-globo-36.webp"
+        "bytes": 1208,
+        "path": "assets\\optimized\\brand\\logo-let-36.webp"
       },
       {
         "w": 72,
         "fmt": "avif",
-        "bytes": 2863,
-        "path": "assets\\optimized\\brand\\logo-globo-72.avif"
+        "bytes": 2551,
+        "path": "assets\\optimized\\brand\\logo-let-72.avif"
       },
       {
         "w": 72,
         "fmt": "webp",
-        "bytes": 3320,
-        "path": "assets\\optimized\\brand\\logo-globo-72.webp"
+        "bytes": 2856,
+        "path": "assets\\optimized\\brand\\logo-let-72.webp"
       },
       {
         "w": 144,
         "fmt": "avif",
-        "bytes": 5926,
-        "path": "assets\\optimized\\brand\\logo-globo-144.avif"
+        "bytes": 5004,
+        "path": "assets\\optimized\\brand\\logo-let-144.avif"
       },
       {
         "w": 144,
         "fmt": "webp",
-        "bytes": 7894,
-        "path": "assets\\optimized\\brand\\logo-globo-144.webp"
-      }
-    ]
-  },
-  {
-    "file": "assets\\source\\brand\\logo-nobg.png",
-    "kind": "brand",
-    "w": 52,
-    "h": 52,
-    "crop": null,
-    "made": [
-      {
-        "w": 36,
-        "fmt": "avif",
-        "bytes": 840,
-        "path": "assets\\optimized\\brand\\logo-nobg-36.avif"
-      },
-      {
-        "w": 36,
-        "fmt": "webp",
-        "bytes": 716,
-        "path": "assets\\optimized\\brand\\logo-nobg-36.webp"
+        "bytes": 6422,
+        "path": "assets\\optimized\\brand\\logo-let-144.webp"
       }
     ]
   }
