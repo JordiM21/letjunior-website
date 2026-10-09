@@ -45,7 +45,9 @@ main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:10px 16px
 .logo{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;text-decoration:none;color:var(--ink);
   font:700 16px var(--display);background:var(--surface);border-radius:18px;padding:6px 14px 6px 8px;
   box-shadow:0 5px 0 rgba(31,26,61,.10)}
-.logo img{width:26px;height:25px;display:block}
+.logo img{width:28px;height:27px;display:block;transform-origin:50% 90%;animation:logoDrop .9s var(--spring) both,logoHop 4s ease-in-out 1.4s infinite}
+@keyframes logoDrop{0%{opacity:0;transform:translateY(-24px) scale(.4) rotate(-20deg)}55%{opacity:1;transform:translateY(3px) scale(1.15,.9) rotate(6deg)}75%{transform:translateY(-4px) scale(.96,1.05)}100%{transform:none}}
+@keyframes logoHop{0%,76%,100%{transform:none}82%{transform:translateY(-7px) rotate(-8deg) scale(1.06)}88%{transform:translateY(0) scale(1.1,.88)}93%{transform:translateY(-3px) scale(.97,1.03)}}
 
 .card{background:var(--surface);border-radius:32px;padding:16px 16px;display:flex;flex-direction:column;gap:9px;
   box-shadow:0 6px 0 var(--line-2),0 22px 40px -22px rgba(31,26,61,.45);
@@ -155,7 +157,7 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
 
 <main>
   <a class="logo" href="/">
-    <picture><source type="image/avif" srcset="assets/optimized/brand/logo-globo-72.avif"><img src="assets/optimized/brand/logo-globo-72.webp" width="30" height="29" alt=""></picture>
+    <picture><source type="image/avif" srcset="assets/optimized/brand/logo-let-72.avif"><img src="assets/optimized/brand/logo-let-72.webp" width="30" height="29" alt=""></picture>
     LET Junior
   </a>
 
