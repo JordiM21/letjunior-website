@@ -405,7 +405,7 @@ h2 + .lede{margin-top:var(--s3)}
 .breathe.is-calm::after{animation:none;opacity:0}
 @keyframes breathe{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(1.12,1.3);opacity:0}}
 
-/* Product frame: a purple game "card" holding the real class photo grid */
+/* Product frame: a purple game "card" holding the promo video */
 .hero-visual{
   position:relative;
   background:var(--grape);
@@ -415,29 +415,21 @@ h2 + .lede{margin-top:var(--s3)}
   box-shadow:0 10px 0 var(--grape-edge),var(--shadow-soft);
 }
 .rainbow{display:none}
-.screen-mock{
-  background:var(--surface);border-radius:22px;
-  padding:var(--s3) var(--s3) var(--s4);
-  display:flex;flex-direction:column;gap:var(--s3);
-  position:relative;overflow:hidden;
+/* Promo video in a white "screen"; chips and rainbow float over the frame */
+.promo{position:relative;aspect-ratio:1;border-radius:22px;overflow:hidden;background:#fff}
+.promo-vid{display:block;width:100%;height:100%;object-fit:cover}
+.promo-btn{
+  position:absolute;bottom:var(--s3);width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;border:0;cursor:pointer;
+  background:var(--surface);color:var(--grape-ink);fill:currentColor;
+  box-shadow:0 3px 0 var(--line-2);transition:transform .15s var(--e-entrance);
 }
-.screen-mock::before{
-  content:"";position:absolute;top:14px;left:14px;width:10px;height:10px;border-radius:50%;
-  background:var(--bubble);
-  box-shadow:16px 0 0 var(--sun), 32px 0 0 var(--grass);
-  z-index:2;
-}
-.mock-top{display:flex;align-items:center;gap:var(--s3);padding-top:22px}
-.mock-top .bar{flex:1;height:10px;border-radius:var(--r-pill);background:var(--cream);overflow:hidden}
-.mock-top .bar i{display:block;width:62%;height:100%;border-radius:var(--r-pill);background:var(--grass);animation:grow 2.4s var(--e-entrance) .6s both}
-@keyframes grow{from{width:8%}}
-.mock-top .hearts{flex:0 0 auto;color:var(--bubble);font-size:14px;letter-spacing:1px}
-.mock-top .hearts b{color:var(--line);font-weight:400}
-.mock-say{
-  font-family:var(--display);font-weight:600;font-size:15px;color:var(--ink);
-  background:var(--sky-soft);border-radius:var(--r-s);padding:var(--s2) var(--s3);
-}
-.mock-say b{background:var(--grass);padding:0 .2em;border-radius:.2em}
+.promo-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line-2)}
+.promo-btn:focus-visible{outline:3px solid var(--grape);outline-offset:2px}
+.promo-play{left:var(--s3)}
+.promo-sound{right:var(--s3)}
+.promo.paused .i-pause,.promo:not(.paused) .i-play,
+.promo-sound[aria-pressed="true"] .i-off,.promo-sound[aria-pressed="false"] .i-on{display:none}
 .hero-chips{
   position:absolute;left:-8px;right:-8px;bottom:-22px;
   display:flex;justify-content:space-between;gap:var(--s2);pointer-events:none;
@@ -450,19 +442,6 @@ h2 + .lede{margin-top:var(--s3)}
 }
 .chip-xp{background:var(--sun);color:var(--ink);box-shadow:0 4px 0 var(--sun-edge);animation:bobslow 6s ease-in-out -1s infinite}
 .chip-streak{background:var(--surface);color:var(--ink);box-shadow:0 4px 0 var(--line-2);animation:bobslow 6s ease-in-out -4s infinite}
-.screen-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;position:relative;z-index:1}
-.tile picture{display:contents}
-.tile img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
-.tile{
-  flex:0 0 calc((100% - 18px) / 4);
-  aspect-ratio:1;border-radius:14px;background:var(--cream);
-  overflow:hidden;position:relative;
-}
-.tile:nth-child(2){box-shadow:inset 0 0 0 3px var(--mango)}
-.tile-teacher{
-  flex:0 0 100%;aspect-ratio:16/9;border-radius:var(--r-s);
-  box-shadow:inset 0 0 0 3px var(--sky);
-}
 .live{
   position:absolute;top:var(--s2);left:var(--s2);z-index:1;display:inline-flex;align-items:center;gap:5px;
   font-family:var(--body);font-size:10px;font-weight:800;letter-spacing:.08em;

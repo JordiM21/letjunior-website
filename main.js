@@ -8,6 +8,38 @@
   var root = document.documentElement;
   var lite = root.classList.contains('lite');
 
+  /* ---------- Hero promo video ----------
+     Muted autoplay loop, paused off-screen. Reduced motion, lite mode and
+     2G/3G start on the poster; the two buttons are the whole player. */
+  var promo = document.querySelector('.promo');
+  if (promo) {
+    var net = navigator.connection, slow = net && /2g|3g/.test(net.effectiveType || '');
+    var vid = promo.querySelector('video'), playBtn = promo.querySelector('.promo-play'),
+        soundBtn = promo.querySelector('.promo-sound'), held = reduce || lite || slow;
+    var sync = function () {
+      promo.classList.toggle('paused', vid.paused);
+      playBtn.setAttribute('aria-label', vid.paused ? 'Reproducir vídeo' : 'Pausar vídeo');
+    };
+    vid.addEventListener('play', sync);
+    vid.addEventListener('pause', sync);
+    playBtn.addEventListener('click', function () {
+      held = !vid.paused;
+      if (held) vid.pause(); else vid.play();
+    });
+    soundBtn.addEventListener('click', function () {
+      vid.muted = !vid.muted;
+      soundBtn.setAttribute('aria-pressed', String(!vid.muted));
+      soundBtn.setAttribute('aria-label', vid.muted ? 'Activar sonido' : 'Silenciar');
+      if (!vid.muted) { held = false; vid.play(); }
+    });
+    new IntersectionObserver(function (e) {
+      if (!e[0].isIntersecting) vid.pause();
+      else if (!held) vid.play().catch(sync);
+    }, { threshold: 0.25 }).observe(promo);
+    if (!held) vid.play().catch(sync);
+    sync();
+  }
+
   /* ---------- Loading screen ----------
      Lifts on window load, or after 2.5s at most on a slow connection (the
      inline CSS also fades it by itself at 6s if this script never runs).
