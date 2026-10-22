@@ -31,11 +31,8 @@
 
 <link rel="stylesheet" href="styles.css">
 
-<!-- The hero frame is the LCP element on a phone. -->
-<link rel="preload" as="image" type="image/avif" fetchpriority="high"
-      href="assets/optimized/teachers/jordi-meeting-800.avif"
-      imagesrcset="assets/optimized/teachers/jordi-meeting-400.avif 400w, assets/optimized/teachers/jordi-meeting-800.avif 800w"
-      imagesizes="(min-width:900px) 452px, 84vw">
+<!-- The hero frame is the LCP element on a phone: the promo video poster. -->
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="assets/optimized/video/promo-poster-720.webp">
 <script>
 /* js: enables reveals + the loading screen. lite: low-memory phones and Data
    Saver get still scenery (see styles.css LITE MODE). */
@@ -293,91 +290,21 @@ src="https://www.facebook.com/tr?id=278354874748985&ev=PageView&noscript=1"/></n
       </div>
     </div>
 
-    <div class="hero-visual reveal" data-d="120" role="img"
-         aria-label="Una clase de LET Junior en directo: Jordi y siete alumnos conectados">
+    <div class="hero-visual reveal" data-d="120">
       <span class="rainbow" aria-hidden="true"></span>
-      <div class="screen-mock">
-        <div class="mock-top">
-          <span class="bar"><i></i></span>
-          <span class="hearts">♥♥♥<b>♥</b></span>
-        </div>
-        <div class="screen-grid">
-          <div class="tile tile-teacher">
-            <span class="live"><i></i>EN VIVO</span>
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 452px, 84vw"
-                      srcset="assets/optimized/teachers/jordi-meeting-400.avif 400w, assets/optimized/teachers/jordi-meeting-800.avif 800w">
-              <source type="image/webp" sizes="(min-width:900px) 452px, 84vw"
-                      srcset="assets/optimized/teachers/jordi-meeting-400.webp 400w, assets/optimized/teachers/jordi-meeting-800.webp 800w">
-              <img src="assets/optimized/teachers/jordi-meeting-800.webp" width="800" height="450" alt=""
-                   fetchpriority="high" decoding="async">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/daniel-96.avif 96w, assets/optimized/students/daniel-192.avif 192w, assets/optimized/students/daniel-288.avif 288w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/daniel-96.webp 96w, assets/optimized/students/daniel-192.webp 192w, assets/optimized/students/daniel-288.webp 288w">
-              <img src="assets/optimized/students/daniel-288.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/mila-96.avif 96w, assets/optimized/students/mila-192.avif 192w, assets/optimized/students/mila-288.avif 288w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/mila-96.webp 96w, assets/optimized/students/mila-192.webp 192w, assets/optimized/students/mila-288.webp 288w">
-              <img src="assets/optimized/students/mila-288.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/josue-96.avif 96w, assets/optimized/students/josue-192.avif 192w, assets/optimized/students/josue-288.avif 288w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/josue-96.webp 96w, assets/optimized/students/josue-192.webp 192w, assets/optimized/students/josue-288.webp 288w">
-              <img src="assets/optimized/students/josue-288.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/neila-96.avif 96w, assets/optimized/students/neila-192.avif 192w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/neila-96.webp 96w, assets/optimized/students/neila-192.webp 192w">
-              <img src="assets/optimized/students/neila-192.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/samir-96.avif 96w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/samir-96.webp 96w">
-              <img src="assets/optimized/students/samir-96.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/samantha-96.avif 96w, assets/optimized/students/samantha-192.avif 192w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/samantha-96.webp 96w, assets/optimized/students/samantha-192.webp 192w">
-              <img src="assets/optimized/students/samantha-192.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-          <div class="tile">
-            <picture>
-              <source type="image/avif" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/jeanpaul-92.avif 92w">
-              <source type="image/webp" sizes="(min-width:900px) 108px, 21vw"
-                      srcset="assets/optimized/students/jeanpaul-92.webp 92w">
-              <img src="assets/optimized/students/jeanpaul-92.webp" width="192" height="192" alt="" fetchpriority="low" decoding="async" loading="lazy">
-            </picture>
-          </div>
-        </div>
-        <p class="mock-say" lang="en">“It’s a <b>green dragon</b>!” 🐉</p>
+      <div class="promo">
+        <video class="promo-vid" muted loop playsinline preload="metadata" width="720" height="720"
+               poster="assets/optimized/video/promo-poster-720.webp"
+               aria-label="Vídeo de 30 segundos: así son las clases de LET Junior">
+          <source src="assets/optimized/video/promo-720.mp4" type="video/mp4" media="(min-width:900px)">
+          <source src="assets/optimized/video/promo-480.mp4" type="video/mp4">
+        </video>
+        <button class="promo-btn promo-play" type="button" aria-label="Pausar vídeo">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="promo-btn promo-sound" type="button" aria-pressed="false" aria-label="Activar sonido">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="i-off" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/><path class="i-on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+        </button>
       </div>
       <div class="hero-chips">
         <span class="hero-chip chip-xp">⭐ 1.240 XP</span>

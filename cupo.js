@@ -19,7 +19,7 @@
     { days: [1, 3, 5], time: '04:00' }
   ];
   var WA_PHONE = '393792913474';
-  var LEAD_URL = 'https://letjunior-hub.vercel.app/api/hooks/form/teumO-UI4q1W6baW9_A7te8fT5lZ0DsJ'; // empty = nothing is sent
+  var LEAD_URL = 'https://dashboard-chi-nine-23.vercel.app/api/hooks/form/teumO-UI4q1W6baW9_A7te8fT5lZ0DsJ'; // empty = nothing is sent
   // Phone validation + country codes (lazy-loaded when the results screen shows).
   var PHONE_LIB = {
     src: 'https://cdn.jsdelivr.net/npm/libphonenumber-js@1.13.14/bundle/libphonenumber-mobile.js',
