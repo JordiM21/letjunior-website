@@ -440,9 +440,7 @@ h2 + .lede{margin-top:var(--s3)}
   padding:8px 14px;font-family:var(--display);font-weight:700;font-size:15px;
   white-space:nowrap;
 }
-.chip-xp{background:var(--sun);color:var(--ink);box-shadow:0 4px 0 var(--sun-edge);animation:bobslow 6s ease-in-out -1s infinite}
-.chip-streak{background:var(--surface);color:var(--ink);box-shadow:0 4px 0 var(--line-2);animation:bobslow 6s ease-in-out -4s infinite}
-.live{
+.chip-xp{background:var(--sun);color:var(--ink);box-shadow:0 4px 0 var(--sun-edge);animation:bobslow 6s ease-in-out -1s infinite}.live{
   position:absolute;top:var(--s2);left:var(--s2);z-index:1;display:inline-flex;align-items:center;gap:5px;
   font-family:var(--body);font-size:10px;font-weight:800;letter-spacing:.08em;
   background:var(--bubble-ink);color:#fff;border-radius:var(--r-pill);padding:3px 8px;
@@ -603,38 +601,7 @@ h2 + .lede{margin-top:var(--s3)}
 .get-copy h3{font-size:clamp(24px,3.2vw,36px);line-height:1.1;margin:4px 0 var(--s2);max-width:18ch}
 .get-copy p:last-child{font-size:16.5px;color:var(--ink-2);max-width:40ch}
 
-/* slide 1 — live class */
-.art-live{background:var(--grape);background-image:radial-gradient(rgba(255,255,255,.18) 2px,transparent 2px);background-size:18px 18px}
-.art-live .frame{position:relative;width:100%;max-width:440px;border-radius:18px;background:#fff;padding:6px;box-shadow:0 8px 0 var(--grape-edge);transform:rotate(-2deg)}
-.art-live picture{display:block;aspect-ratio:16/9;border-radius:13px;overflow:hidden}
-.art-live img{width:100%;height:100%;object-fit:cover}
-.art-live .live{top:16px;left:16px}
-.art-live .bubble{
-  position:absolute;right:-6px;bottom:-16px;
-  font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);
-  background:var(--sun);border-radius:16px 16px 4px 16px;padding:8px 14px;box-shadow:0 4px 0 var(--sun-edge);
-  animation:bobslow 5s ease-in-out infinite;
-}
-/* slide 2 — game platform */
-.art-game{background:linear-gradient(160deg,var(--sky-soft),#C9F1F4);align-content:center;gap:var(--s3)}
-.game-top{display:flex;gap:6px;justify-content:flex-end;width:100%;max-width:440px}
-.g-chip{font-family:var(--display);font-weight:700;font-size:13px;background:#fff;color:var(--ink);border-radius:var(--r-pill);padding:4px 10px;box-shadow:0 3px 0 var(--line-2)}
-.g-chip.g-xp{background:var(--sun);box-shadow:0 3px 0 var(--sun-edge)}
-.game-grid{display:grid;grid-template-columns:1fr 1.1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;width:100%;max-width:440px;height:180px}
-.game-grid li{
-  border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  background:var(--c);box-shadow:0 5px 0 var(--c-edge);color:#fff;
-}
-.game-grid span{font-size:34px;line-height:1}
-.game-grid b{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 2px 0 rgba(0,0,0,.2)}
-.game-grid .g-big{grid-column:2;grid-row:1 / span 2}
-.game-grid .g-big span{font-size:56px;animation:bobslow 5s ease-in-out infinite}
-.g-sky{--c:var(--sky-ink);--c-edge:var(--sky-edge)}
-.g-bubble{--c:var(--bubble-ink);--c-edge:#8E1442}
-.g-grass{--c:var(--grass-ink);--c-edge:#17561F}
-.g-sun{--c:var(--sun);--c-edge:var(--sun-edge)}
-.g-sun b{color:var(--ink);text-shadow:none}
-/* slide 3 — monthly report */
+/* slide 1 — monthly report */
 .art-report{background:var(--sun-soft)}
 .report{width:100%;max-width:380px;background:#fff;border-radius:20px;padding:var(--s4);box-shadow:0 6px 0 var(--sun-edge);transform:rotate(1.5deg)}
 .rp-head{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:var(--s3)}
@@ -646,12 +613,43 @@ h2 + .lede{margin-top:var(--s3)}
 .rp-bars li:nth-child(3) i::after{background:var(--mango)}
 .rp-note{margin-top:var(--s3);font-size:14px;background:var(--grape-soft);border-radius:12px;padding:8px 12px;color:var(--ink)}
 .rp-note b{font-weight:700;color:var(--grape-ink)}
-/* slide 4 — WhatsApp with the teacher */
+/* slide 2 — WhatsApp with the teacher */
 .art-chat{background:var(--grass-soft)}
 .chat{display:flex;flex-direction:column;gap:10px;width:100%;max-width:360px}
 .msg{max-width:82%;font-size:15px;font-weight:600;color:var(--ink);padding:10px 14px;border-radius:18px;box-shadow:0 3px 0 rgba(31,26,61,.12)}
 .msg.me{align-self:flex-end;background:#D6F8C4;border-bottom-right-radius:4px}
 .msg.them{align-self:flex-start;background:#fff;border-bottom-left-radius:4px}
+/* slide 3 — small group, everyone speaks */
+.art-talk{background:var(--grape);background-image:radial-gradient(rgba(255,255,255,.18) 2px,transparent 2px);background-size:18px 18px}
+.talk{width:100%;max-width:400px;display:grid;gap:var(--s3)}
+.talk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.talk-grid li{
+  position:relative;aspect-ratio:4/3;border-radius:16px;background:#fff;box-shadow:0 5px 0 var(--grape-edge);
+  display:grid;place-items:center;font-size:44px;line-height:1;
+}
+.talk-grid .t-on{outline:4px solid var(--sun);outline-offset:-4px}
+.talk-grid b{
+  position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);
+  background:var(--sun);border-radius:14px 14px 14px 4px;padding:6px 12px;box-shadow:0 3px 0 var(--sun-edge);
+}
+.talk-turn{justify-self:center;margin-top:6px;font-family:var(--display);font-weight:700;font-size:19px;color:#fff}
+/* slide 4 — stages to the certificate */
+.art-path{background:linear-gradient(160deg,var(--sky-soft),#C9F1F4)}
+.path{width:100%;max-width:340px;background:#fff;border-radius:20px;padding:var(--s4);box-shadow:0 6px 0 var(--sky-edge);transform:rotate(-1.5deg)}
+.path-steps{display:flex;flex-direction:column;gap:8px;counter-reset:step}
+.path-steps li{
+  counter-increment:step;display:flex;align-items:center;gap:var(--s2);
+  font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink-2);
+}
+.path-steps li::before{
+  content:counter(step);flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  background:var(--cream);color:var(--ink-2);font-size:14px;
+}
+.path-steps .done::before{content:"✓";background:var(--grass);color:#fff}
+.path-steps .now{color:var(--grape-ink)}
+.path-steps .now::before{background:var(--grape-ink);color:#fff}
+.path-cert{margin-top:var(--s3);font-family:var(--display);font-weight:700;font-size:15px;background:var(--sun);border-radius:12px;padding:8px 12px;box-shadow:0 3px 0 var(--sun-edge);text-align:center}
 
 .gets-nav{display:flex;align-items:center;gap:var(--s3);padding:var(--s5) var(--s4) 0}
 .round{
@@ -1382,7 +1380,7 @@ h2 + .lede{margin-top:var(--s3)}
    Scenery holds still; scroll parallax, reveals and the demo stay.
    ========================================================= */
 .lite .cloud,.lite .sun .rays,.lite .sun .eyes,.lite .stk i,.lite .ticker p,.lite .peek,
-.lite .chip-xp,.lite .chip-streak,.lite .vid-play::before,.lite .plan-star,.lite .rv-feature::after,
+.lite .chip-xp,.lite .vid-play::before,.lite .plan-star,.lite .rv-feature::after,
 .lite .breathe::after,.lite .chip-dot{animation:none}
 .lite .cloud:nth-child(1){left:6%} .lite .cloud:nth-child(2){left:62%} .lite .cloud:nth-child(3){left:30%}
 .lite .cloud:nth-child(4){left:80%} .lite .cloud:nth-child(5){left:44%}
