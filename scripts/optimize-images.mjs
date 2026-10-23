@@ -30,13 +30,13 @@ const KINDS = {
   students:           { widths: [96, 192, 288], alpha: false, aspect: 1, trim: true,
                         note: 'Faces in the live-class mock in the hero',
                         crop: {
-                          daniel:   { focus: [0.63, 0.60], zoom: 0.85 },
+                          daniel:   { focus: [0.60, 0.75], zoom: 0.83 },
                           jeanpaul: { focus: [0.40, 0.48], zoom: 0.80 },
-                          josue:    { focus: [0.50, 0.40], zoom: 0.78 },
+                          josue:    { focus: [0.56, 0.52], zoom: 0.92 },
                           mila:     { focus: [0.35, 0.30], zoom: 0.75 },
                           neila:    { focus: [0.45, 0.60], zoom: 0.74 },
                           samantha: { focus: [0.42, 0.48], zoom: 0.90 },
-                          samir:    { focus: [0.52, 0.40], zoom: 0.88 }
+                          samir:    { focus: [0.52, 0.40], zoom: 0.55 }
                         } },
 
   teachers:           { widths: [280, 560, 840], alpha: false, aspect: 4 / 5,

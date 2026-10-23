@@ -5,46 +5,46 @@
     "w": 596,
     "h": 351,
     "crop": {
-      "width": 298,
-      "height": 298,
-      "left": 226,
-      "top": 52
+      "width": 291,
+      "height": 291,
+      "left": 212,
+      "top": 59
     },
     "made": [
       {
         "w": 96,
         "fmt": "avif",
-        "bytes": 2228,
+        "bytes": 2211,
         "path": "assets\\optimized\\students\\daniel-96.avif"
       },
       {
         "w": 96,
         "fmt": "webp",
-        "bytes": 2412,
+        "bytes": 2370,
         "path": "assets\\optimized\\students\\daniel-96.webp"
       },
       {
         "w": 192,
         "fmt": "avif",
-        "bytes": 3753,
+        "bytes": 3652,
         "path": "assets\\optimized\\students\\daniel-192.avif"
       },
       {
         "w": 192,
         "fmt": "webp",
-        "bytes": 4734,
+        "bytes": 4564,
         "path": "assets\\optimized\\students\\daniel-192.webp"
       },
       {
         "w": 288,
         "fmt": "avif",
-        "bytes": 5032,
+        "bytes": 4892,
         "path": "assets\\optimized\\students\\daniel-288.avif"
       },
       {
         "w": 288,
         "fmt": "webp",
-        "bytes": 6794,
+        "bytes": 6706,
         "path": "assets\\optimized\\students\\daniel-288.webp"
       }
     ]
@@ -81,46 +81,46 @@
     "w": 832,
     "h": 469,
     "crop": {
-      "width": 366,
-      "height": 366,
-      "left": 233,
-      "top": 5
+      "width": 431,
+      "height": 431,
+      "left": 250,
+      "top": 28
     },
     "made": [
       {
         "w": 96,
         "fmt": "avif",
-        "bytes": 1398,
+        "bytes": 1638,
         "path": "assets\\optimized\\students\\josue-96.avif"
       },
       {
         "w": 96,
         "fmt": "webp",
-        "bytes": 1342,
+        "bytes": 1644,
         "path": "assets\\optimized\\students\\josue-96.webp"
       },
       {
         "w": 192,
         "fmt": "avif",
-        "bytes": 2415,
+        "bytes": 2850,
         "path": "assets\\optimized\\students\\josue-192.avif"
       },
       {
         "w": 192,
         "fmt": "webp",
-        "bytes": 3008,
+        "bytes": 3618,
         "path": "assets\\optimized\\students\\josue-192.webp"
       },
       {
         "w": 288,
         "fmt": "avif",
-        "bytes": 3350,
+        "bytes": 3949,
         "path": "assets\\optimized\\students\\josue-288.avif"
       },
       {
         "w": 288,
         "fmt": "webp",
-        "bytes": 4722,
+        "bytes": 5536,
         "path": "assets\\optimized\\students\\josue-288.webp"
       }
     ]
@@ -257,22 +257,22 @@
     "w": 456,
     "h": 262,
     "crop": {
-      "width": 177,
-      "height": 177,
-      "left": 151,
-      "top": 16
+      "width": 111,
+      "height": 111,
+      "left": 184,
+      "top": 49
     },
     "made": [
       {
         "w": 96,
         "fmt": "avif",
-        "bytes": 1422,
+        "bytes": 1138,
         "path": "assets\\optimized\\students\\samir-96.avif"
       },
       {
         "w": 96,
         "fmt": "webp",
-        "bytes": 1430,
+        "bytes": 1018,
         "path": "assets\\optimized\\students\\samir-96.webp"
       }
     ]
